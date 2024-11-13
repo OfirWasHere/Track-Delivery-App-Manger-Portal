@@ -2,6 +2,7 @@ import React from "react";
 import { Outlet, useOutlet } from "react-router-dom";
 import "./Root.css";
 import Home from "../Home/Home";
+
 function Root() {
   const outlet = useOutlet();
   return (
