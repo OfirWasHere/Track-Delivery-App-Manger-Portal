@@ -1,10 +1,10 @@
 import React from "react";
 import "./BurgerMenu.css";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../Redux/RootReducer";
 import { NavLink } from "react-router-dom";
-import RoutesNav from "../../Routes/RoutesNav";
 import { Box, Typography } from "@mui/material";
+import RoutesNav from "../../../Routes/RoutesNav";
+import { RootState } from "../../../Redux/RootReducer";
 
 function BurgerMenu(): JSX.Element {
   const isOpen = useSelector((state: RootState) => state.drawer.isOpen);

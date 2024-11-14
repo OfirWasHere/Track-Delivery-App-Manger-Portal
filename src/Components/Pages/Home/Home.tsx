@@ -1,7 +1,7 @@
 import React from "react";
 import { Box } from "@mui/material";
-import Navbar from "../../Navbar/Navbar";
-import BurgerMenu from "../../BurgerMenu/BurgerMenu/BurgerMenu";
+import NavbarLayout from "../../NavbarLayout/NavbarLayout";
+import BurgerMenu from "../../common/BurgerMenu/BurgerMenu/BurgerMenu";
 
 function Home() {
   return (
@@ -9,7 +9,7 @@ function Home() {
       <Box>
         <header>
           <BurgerMenu />
-          <Navbar />
+          <NavbarLayout />
         </header>
         <Box></Box>
       </Box>
