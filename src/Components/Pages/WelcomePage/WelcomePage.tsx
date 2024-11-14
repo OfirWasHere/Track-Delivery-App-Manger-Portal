@@ -3,7 +3,7 @@ import { Box } from "@mui/material";
 import NavbarLayout from "../../NavbarLayout/NavbarLayout";
 import BurgerMenu from "../../common/BurgerMenu/BurgerMenu/BurgerMenu";
 
-function Home() {
+function WelcomePage() {
   return (
     <div>
       <Box>
@@ -11,10 +11,10 @@ function Home() {
           <BurgerMenu />
           <NavbarLayout />
         </header>
-        <Box></Box>
+        <Box>Hi I'm homeplage</Box>
       </Box>
     </div>
   );
 }
 
-export default Home;
+export default WelcomePage;
