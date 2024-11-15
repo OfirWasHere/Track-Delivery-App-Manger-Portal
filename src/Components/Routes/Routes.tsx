@@ -52,11 +52,6 @@ const NAVIGATION: Navigation = [
     title: "welcomePage",
     icon: <HomeIcon />,
   },
-  // {
-  //   segment: "link here",
-  //   title: "LostPage",
-  //   icon: <ShoppingCartIcon />,
-  // },
 ];
 
 export { Routes, NAVIGATION };
