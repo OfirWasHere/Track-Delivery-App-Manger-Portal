@@ -7,7 +7,7 @@ import { RootState } from "../../../Redux/RootReducer";
 function BurgerMenuIcon(): JSX.Element {
   const dispatch = useDispatch();
   const isOpen = useSelector((state: RootState) => state.drawer.isOpen);
-
+  
   const clickHandler = () => {
     if (isOpen) {
       dispatch({ type: "CLOSE_DRAWER" });

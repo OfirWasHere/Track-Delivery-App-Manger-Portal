@@ -1,0 +1,31 @@
+/* .NavLinks {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    margin: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: color 0.3s ease, letter-spacing 0.3s ease;
+    margin-left: auto;
+}
+
+.NavLinks::before {
+    content: "";
+    width: 100%;
+    height: 3px;
+    bottom: 0;
+    left: 0;
+    background-color: #ff9100;
+    visibility: hidden;
+    transform: scaleX(0);
+    transition: transform 0.3s ease, visibility 0.3s ease;
+}
+
+.NavLinks:hover {
+    color: #ff9100;
+    letter-spacing: 0.5px;
+}
+
+.NavLinks:hover::before {
+    visibility: visible;
+    transform: scaleX(1);
+} */

@@ -7,8 +7,8 @@ import RoutesNav from "../../../Routes/RoutesNav";
 import { RootState } from "../../../Redux/RootReducer";
 
 function BurgerMenu(): JSX.Element {
-  const isOpen = useSelector((state: RootState) => state.drawer.isOpen);
   const dispatch = useDispatch();
+  const isOpen = useSelector((state: RootState) => state.drawer.isOpen);  
 
   function renderNavLinks() {
     return RoutesNav.map((route, index) => (
