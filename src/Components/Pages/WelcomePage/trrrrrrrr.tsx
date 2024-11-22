@@ -292,7 +292,7 @@ function navbarMobile({ onLoginClick }: navbarProps) {
   return (
     <Box position="absolute" right={"24px"} top={"24px"}>
       <Box>
-        <BurgerMenuIcon />
+        {/* <BurgerMenuIcon /> */}
       </Box>
     </Box>
   );

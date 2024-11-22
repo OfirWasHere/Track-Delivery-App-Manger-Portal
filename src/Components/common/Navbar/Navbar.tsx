@@ -30,6 +30,7 @@ function NavbarDesktop({ onLoginClick }: navbarProps): JSX.Element {
           px: 4,
           justifyContent: "space-between",
           alignItems: "center",
+          position: "relative", // TODO: Remove this?
         }}
       >
         <Toolbar
@@ -86,7 +87,6 @@ function NavbarDesktop({ onLoginClick }: navbarProps): JSX.Element {
 }
 
 function Drawer({ onLoginClick }: navbarProps) {
-  
   return (
     <Box position="absolute" right={"24px"} top={"24px"}>
       <Box>
