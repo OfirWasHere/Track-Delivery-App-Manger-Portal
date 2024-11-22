@@ -20,17 +20,7 @@ interface navbarProps {
   onLoginClick: () => void;
 }
 
-// function renderNavLinks() {
-//   return RoutesNav.map((route, index) => (
-//     <NavLink className={"NavLinks"} to={route.path} key={index}>
-//       <Typography variant="h6" sx={{ color: "4B5563" }}>
-//         {route.routeName}
-//       </Typography>
-//     </NavLink>
-//   ));
-// }
-
-function navbarDesktop({ onLoginClick }: navbarProps): JSX.Element {
+function NavbarDesktop({ onLoginClick }: navbarProps): JSX.Element {
   return (
     <Box>
       <AppBar
@@ -52,7 +42,6 @@ function navbarDesktop({ onLoginClick }: navbarProps): JSX.Element {
         >
           <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
             <Truck size={32} color="#2563EB" style={{ marginRight: 16 }} />
-
             <Typography variant={"h6"} color={"text.primary"} fontWeight="bold">
               TruckTrack
             </Typography>
@@ -66,18 +55,18 @@ function navbarDesktop({ onLoginClick }: navbarProps): JSX.Element {
               pr: 2,
             }}
           >
-            {RoutesNav.slice().reverse().map((route, index) => (
-              <Link
-                href={`#${route.toPath}`}
-                className={"NavLinks"}
-                key={index}
-                sx={{ textDecoration: "none" }}
-              >
-                <Typography variant="h6" sx={{ color: "4B5563" }}>
-                  {route.routeName}
-                </Typography>
-              </Link>
-            ))}
+            {RoutesNav.slice()
+              .reverse()
+              .map((route, index) => (
+                <Link
+                  href={`#${route.toPath}`}
+                  className={"NavLinks"}
+                  key={index}
+                  sx={{ textDecoration: "none", mx: "16px" }}
+                >
+                  <Typography variant="h5">{route.routeName}</Typography>
+                </Link>
+              ))}
           </Box>
 
           <Box>
@@ -87,7 +76,7 @@ function navbarDesktop({ onLoginClick }: navbarProps): JSX.Element {
               sx={{ bgcolor: "#212121", color: "#fff" }}
               onClick={onLoginClick}
             >
-              התחברות
+              <Typography variant="h6">התחברות</Typography>
             </Button>
           </Box>
         </Toolbar>
@@ -96,7 +85,8 @@ function navbarDesktop({ onLoginClick }: navbarProps): JSX.Element {
   );
 }
 
-function navbarMobile({ onLoginClick }: navbarProps) {
+function Drawer({ onLoginClick }: navbarProps) {
+  
   return (
     <Box position="absolute" right={"24px"} top={"24px"}>
       <Box>
@@ -108,15 +98,15 @@ function navbarMobile({ onLoginClick }: navbarProps) {
 
 function Navbar(): JSX.Element {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const isMobile = useIsMobile();
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
 
-  const isMobile = useIsMobile();
   return (
     <Box sx={{ flexGrow: 1 }} display={"block"}>
       <LoginModal open={isModalOpen} onClose={handleCloseModal} />
-      {!isMobile && navbarDesktop({ onLoginClick: handleOpenModal })}
-      {isMobile && navbarMobile({ onLoginClick: handleOpenModal })}
+      {!isMobile && NavbarDesktop({ onLoginClick: handleOpenModal })}
+      {isMobile && Drawer({ onLoginClick: handleOpenModal })}
     </Box>
   );
 }
