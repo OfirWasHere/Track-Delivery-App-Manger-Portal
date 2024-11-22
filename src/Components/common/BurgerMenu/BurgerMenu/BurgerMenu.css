@@ -19,7 +19,7 @@
     height: 0;
 }
 
-.NavLinks {
+.NavLinks_dark {
     color: rgb(255, 255, 255);
     text-decoration: none;
     margin: 20px;
@@ -28,7 +28,7 @@
     transition: color 0.3s ease, letter-spacing 0.3s ease;
 }
 
-.NavLinks::before {
+.NavLinks_dark::before {
     content: "";
     position: absolute;
     width: 100%;
@@ -41,12 +41,12 @@
     transition: transform 0.3s ease, visibility 0.3s ease;
 }
 
-.NavLinks:hover {
+.NavLinks_dark:hover {
     color: #ff9100;
     letter-spacing: 0.5px;
 }
 
-.NavLinks:hover::before {
+.NavLinks_dark:hover::before {
     visibility: visible;
     transform: scaleX(1);
 }

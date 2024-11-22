@@ -3,6 +3,7 @@ body {
   margin: 0px;
   top: 0;
   padding: 0px;
+  background-color: gray;
 }
 
 @font-face {

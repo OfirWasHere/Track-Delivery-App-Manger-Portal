@@ -13,7 +13,7 @@ function BurgerMenu(): JSX.Element {
   function renderNavLinks() {
     return RoutesNav.map((route, index) => (
       <NavLink
-        className="NavLinks"
+        className="NavLinks_dark"
         to={route.path}
         key={index}
         onClick={clickHandler}
