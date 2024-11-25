@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import { Grid2 } from "@mui/material";
 import { Box } from "@mui/system";
-import { Truck, ClipboardList, BarChart3, Users, MenuIcon } from "lucide-react";
+import { Truck, ClipboardList, BarChart3, Users } from "lucide-react";
 import Navbar from "../../common/Navbar/Navbar";
 
 export default function Main() {
@@ -32,7 +32,7 @@ export default function Main() {
                 fontSize: { xs: "2.5rem", sm: "3.75rem" },
               }}
             >
-              Manage Your Fleet with Ease
+              נהל את צי הנהגים שלך בקלות
             </Typography>
             <Typography
               variant="h5"
@@ -43,8 +43,8 @@ export default function Main() {
                 mb: 4,
               }}
             >
-              Fox Delivery's helps businesses streamline their delivery
-              operations, track performance, and boost efficiency.
+              האפליקציה שלנו עוזר לעסקים לייעל את פעולות האספקה ​​שלהם, להעביר
+              את הביצועים ולהגביר את היעילות.
             </Typography>
             <Button
               variant="contained"
@@ -58,7 +58,7 @@ export default function Main() {
                 width: { xs: "100%", sm: "auto" },
               }}
             >
-              Get Started
+              התחל
             </Button>
             <Button
               variant="contained"
@@ -70,7 +70,7 @@ export default function Main() {
                 width: { xs: "100%", sm: "auto" },
               }}
             >
-              Request Demo
+              בקש הדגמה
             </Button>
           </Container>
         </Box>
@@ -89,7 +89,7 @@ export default function Main() {
                 fontSize: { xs: "2rem", sm: "3rem" },
               }}
             >
-              Key Features
+              תכונות מפתח
             </Typography>
             <Grid2 container spacing={4}>
               <Grid2 size={{ xs: 12, sm: 6, md: 3 }}>
@@ -128,7 +128,7 @@ export default function Main() {
       <Box bgcolor={"#2D3748"} color={"white"} py={2}>
         <Container>
           <Typography variant="body2" align="center">
-            &copy; 2023 Fox Delivery's. All rights reserved.
+            &copy; 2024 כל הזכויות שמורות. אופיר דורון תוכנה.
           </Typography>
         </Container>
       </Box>
