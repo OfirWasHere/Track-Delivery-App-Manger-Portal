@@ -6,8 +6,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import store from "./Components/Store/Store";
 import { Provider } from "react-redux";
 import { Routes } from "./Components/Routes/Routes";
-import { ThemeProvider } from "@emotion/react";
-import theme from "./Components/CustomTheme";
+import { CssBaseline } from "@mui/material";
+import theme from "./Components/theme/theme";
+import { ThemeContextProvider } from "./Components/theme/ThemeContextProvider";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -15,9 +16,10 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <ThemeProvider theme={theme}>
+      <ThemeContextProvider>
+        <CssBaseline />
         <RouterProvider router={createBrowserRouter(Routes)} />
-      </ThemeProvider>
+      </ThemeContextProvider>
     </Provider>
   </React.StrictMode>
 );

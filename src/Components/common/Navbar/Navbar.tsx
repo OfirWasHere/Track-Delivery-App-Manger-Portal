@@ -8,66 +8,83 @@ import {
   Button,
   Link,
   Drawer,
-  List,
   ListItem,
+  List,
   ListItemText,
-  useMediaQuery,
-  useTheme,
 } from "@mui/material";
-import { NavLink } from "react-router-dom";
+import useIsMobile from "../../Hooks/useIsMobile";
 import RoutesNav from "../../Routes/RoutesNav";
-import LoginModal from "../LoginModal/LoginModal";
 import "./Navbar.css";
 import { Truck, Menu } from "lucide-react";
-import useIsMobile from "../../Hooks/useIsMobile";
+import LoginModal from "../../common/LoginModal/LoginModal";
+import { useThemeContext } from "../../theme/ThemeContextProvider";
+import { blue } from "@mui/material/colors";
 
-interface NavbarProps {
-  onLoginClick: () => void;
+interface navbarProps {
+  handleOpenLoginModal: () => void;
 }
 
-function Navbar(): JSX.Element {
-  const isMobile = useIsMobile();
-  const [isModalOpen, setIsModalOpen] = useState(false);
+function NavbarContainer({ handleOpenLoginModal }: navbarProps): JSX.Element {
+  const { toggleColorMode } = useThemeContext();
   const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
-
-  const handleOpenModal = () => setIsModalOpen(true);
-  const handleCloseModal = () => setIsModalOpen(false);
   const toggleBurgerMenu = () => setIsBurgerMenuOpen(!isBurgerMenuOpen);
+  const isMobile = useIsMobile();
 
-  const NavbarContent = (
+  const navbarLogo = (
+    <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+      <Truck size={32} color={blue[500]} />
+
+      <Typography
+        onClick={toggleColorMode}
+        variant={"h6"}
+        color={"text.primary"}
+        fontWeight={"bold"}
+      >
+        אופיר תוכנה
+      </Typography>
+    </Box>
+  );
+
+  const navbarContent = (
     <>
-      <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-        <Truck size={32} color="#2563EB" style={{ marginRight: 16 }} />
-        <Typography variant="h6" color="text.primary" fontWeight="bold">
-          Ofir Software
-        </Typography>
-      </Box>
-
-      {!isMobile && (
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "flex-end",
-            flex: 1,
-            pr: 2,
-          }}
-        >
-          {RoutesNav.slice()
-            .reverse()
-            .map((route, index) => (
-              <Link
-                href={`#${route.toPath}`}
-                className="NavLinks"
-                key={index}
-                sx={{ textDecoration: "none", mx: "16px" }}
+      {!isMobile ? (
+        <>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "flex-end",
+              flex: 1,
+              pr: 2,
+            }}
+          >
+            {RoutesNav.slice()
+              .reverse()
+              .map((route, index) => (
+                <Link
+                  href={`#${route.toPath}`}
+                  key={index}
+                  sx={{ textDecoration: "none", mx: "16px" }}
+                >
+                  <Typography color="text.primary" variant="h6">
+                    {route.routeName}
+                  </Typography>
+                </Link>
+              ))}
+          </Box>
+          <Box>
+            <Box>
+              <Button
+                variant="contained"
+                size="large"
+                sx={{ bgcolor: "#212121", color: "#fff" }}
+                onClick={handleOpenLoginModal}
               >
-                <Typography variant="h6">{route.routeName}</Typography>
-              </Link>
-            ))}
-        </Box>
-      )}
-
-      {isMobile ? (
+                התחברות
+              </Button>
+            </Box>
+          </Box>
+        </>
+      ) : (
         <IconButton
           edge="start"
           color="inherit"
@@ -75,44 +92,22 @@ function Navbar(): JSX.Element {
           onClick={toggleBurgerMenu}
           sx={{
             ml: 2,
-            color: "black",
-            bgcolor: "white",
-            "&:hover": {
-              bgcolor: "grey.200",
-            },
+            color: "grey.100",
+            bgcolor: "grey.900",
           }}
         >
           <Menu />
         </IconButton>
-      ) : (
-        <Box>
-          <Button
-            variant="contained"
-            size="large"
-            sx={{
-              bgcolor: "#212121",
-              color: "#fff",
-              "&:hover": {
-                bgcolor: "#424242",
-              },
-            }}
-            onClick={handleOpenModal}
-          >
-            <Typography variant="h6">התחברות</Typography>
-          </Button>
-        </Box>
       )}
     </>
   );
 
   return (
-    <Box sx={{ flexGrow: 1 }} display="block">
-      <LoginModal open={isModalOpen} onClose={handleCloseModal} />
+    <Box>
       <AppBar
         sx={{
           bgcolor: "background.paper",
           boxShadow: 1,
-          px: 4,
           justifyContent: "space-between",
           alignItems: "center",
         }}
@@ -125,47 +120,68 @@ function Navbar(): JSX.Element {
             alignItems: "center",
           }}
         >
-          {NavbarContent}
+          {navbarLogo}
+          {navbarContent}
         </Toolbar>
-      </AppBar>
-      <Toolbar />{" "}
-      {/* Add this to prevent content from going under the AppBar */}
-      <Drawer anchor="right" open={isBurgerMenuOpen} onClose={toggleBurgerMenu}>
-        <Box
-          sx={{ width: 250 }}
-          role="presentation"
-          onClick={toggleBurgerMenu}
-          onKeyDown={toggleBurgerMenu}
+        <Drawer
+          anchor="right"
+          open={isBurgerMenuOpen}
+          onClose={toggleBurgerMenu}
         >
-          <List>
-            {RoutesNav.map((route, index) => (
-              <ListItem key={index} component="a" href={`#${route.toPath}`}>
-                <ListItemText primary={route.routeName} />
+          <Box
+            sx={{ width: 250 }}
+            role="presentation"
+            onClick={toggleBurgerMenu}
+            onKeyDown={toggleBurgerMenu}
+          >
+            <List>
+              {RoutesNav.map((route, index) => (
+                <ListItem
+                  sx={{ textAlign: "right" }}
+                  key={index}
+                  component="a"
+                  href={`#${route.toPath}`}
+                >
+                  <ListItemText primary={route.routeName} />
+                </ListItem>
+              ))}
+              <ListItem>
+                <Button
+                  fullWidth
+                  variant="contained"
+                  size="large"
+                  sx={{
+                    bgcolor: "#212121",
+                    color: "#fff",
+                    "&:hover": {
+                      bgcolor: "#424242",
+                    },
+                  }}
+                  onClick={() => {
+                    handleOpenLoginModal();
+                    toggleBurgerMenu();
+                  }}
+                >
+                  <Typography variant="h6">התחברות</Typography>
+                </Button>
               </ListItem>
-            ))}
-            <ListItem>
-              <Button
-                fullWidth
-                variant="contained"
-                size="large"
-                sx={{
-                  bgcolor: "#212121",
-                  color: "#fff",
-                  "&:hover": {
-                    bgcolor: "#424242",
-                  },
-                }}
-                onClick={() => {
-                  handleOpenModal();
-                  toggleBurgerMenu();
-                }}
-              >
-                <Typography variant="h6">התחברות</Typography>
-              </Button>
-            </ListItem>
-          </List>
-        </Box>
-      </Drawer>
+            </List>
+          </Box>
+        </Drawer>
+      </AppBar>
+    </Box>
+  );
+}
+
+function Navbar(): JSX.Element {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const handleOpenModal = () => setIsModalOpen(true);
+  const handleCloseModal = () => setIsModalOpen(false);
+
+  return (
+    <Box sx={{ flexGrow: 1 }}>
+      <LoginModal open={isModalOpen} onClose={handleCloseModal} />
+      {NavbarContainer({ handleOpenLoginModal: handleOpenModal })}
     </Box>
   );
 }

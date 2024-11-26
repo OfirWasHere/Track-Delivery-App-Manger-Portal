@@ -1,10 +1,10 @@
-.NavLinks {
-    color: rgb(0, 0, 0) !important;
-    position: relative;
-    overflow: hidden;
-    transition: color 0.3s ease, letter-spacing 0.3s ease;
-}
+/* .NavLinks { */
+    /* position: relative; */
+    /* overflow: hidden; */
+    /* transition: color 0.3s ease, letter-spacing 0.3s ease; */
+/* } */
 
+/* 
 .NavLinks::after {
     content: "";
     position: absolute;
@@ -20,3 +20,4 @@
 .NavLinks:hover::after {
     width: 100%;
 }
+     */

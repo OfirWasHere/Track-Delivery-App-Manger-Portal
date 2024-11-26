@@ -5,6 +5,8 @@ import { DashboardLayout, PageContainer } from "@toolpad/core";
 import "./Root.css";
 import WelcomePage from "../WelcomePage/WelcomePage";
 import { NAVIGATION } from "../../Routes/Routes";
+import { ThemeProvider } from "@mui/material";
+import { useThemeContext } from "../../theme/ThemeContextProvider";
 
 const BRANDING = {
   title: "My Toolpad Core App",
@@ -12,20 +14,23 @@ const BRANDING = {
 
 function Root() {
   const outlet = useOutlet();
+  const { theme } = useThemeContext();
 
   return (
     <div>
-      {outlet ? (
-        <AppProvider navigation={NAVIGATION} branding={BRANDING}>
-          <DashboardLayout>
-            <PageContainer>
-              <Outlet />
-            </PageContainer>
-          </DashboardLayout>
-        </AppProvider>
-      ) : (
-        <WelcomePage />
-      )}
+      <ThemeProvider theme={theme}>
+        {outlet ? (
+          <AppProvider navigation={NAVIGATION} branding={BRANDING}>
+            <DashboardLayout>
+              <PageContainer>
+                <Outlet />
+              </PageContainer>
+            </DashboardLayout>
+          </AppProvider>
+        ) : (
+          <WelcomePage />
+        )}
+      </ThemeProvider>
     </div>
   );
 }
