@@ -12,25 +12,20 @@ import {
   List,
   ListItemText,
 } from "@mui/material";
-import useIsMobile from "../../Hooks/useIsMobile";
-import RoutesNav from "../../Routes/RoutesNav";
-import "./Navbar.css";
 import { Truck, Menu } from "lucide-react";
-import LoginModal from "../../common/LoginModal/LoginModal";
-import { useThemeContext } from "../../theme/ThemeContextProvider";
 import { blue } from "@mui/material/colors";
+import useIsMobile from "../Hooks/useIsMobile";
+import RoutesNav from "../Routes/RoutesNav";
+import { useThemeContext } from "../theme/ThemeContextProvider";
+import LoginModal from "./LoginModal";
 
 interface navbarProps {
   handleOpenLoginModal: () => void;
 }
 
-function NavbarContainer({ handleOpenLoginModal }: navbarProps): JSX.Element {
+export function NavbarLogo() {
   const { toggleColorMode } = useThemeContext();
-  const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
-  const toggleBurgerMenu = () => setIsBurgerMenuOpen(!isBurgerMenuOpen);
-  const isMobile = useIsMobile();
-
-  const navbarLogo = (
+  return (
     <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
       <Truck size={32} color={blue[500]} />
 
@@ -44,6 +39,12 @@ function NavbarContainer({ handleOpenLoginModal }: navbarProps): JSX.Element {
       </Typography>
     </Box>
   );
+}
+
+function NavbarContainer({ handleOpenLoginModal }: navbarProps): JSX.Element {
+  const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
+  const toggleBurgerMenu = () => setIsBurgerMenuOpen(!isBurgerMenuOpen);
+  const isMobile = useIsMobile();
 
   const navbarContent = (
     <>
@@ -120,7 +121,7 @@ function NavbarContainer({ handleOpenLoginModal }: navbarProps): JSX.Element {
             alignItems: "center",
           }}
         >
-          {navbarLogo}
+          <NavbarLogo />
           {navbarContent}
         </Toolbar>
         <Drawer

@@ -3,7 +3,7 @@ import { AppProvider } from "@toolpad/core/react-router-dom";
 import { Outlet, useOutlet } from "react-router-dom";
 import { DashboardLayout, PageContainer } from "@toolpad/core";
 import "./Root.css";
-import WelcomePage from "../WelcomePage/WelcomePage";
+import WelcomePage from "../WelcomePageLayout/WelcomePage";
 import { NAVIGATION } from "../../Routes/Routes";
 import { ThemeProvider } from "@mui/material";
 import { useThemeContext } from "../../theme/ThemeContextProvider";

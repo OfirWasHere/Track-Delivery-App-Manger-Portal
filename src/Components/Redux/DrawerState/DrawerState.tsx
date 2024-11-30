@@ -7,7 +7,7 @@ const initialState = {
   isOpen: false,
 };
 
-export default function drawerReducer(state = initialState, action: any): DrawerState {
+export default function drawerReducer(state = initialState, action: any): DrawerState { // TODO MAKE ACTION TYPES
   switch (action.type) {
     case OPEN_DRAWER:
       return { ...state, isOpen: true };
