@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import drawerReducer from "./DrawerState/DrawerState";
+import drawerReducer from "./DrawerState";
 
 const RootReducer = combineReducers({drawer: drawerReducer});
 

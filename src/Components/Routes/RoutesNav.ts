@@ -8,12 +8,12 @@ const RoutesNav: RouteModel[] = [
     },
     {
         path: '/',
-        toPath: "home",
+        toPath: "about",
         routeName: 'עלינו'
     },
     {
         path: '/',
-        toPath: "home",
+        toPath: "contact",
         routeName: 'צרו קשר'
     },
 ]

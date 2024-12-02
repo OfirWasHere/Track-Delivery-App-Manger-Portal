@@ -3,53 +3,40 @@ import { Container, Typography, Button, Box } from "@mui/material";
 import Footer from "./Footer";
 
 function HeroSection() {
-  const sections = useRef([]); // Array to store section references
+  const sections = useRef([]);
   const [currentSection, setCurrentSection] = useState(0);
-  const isScrolling = useRef(false); // Track if scrolling is in progress
 
   useEffect(() => {
-    const handleScroll = (event: any) => {
+    const handleScroll = (event: WheelEvent) => {
       event.preventDefault();
-      if (isScrolling.current) return;
-      isScrolling.current = true;
 
-      const direction = event.deltaY > 0 ? 1 : -1; // Scroll down or up
+      const direction = event.deltaY > 0 ? 1 : -1;
       const newSectionIndex = Math.min(
         Math.max(currentSection + direction, 0),
         sections.current.length - 1
       );
 
       if (newSectionIndex !== currentSection) {
-        setCurrentSection(newSectionIndex);
-        sections.current[newSectionIndex].scrollIntoView({
-          behavior: "smooth",
-        });
-        setTimeout(() => {
-          isScrolling.current = false;
-        }, 800); // Adjust the delay based on your animation duration
+        moveToSection(newSectionIndex);
       }
     };
 
-    const handleResize = () => {
-      // Scroll to the current section to ensure it stays in the viewport
-      sections.current[currentSection]?.scrollIntoView({
-        behavior: "smooth",
-        block: "center", // Align the section to the center
-      });
-    };
-
     window.addEventListener("wheel", handleScroll, { passive: false });
-    window.addEventListener("resize", handleResize); // Add resize event listener
     return () => {
       window.removeEventListener("wheel", handleScroll);
-      window.removeEventListener("resize", handleResize); // Clean up resize event listener
     };
   }, [currentSection]);
+
+  function moveToSection(sectionIndex: number) {
+    setCurrentSection(sectionIndex);
+    sections.current[sectionIndex].scrollIntoView({ behavior: "smooth" });
+  }
 
   return (
     <>
       {/* Section 1 */}
       <Box
+        id={"home"}
         ref={(el) => (sections.current[0] = el)}
         sx={{
           height: "100vh",
@@ -80,13 +67,19 @@ function HeroSection() {
               size="large"
               color="primary"
               onClick={() => {
-                setCurrentSection(1);
-                sections.current[1].scrollIntoView({ behavior: "smooth" });
+                moveToSection(1);
               }}
             >
               התחל
             </Button>
-            <Button variant="outlined" size="large" color="primary">
+            <Button
+              onClick={() => {
+                moveToSection(2);
+              }}
+              variant="outlined"
+              size="large"
+              color="primary"
+            >
               בקש הדגמה
             </Button>
           </Box>
@@ -95,6 +88,7 @@ function HeroSection() {
 
       {/* Section 2 */}
       <Box
+        id={"about"}
         ref={(el) => (sections.current[1] = el)}
         sx={{
           height: "100vh",
@@ -105,11 +99,12 @@ function HeroSection() {
           color: "white",
         }}
       >
-        <Typography variant="h3">ברוכים הבאים לחלק הבא</Typography>
+        <Typography variant="h3">קצת עליינו</Typography>
       </Box>
 
       {/* Section 3 */}
       <Box
+        id={"contact"}
         ref={(el) => (sections.current[2] = el)}
         sx={{
           height: "100vh",
@@ -121,7 +116,7 @@ function HeroSection() {
         }}
       >
         <Box>
-          <Typography variant="h3">עוד מידע מעניין</Typography>
+          <Typography variant="h3">צור קשר</Typography>
         </Box>
       </Box>
     </>

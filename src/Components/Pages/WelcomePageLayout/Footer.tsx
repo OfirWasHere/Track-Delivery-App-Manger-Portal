@@ -11,7 +11,7 @@ const FooterContainer = styled("footer")(({ theme }) => ({
 export default function Footer() {
   return (
     <FooterContainer>
-      <Container>
+      <Container maxWidth="lg">
         <Box
           sx={{
             display: "flex",
