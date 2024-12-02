@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Box,
   Typography,
@@ -19,8 +19,9 @@ import RoutesNav from "../Routes/RoutesNav";
 import { useThemeContext } from "../theme/ThemeContextProvider";
 import LoginModal from "./LoginModal";
 
-interface navbarProps {
+interface NavbarProps {
   handleOpenLoginModal: () => void;
+  activeSection: string;
 }
 
 export function NavbarLogo() {
@@ -41,10 +42,23 @@ export function NavbarLogo() {
   );
 }
 
-function NavbarContainer({ handleOpenLoginModal }: navbarProps): JSX.Element {
+function NavbarContainer({ handleOpenLoginModal, activeSection }: NavbarProps): JSX.Element {
   const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
   const toggleBurgerMenu = () => setIsBurgerMenuOpen(!isBurgerMenuOpen);
   const isMobile = useIsMobile();
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+      setTimeout(() => {
+        window.scrollTo({
+          top: element.offsetTop,
+          behavior: "smooth"
+        });
+      }, 100);
+    }
+  };
 
   const navbarContent = (
     <>
@@ -62,27 +76,31 @@ function NavbarContainer({ handleOpenLoginModal }: navbarProps): JSX.Element {
               .reverse()
               .map((route, index) => (
                 <Link
-                  href={`#${route.toPath}`}
                   key={index}
-                  sx={{ textDecoration: "none", mx: "16px" }}
+                  onClick={() => scrollToSection(route.toPath)}
+                  sx={{
+                    textDecoration: "none",
+                    mx: "16px",
+                    cursor: "pointer",
+                    color: activeSection === route.toPath ? "primary.main" : "text.primary",
+                    fontWeight: activeSection === route.toPath ? "bold" : "normal",
+                  }}
                 >
-                  <Typography color="text.primary" variant="h6">
+                  <Typography variant="h6">
                     {route.routeName}
                   </Typography>
                 </Link>
               ))}
           </Box>
           <Box>
-            <Box>
-              <Button
-                variant="contained"
-                size="large"
-                sx={{ bgcolor: "#212121", color: "#fff" }}
-                onClick={handleOpenLoginModal}
-              >
-                התחברות
-              </Button>
-            </Box>
+            <Button
+              variant="contained"
+              size="large"
+              sx={{ bgcolor: "#212121", color: "#fff" }}
+              onClick={handleOpenLoginModal}
+            >
+              התחברות
+            </Button>
           </Box>
         </>
       ) : (
@@ -140,8 +158,7 @@ function NavbarContainer({ handleOpenLoginModal }: navbarProps): JSX.Element {
                 <ListItem
                   sx={{ textAlign: "right" }}
                   key={index}
-                  component="a"
-                  href={`#${route.toPath}`}
+                  onClick={() => scrollToSection(route.toPath)}
                 >
                   <ListItemText primary={route.routeName} />
                 </ListItem>
@@ -176,15 +193,41 @@ function NavbarContainer({ handleOpenLoginModal }: navbarProps): JSX.Element {
 
 function Navbar(): JSX.Element {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
+
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
+
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.5,
+    };
+
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    const sections = document.querySelectorAll("section");
+    sections.forEach((section) => observer.observe(section));
+
+    return () => {
+      sections.forEach((section) => observer.unobserve(section));
+    };
+  }, []);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
       <LoginModal open={isModalOpen} onClose={handleCloseModal} />
-      {NavbarContainer({ handleOpenLoginModal: handleOpenModal })}
+      <NavbarContainer handleOpenLoginModal={handleOpenModal} activeSection={activeSection} />
     </Box>
   );
 }
 
 export default Navbar;
+

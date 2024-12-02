@@ -5,10 +5,13 @@ import Footer from "./Footer";
 function HeroSection() {
   const sections = useRef([]);
   const [currentSection, setCurrentSection] = useState(0);
+  const [isScrolling, setIsScrolling] = useState(false);
 
   useEffect(() => {
-    const handleScroll = (event: WheelEvent) => {
+    const handleWheel = (event: WheelEvent) => {
       event.preventDefault();
+
+      if (isScrolling) return;
 
       const direction = event.deltaY > 0 ? 1 : -1;
       const newSectionIndex = Math.min(
@@ -17,29 +20,58 @@ function HeroSection() {
       );
 
       if (newSectionIndex !== currentSection) {
+        setIsScrolling(true);
         moveToSection(newSectionIndex);
+        setTimeout(() => setIsScrolling(false), 300);
       }
     };
 
-    window.addEventListener("wheel", handleScroll, { passive: false });
-    return () => {
-      window.removeEventListener("wheel", handleScroll);
+    const handleScroll = () => {
+      if (isScrolling) return;
+
+      const scrollPosition = window.scrollY + window.innerHeight / 2;
+      let newCurrentSection = 0;
+
+      sections.current.forEach((section, index) => {
+        if (section && scrollPosition >= section.offsetTop) {
+          newCurrentSection = index;
+        }
+      });
+
+      if (newCurrentSection !== currentSection) {
+        setCurrentSection(newCurrentSection);
+      }
     };
-  }, [currentSection]);
+
+    window.addEventListener("wheel", handleWheel, { passive: false });
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("wheel", handleWheel);
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [currentSection, isScrolling]);
 
   function moveToSection(sectionIndex: number) {
     setCurrentSection(sectionIndex);
-    sections.current[sectionIndex].scrollIntoView({ behavior: "smooth" });
+    const section = sections.current[sectionIndex];
+    if (section) {
+      window.scrollTo({
+        top: section.offsetTop,
+        behavior: "smooth",
+      });
+    }
   }
 
   return (
     <>
       {/* Section 1 */}
       <Box
-        id={"home"}
+        component="section"
+        id="home"
         ref={(el) => (sections.current[0] = el)}
         sx={{
-          height: "100vh",
+          minHeight: "100vh",
           display: "flex",
           alignItems: "center",
           justifyContent: "flex-end",
@@ -70,7 +102,7 @@ function HeroSection() {
                 moveToSection(1);
               }}
             >
-              התחל
+              פרטים נוספים
             </Button>
             <Button
               onClick={() => {
@@ -80,7 +112,7 @@ function HeroSection() {
               size="large"
               color="primary"
             >
-              בקש הדגמה
+              הרשמה
             </Button>
           </Box>
         </Container>
@@ -88,10 +120,11 @@ function HeroSection() {
 
       {/* Section 2 */}
       <Box
-        id={"about"}
+        component="section"
+        id="about"
         ref={(el) => (sections.current[1] = el)}
         sx={{
-          height: "100vh",
+          minHeight: "100vh",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -99,15 +132,16 @@ function HeroSection() {
           color: "white",
         }}
       >
-        <Typography variant="h3">קצת עליינו</Typography>
+        <Typography variant="h3">קצת עלינו</Typography>
       </Box>
 
       {/* Section 3 */}
       <Box
-        id={"contact"}
+        component="section"
+        id="contact"
         ref={(el) => (sections.current[2] = el)}
         sx={{
-          height: "100vh",
+          minHeight: "100vh",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
