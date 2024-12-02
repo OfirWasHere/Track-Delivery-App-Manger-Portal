@@ -42,7 +42,10 @@ export function NavbarLogo() {
   );
 }
 
-function NavbarContainer({ handleOpenLoginModal, activeSection }: NavbarProps): JSX.Element {
+function NavbarContainer({
+  handleOpenLoginModal,
+  activeSection,
+}: NavbarProps): JSX.Element {
   const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
   const toggleBurgerMenu = () => setIsBurgerMenuOpen(!isBurgerMenuOpen);
   const isMobile = useIsMobile();
@@ -54,7 +57,7 @@ function NavbarContainer({ handleOpenLoginModal, activeSection }: NavbarProps): 
       setTimeout(() => {
         window.scrollTo({
           top: element.offsetTop,
-          behavior: "smooth"
+          behavior: "smooth",
         });
       }, 100);
     }
@@ -82,13 +85,15 @@ function NavbarContainer({ handleOpenLoginModal, activeSection }: NavbarProps): 
                     textDecoration: "none",
                     mx: "16px",
                     cursor: "pointer",
-                    color: activeSection === route.toPath ? "primary.main" : "text.primary",
-                    fontWeight: activeSection === route.toPath ? "bold" : "normal",
+                    color:
+                      activeSection === route.toPath
+                        ? "primary.500"
+                        : "text.primary",
+                    fontWeight:
+                      activeSection === route.toPath ? "bold" : "normal",
                   }}
                 >
-                  <Typography variant="h6">
-                    {route.routeName}
-                  </Typography>
+                  <Typography variant="h6">{route.routeName}</Typography>
                 </Link>
               ))}
           </Box>
@@ -211,7 +216,10 @@ function Navbar(): JSX.Element {
       });
     };
 
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    const observer = new IntersectionObserver(
+      observerCallback,
+      observerOptions
+    );
 
     const sections = document.querySelectorAll("section");
     sections.forEach((section) => observer.observe(section));
@@ -224,10 +232,12 @@ function Navbar(): JSX.Element {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <LoginModal open={isModalOpen} onClose={handleCloseModal} />
-      <NavbarContainer handleOpenLoginModal={handleOpenModal} activeSection={activeSection} />
+      <NavbarContainer
+        handleOpenLoginModal={handleOpenModal}
+        activeSection={activeSection}
+      />
     </Box>
   );
 }
 
 export default Navbar;
-
