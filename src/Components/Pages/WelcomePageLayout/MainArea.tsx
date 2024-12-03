@@ -1,15 +1,13 @@
 import React, { useRef, useEffect, useState } from "react";
-import { Box } from "@mui/material";
-import { motion, useAnimation } from "framer-motion";
+import { Container, Typography, Button, Box } from "@mui/material";
 import AboutSection from "./Sections/AboutSection";
 import ContactUs from "./Sections/ContactUs";
 import HeaderSection from "./Sections/HeaderSection";
 
-function MainArea() {
+function HeroSection() {
   const sections = useRef([]);
   const [currentSection, setCurrentSection] = useState(0);
   const [isScrolling, setIsScrolling] = useState(false);
-  const controls = useAnimation();
 
   useEffect(() => {
     const handleWheel = (event: WheelEvent) => {
@@ -26,7 +24,7 @@ function MainArea() {
       if (newSectionIndex !== currentSection) {
         setIsScrolling(true);
         moveToSection(newSectionIndex);
-        setTimeout(() => setIsScrolling(false), 1000);
+        setTimeout(() => setIsScrolling(false), 300);
       }
     };
 
@@ -60,18 +58,15 @@ function MainArea() {
     setCurrentSection(sectionIndex);
     const section = sections.current[sectionIndex];
     if (section) {
-      controls.start({
-        y: -section.offsetTop,
-        transition: { duration: 1, ease: "easeInOut" },
+      window.scrollTo({
+        top: section.offsetTop,
+        behavior: "smooth",
       });
     }
   }
 
   return (
-    <motion.div
-      style={{ position: "fixed", width: "100%", height: "100%" }}
-      animate={controls}
-    >
+    <Box>
       <Box ref={(el) => (sections.current[0] = el)}>
         <HeaderSection moveToSection={moveToSection} />
       </Box>
@@ -81,9 +76,8 @@ function MainArea() {
       <Box ref={(el) => (sections.current[2] = el)}>
         <ContactUs />
       </Box>
-    </motion.div>
+    </Box>
   );
 }
 
-export default MainArea;
-
+export default HeroSection;
