@@ -1,6 +1,9 @@
 import React, { useRef, useEffect, useState } from "react";
 import { Container, Typography, Button, Box } from "@mui/material";
 import Footer from "./Footer";
+import HeaderSection from "./HeaderSection";
+import AboutSection from "./AboutSection";
+import ContactUs from "./ContactUs";
 
 function HeroSection() {
   const sections = useRef([]);
@@ -66,92 +69,18 @@ function HeroSection() {
   return (
     <>
       {/* Section 1 */}
-      <Box
-        component="section"
-        id="home"
-        ref={(el) => (sections.current[0] = el)}
-        sx={{
-          minHeight: "100vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "flex-end",
-          backgroundColor: "grey.900",
-          textAlign: "right",
-          color: "white",
-        }}
-      >
-        <Container maxWidth="lg">
-          <Typography variant="h2" color="grey.200" gutterBottom>
-            נהל את צי הנהגים שלך בקלות
-          </Typography>
-          <Typography variant="h5" color="grey.300" gutterBottom>
-            האפליקציה שלנו עוזרת לך לסדר בקלות את ההובלות שלך, לערוך להוציא ועוד
-          </Typography>
-          <Box
-            display="flex"
-            alignItems="center"
-            justifyContent="flex-end"
-            gap={2}
-            mt={2}
-          >
-            <Button
-              variant="contained"
-              size="large"
-              color="primary"
-              onClick={() => {
-                moveToSection(1);
-              }}
-            >
-              פרטים נוספים
-            </Button>
-            <Button
-              onClick={() => {
-                moveToSection(2);
-              }}
-              variant="outlined"
-              size="large"
-              color="primary"
-            >
-              הרשמה
-            </Button>
-          </Box>
-        </Container>
+      <Box ref={(el) => (sections.current[0] = el)}>
+        <HeaderSection moveToSection={moveToSection} />
       </Box>
 
       {/* Section 2 */}
-      <Box
-        component="section"
-        id="about"
-        ref={(el) => (sections.current[1] = el)}
-        sx={{
-          minHeight: "100vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          backgroundColor: "grey.800",
-          color: "white",
-        }}
-      >
-        <Typography variant="h3">קצת עלינו</Typography>
+      <Box ref={(el) => (sections.current[1] = el)}>
+        <AboutSection />
       </Box>
 
       {/* Section 3 */}
-      <Box
-        component="section"
-        id="contact"
-        ref={(el) => (sections.current[2] = el)}
-        sx={{
-          minHeight: "100vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          backgroundColor: "grey.700",
-          color: "white",
-        }}
-      >
-        <Box>
-          <Typography variant="h3">צור קשר</Typography>
-        </Box>
+      <Box ref={(el) => (sections.current[2] = el)}>
+        <ContactUs />
       </Box>
     </>
   );
