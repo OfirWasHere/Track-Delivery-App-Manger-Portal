@@ -3,12 +3,12 @@ import RoutesModel from "../Models/RoutesModel";
 import PageNotFound from "../Pages/PageNotFound/PageNotFound";
 import Root from "../Pages/Root/Root";
 import Main from "../Pages/Main/Main";
-import WelcomePage from "../Pages/WelcomePageLayout/WelcomePage";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import HomeIcon from '@mui/icons-material/Home';
 import { type Navigation } from "@toolpad/core";
 import Dashboard from "../Pages/Dashboard/Dashboard";
+import WelcomePage from "../Pages/WelcomePageLayout/WelcomePage";
 
 const Routes: RoutesModel[] = [
   {

@@ -1,14 +1,15 @@
 import React, { useRef, useEffect, useState } from "react";
-import { Container, Typography, Button, Box } from "@mui/material";
-import Footer from "./Footer";
-import HeaderSection from "./HeaderSection";
-import AboutSection from "./AboutSection";
-import ContactUs from "./ContactUs";
+import { Box } from "@mui/material";
+import { motion, useAnimation } from "framer-motion";
+import AboutSection from "./Sections/AboutSection";
+import ContactUs from "./Sections/ContactUs";
+import HeaderSection from "./Sections/HeaderSection";
 
-function HeroSection() {
+function MainArea() {
   const sections = useRef([]);
   const [currentSection, setCurrentSection] = useState(0);
   const [isScrolling, setIsScrolling] = useState(false);
+  const controls = useAnimation();
 
   useEffect(() => {
     const handleWheel = (event: WheelEvent) => {
@@ -25,7 +26,7 @@ function HeroSection() {
       if (newSectionIndex !== currentSection) {
         setIsScrolling(true);
         moveToSection(newSectionIndex);
-        setTimeout(() => setIsScrolling(false), 300);
+        setTimeout(() => setIsScrolling(false), 1000);
       }
     };
 
@@ -59,31 +60,30 @@ function HeroSection() {
     setCurrentSection(sectionIndex);
     const section = sections.current[sectionIndex];
     if (section) {
-      window.scrollTo({
-        top: section.offsetTop,
-        behavior: "smooth",
+      controls.start({
+        y: -section.offsetTop,
+        transition: { duration: 1, ease: "easeInOut" },
       });
     }
   }
 
   return (
-    <>
-      {/* Section 1 */}
+    <motion.div
+      style={{ position: "fixed", width: "100%", height: "100%" }}
+      animate={controls}
+    >
       <Box ref={(el) => (sections.current[0] = el)}>
         <HeaderSection moveToSection={moveToSection} />
       </Box>
-
-      {/* Section 2 */}
       <Box ref={(el) => (sections.current[1] = el)}>
         <AboutSection />
       </Box>
-
-      {/* Section 3 */}
       <Box ref={(el) => (sections.current[2] = el)}>
         <ContactUs />
       </Box>
-    </>
+    </motion.div>
   );
 }
 
-export default HeroSection;
+export default MainArea;
+

@@ -31,7 +31,7 @@ export function NavbarLogo() {
       <Truck size={32} color={blue[500]} />
 
       <Typography
-        onClick={toggleColorMode}
+        // onClick={toggleColorMode}
         variant={"h6"}
         color={"text.primary"}
         fontWeight={"bold"}
