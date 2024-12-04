@@ -3,7 +3,7 @@ import { Box, Container, Typography, Button, useTheme } from "@mui/material";
 import { motion, useInView } from "framer-motion";
 
 interface HeaderSectionProps {
-  moveToSection: (sectionIndex: number) => void;
+  moveToSection?: (sectionIndex: number) => void;
 }
 
 function HeaderSection({ moveToSection }: HeaderSectionProps): JSX.Element {
