@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import { Box } from "@mui/material";
 import AboutSection from "./Sections/AboutSection";
 import ContactUs from "./Sections/ContactUs";
