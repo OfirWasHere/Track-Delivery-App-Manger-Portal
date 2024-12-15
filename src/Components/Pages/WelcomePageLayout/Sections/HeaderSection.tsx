@@ -33,7 +33,12 @@ function HeaderSection({ moveToSection }: HeaderSectionProps): JSX.Element {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.8 }}
         >
-          <Typography variant="h2" color="grey.200" gutterBottom fontWeight="bold">
+          <Typography
+            variant="h2"
+            color="grey.200"
+            gutterBottom
+            fontWeight="bold"
+          >
             נהל את צי הנהגים שלך בקלות
           </Typography>
         </motion.div>
@@ -65,9 +70,9 @@ function HeaderSection({ moveToSection }: HeaderSectionProps): JSX.Element {
               sx={{
                 backgroundColor: "white",
                 color: theme.palette.primary.main,
-                '&:hover': {
+                "&:hover": {
                   backgroundColor: theme.palette.grey[200],
-                }
+                },
               }}
             >
               פרטים נוספים
@@ -85,10 +90,10 @@ function HeaderSection({ moveToSection }: HeaderSectionProps): JSX.Element {
               sx={{
                 borderColor: "white",
                 color: "white",
-                '&:hover': {
+                "&:hover": {
                   borderColor: theme.palette.grey[200],
                   color: theme.palette.grey[200],
-                }
+                },
               }}
             >
               הרשמה
@@ -101,4 +106,3 @@ function HeaderSection({ moveToSection }: HeaderSectionProps): JSX.Element {
 }
 
 export default HeaderSection;
-

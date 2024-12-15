@@ -20,6 +20,10 @@ function HeroSection() {
     }
   };
 
+  const moveToSectionEventHandler = (id: number) => {
+    setCurrentSection(id);
+  };
+
   useEffect(() => {
     const sectionIds = ["header-section", "about-section", "contact-section"];
     const targetSection = sectionIds[currentSection];
@@ -38,7 +42,7 @@ function HeroSection() {
       style={{ overflow: "hidden", height: "100vh" }}
     >
       <Box id="header-section">
-        <HeaderSection />
+        <HeaderSection moveToSection={moveToSectionEventHandler} />
       </Box>
       <Box id="about-section">
         <AboutSection />
