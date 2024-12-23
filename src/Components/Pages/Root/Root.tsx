@@ -14,7 +14,7 @@ const BRANDING = {
 
 function Root() {
   const outlet = useOutlet();
-  const { theme } = useThemeContext();
+  const { theme, direction } = useThemeContext();
 
   return (
     <div>
@@ -22,7 +22,7 @@ function Root() {
         {outlet ? (
           <AppProvider navigation={NAVIGATION} branding={BRANDING}>
             <DashboardLayout>
-              <PageContainer>
+              <PageContainer dir={direction}>
                 <Outlet />
               </PageContainer>
             </DashboardLayout>

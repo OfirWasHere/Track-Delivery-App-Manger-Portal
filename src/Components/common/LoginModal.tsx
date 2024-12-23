@@ -38,7 +38,12 @@ function LoginModal({
       aria-labelledby="login-modal-title"
       aria-describedby="login-modal-description"
     >
-      <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+      <Box
+        component="form"
+        onSubmit={handleSubmit}
+        noValidate
+        sx={{ mt: 1 }}
+      >
         <Box
           sx={{
             position: "absolute",
@@ -50,7 +55,6 @@ function LoginModal({
             boxShadow: 24,
             p: 4,
             borderRadius: 1,
-            textAlign: direction === "rtl" ? "right" : "left",
           }}
         >
           <IconButton
@@ -96,7 +100,7 @@ function LoginModal({
           >
             המשך
           </Button>
-          <Typography sx={{ mt: 1 }}>אין לך משתמש? הירשם</Typography>
+          <Typography textAlign={direction === "rtl" ? "right" : "left"} sx={{ mt: 1 }}>אין לך משתמש? הירשם</Typography>
           <Typography sx={{ my: 1, textAlign: "center" }}>
             --------- OR ---------
           </Typography>

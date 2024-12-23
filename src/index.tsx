@@ -16,7 +16,6 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      {/* The ThemeContextProvider manages and provides the current theme settings to all its child components.  */}
       <ThemeContextProvider>
         <CssBaseline />
         <RouterProvider router={createBrowserRouter(Routes)} />
