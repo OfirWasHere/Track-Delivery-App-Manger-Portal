@@ -1,5 +1,17 @@
 {
+  "hosting": {
+    "public": "build"
+  },
+  "emulators": {
+    "auth": {
+      "port": 9099
+    },
     "hosting": {
-        "public": "build"
-    }
+      "port": 3000
+    },
+    "ui": {
+      "enabled": true
+    },
+    "singleProjectMode": true
+  }
 }

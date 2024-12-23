@@ -18,7 +18,10 @@ export default function useFireBase() {
     ), [])
 
     const firebaseAnalytics: Analytics = useMemo(() => getAnalytics(firebaseApp), [firebaseApp]);
-    const firebaseAuth: Auth = useMemo(() => getAuth(firebaseApp), [firebaseApp]);
-    connectAuthEmulator(firebaseAuth, "http://localhost:9099");// to use emulator run in terminal "firebase emulators:start --only auth"
+    const firebaseAuth: Auth = useMemo(() => {
+        const auth = getAuth(firebaseApp);
+        connectAuthEmulator(auth, "http://localhost:9099");  // to use emulator run in terminal "firebase emulators:start --only auth"
+        return auth;
+    }, [firebaseApp]);
     return { firebaseApp, firebaseAnalytics, firebaseAuth }
 }

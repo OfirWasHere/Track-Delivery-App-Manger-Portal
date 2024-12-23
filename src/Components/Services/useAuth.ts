@@ -1,4 +1,4 @@
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import useFirebase from "../../Firebase/useFirebase";
 import LoginServiceModal from "../Models/LoginServiceModal";
 import { useState } from "react";
@@ -10,18 +10,32 @@ export default function useAuth() {
     async function firebaseLogin({ email, password }: LoginServiceModal) {
         try {
             setLoader(true)
-
-            // const userCredential = await signInWithEmailAndPassword(firebaseAuth, email, password)
-            // console.log(userCredential.user);
+            const userCredential = await signInWithEmailAndPassword(firebaseAuth, email, password)
+            console.log(userCredential.user);
         } catch (error) {
             console.error("Login failed:", error);
-            throw error;
         } finally {
             setTimeout(() => {
                 setLoader(false)
-            }, 10000);
+            }, 1000);
         }
     }
-    return { firebaseLogin, loader };
+
+
+    async function firebaseSignUp({ email, password }: LoginServiceModal) {
+        try {
+            setLoader(true)
+            const userCredential = await createUserWithEmailAndPassword(firebaseAuth, email, password)
+            console.log(userCredential.user);
+        } catch (error) {
+            console.error("account creation failed:", error);
+        }
+        finally {
+            setTimeout(() => {
+                setLoader(false)
+            }, 1000);
+        }
+    }
+    return { firebaseLogin, firebaseSignUp, loader };
 
 }

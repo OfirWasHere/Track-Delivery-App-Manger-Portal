@@ -29,7 +29,6 @@ export default function LoginModal({
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     firebaseLogin({ email, password });
-    // Optionally close the modal on successful login
     // onClose();
   };
 
