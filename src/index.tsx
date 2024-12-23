@@ -7,7 +7,6 @@ import store from "./Components/Store/Store";
 import { Provider } from "react-redux";
 import { Routes } from "./Components/Routes/Routes";
 import { CssBaseline } from "@mui/material";
-import theme from "./Components/theme/theme";
 import { ThemeContextProvider } from "./Components/theme/ThemeContextProvider";
 import "./Components/Hooks/useFirebase";
 
@@ -17,6 +16,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
+      {/* The ThemeContextProvider manages and provides the current theme settings to all its child components.  */}
       <ThemeContextProvider>
         <CssBaseline />
         <RouterProvider router={createBrowserRouter(Routes)} />

@@ -3,6 +3,8 @@ import { Box } from "@mui/material";
 import AboutSection from "./Sections/AboutSection";
 import ContactUs from "./Sections/ContactUs";
 import HeaderSection from "./Sections/HeaderSection";
+// When Navbar updates the index the scroller doesn't know and still thinks we're on the same page
+
 
 function HeroSection() {
   const [currentSection, setCurrentSection] = useState(0);

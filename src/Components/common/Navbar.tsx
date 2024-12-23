@@ -17,6 +17,7 @@ import { blue } from "@mui/material/colors";
 import useIsMobile from "../Hooks/useIsMobile";
 import RoutesNav from "../Routes/RoutesNav";
 import LoginModal from "./LoginModal";
+// import { useThemeContext } from "../theme/ThemeContextProvider";
 
 interface NavbarProps {
   handleOpenLoginModal: () => void;
@@ -24,11 +25,13 @@ interface NavbarProps {
 }
 
 export function NavbarLogo() {
+  // const { toggleColorMode } = useThemeContext();
   return (
     <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
       <Truck size={32} color={blue[500]} />
 
       <Typography
+        // onClick={toggleColorMode}
         variant={"h6"}
         color={"text.primary"}
         fontWeight={"bold"}
