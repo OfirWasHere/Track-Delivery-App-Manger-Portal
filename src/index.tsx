@@ -8,7 +8,6 @@ import { Provider } from "react-redux";
 import { Routes } from "./Components/Routes/Routes";
 import { CssBaseline } from "@mui/material";
 import { ThemeContextProvider } from "./Components/theme/ThemeContextProvider";
-import "./Components/Hooks/useFirebase";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

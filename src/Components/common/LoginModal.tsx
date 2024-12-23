@@ -8,11 +8,13 @@ import {
   Typography,
   Modal,
   IconButton,
+  CircularProgress,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { useThemeContext } from "../theme/ThemeContextProvider";
+import useAuth from "../Services/useAuth";
 
-function LoginModal({
+export default function LoginModal({
   open = false,
   onClose = () => {},
 }: {
@@ -22,12 +24,12 @@ function LoginModal({
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { direction } = useThemeContext();
+  const { firebaseLogin, loader } = useAuth();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // Handle login logic here
-    console.log("Login attempted with:", { email, password });
-    // You would typically send these credentials to your authentication service here
+    firebaseLogin({ email, password });
+    // Optionally close the modal on successful login
     // onClose();
   };
 
@@ -38,12 +40,7 @@ function LoginModal({
       aria-labelledby="login-modal-title"
       aria-describedby="login-modal-description"
     >
-      <Box
-        component="form"
-        onSubmit={handleSubmit}
-        noValidate
-        sx={{ mt: 1 }}
-      >
+      <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
         <Box
           sx={{
             position: "absolute",
@@ -55,8 +52,28 @@ function LoginModal({
             boxShadow: 24,
             p: 4,
             borderRadius: 1,
+            overflow: "hidden",
           }}
         >
+          {loader && (
+            <Box
+              sx={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                backgroundColor: "rgba(0, 0, 0, 0.5)",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                zIndex: 10,
+              }}
+            >
+              <CircularProgress color="primary" />
+            </Box>
+          )}
+
           <IconButton
             aria-label="close"
             onClick={onClose}
@@ -80,6 +97,7 @@ function LoginModal({
             autoFocus
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            disabled={loader}
           />
           <TextField
             margin="normal"
@@ -91,20 +109,27 @@ function LoginModal({
             autoComplete="current-password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            disabled={loader}
           />
           <Button
             variant="contained"
             type="submit"
             fullWidth
             sx={{ mt: 2, mb: 2 }}
+            disabled={loader}
           >
             המשך
           </Button>
-          <Typography textAlign={direction === "rtl" ? "right" : "left"} sx={{ mt: 1 }}>אין לך משתמש? הירשם</Typography>
+          <Typography
+            textAlign={direction === "rtl" ? "right" : "left"}
+            sx={{ mt: 1 }}
+          >
+            אין לך משתמש? הירשם
+          </Typography>
           <Typography sx={{ my: 1, textAlign: "center" }}>
             --------- OR ---------
           </Typography>
-          <Button variant="outlined" fullWidth>
+          <Button variant="outlined" fullWidth disabled={loader}>
             המשך עם גוגל
           </Button>
         </Box>
@@ -112,5 +137,3 @@ function LoginModal({
     </Modal>
   );
 }
-
-export default LoginModal;
