@@ -10,6 +10,7 @@ import {
   IconButton,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import { useThemeContext } from "../theme/ThemeContextProvider";
 
 function LoginModal({
   open = false,
@@ -20,6 +21,7 @@ function LoginModal({
 }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { direction } = useThemeContext();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -48,6 +50,7 @@ function LoginModal({
             boxShadow: 24,
             p: 4,
             borderRadius: 1,
+            textAlign: direction === "rtl" ? "right" : "left",
           }}
         >
           <IconButton
@@ -85,12 +88,21 @@ function LoginModal({
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <Button variant="contained" type="submit" fullWidth>
+          <Button
+            variant="contained"
+            type="submit"
+            fullWidth
+            sx={{ mt: 2, mb: 2 }}
+          >
             המשך
           </Button>
-          <Typography>אין לך משתמש? הירשם</Typography>
-          <Typography>--------- OR ----------</Typography>
-          <Typography>Continue with google</Typography>
+          <Typography sx={{ mt: 1 }}>אין לך משתמש? הירשם</Typography>
+          <Typography sx={{ my: 1, textAlign: "center" }}>
+            --------- OR ---------
+          </Typography>
+          <Button variant="outlined" fullWidth>
+            המשך עם גוגל
+          </Button>
         </Box>
       </Box>
     </Modal>
@@ -98,40 +110,3 @@ function LoginModal({
 }
 
 export default LoginModal;
-
-// <Typography id="login-modal-title" variant="h6" component="h2">
-// Login
-// </Typography>
-// <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-// <TextField
-//   margin="normal"
-//   required
-//   fullWidth
-//   id="email"
-//   label="Email Address"
-//   name="email"
-//   autoComplete="email"
-//   autoFocus
-//   value={email}
-//   onChange={(e) => setEmail(e.target.value)}
-// />
-// <TextField
-//   margin="normal"
-//   required
-//   fullWidth
-//   name="password"
-//   label="Password"
-//   type="password"
-//   id="password"
-//   autoComplete="current-password"
-//   value={password}
-//   onChange={(e) => setPassword(e.target.value)}
-// />
-// <Box sx={{ mt: 2, display: 'flex', justifyContent: 'flex-end' }}>
-//   <Button onClick={onClose} sx={{ mr: 1 }}>
-//     Cancel
-//   </Button>
-//   <Button type="submit" variant="contained">
-//     Login
-//   </Button>
-// </Box>

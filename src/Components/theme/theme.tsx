@@ -1,5 +1,5 @@
 import { PaletteMode } from "@mui/material";
-import { createTheme } from "@mui/material/styles";
+import { createTheme, Direction } from "@mui/material/styles";
 
 const colors = {
   primary: {
@@ -106,7 +106,8 @@ const colors = {
   },
 };
 
-export const getDesignTokens = (mode: PaletteMode) => ({
+export const getDesignTokens = (mode: PaletteMode, direction: Direction) => ({
+  direction,
   palette: {
     mode,
     primary: colors.primary,
@@ -149,6 +150,7 @@ export const getDesignTokens = (mode: PaletteMode) => ({
 
 // Example: Applying the theme
 const mode: PaletteMode = "light"; // or "dark"
-const theme = createTheme(getDesignTokens(mode));
+const direction: Direction = "ltr";
+const theme = createTheme(getDesignTokens(mode, direction));
 
 export default theme;
