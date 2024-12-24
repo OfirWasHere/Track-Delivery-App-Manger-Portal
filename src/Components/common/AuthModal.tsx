@@ -19,7 +19,7 @@ import GoogleIcon from "@mui/icons-material/Google";
 import { useThemeContext } from "../theme/ThemeContextProvider";
 import useAuth from "../Services/useAuth";
 
-export default function LoginModal({
+export default function AuthModal({
   open = false,
   onClose = () => {},
 }: {

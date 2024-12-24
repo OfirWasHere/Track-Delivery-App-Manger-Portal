@@ -16,11 +16,11 @@ import { Truck, Menu } from "lucide-react";
 import { blue } from "@mui/material/colors";
 import useIsMobile from "../Hooks/useIsMobile";
 import RoutesNav from "../Routes/RoutesNav";
-import LoginModal from "./LoginModal";
+import AuthModal from "./AuthModal";
 import { useThemeContext } from "../theme/ThemeContextProvider";
 
 interface NavbarProps {
-  handleOpenLoginModal: () => void;
+  handleOpenAuthModal: () => void;
   activeSection: string;
 }
 
@@ -43,7 +43,7 @@ export function NavbarLogo() {
 }
 
 function NavbarContainer({
-  handleOpenLoginModal,
+  handleOpenAuthModal,
   activeSection,
 }: NavbarProps): JSX.Element {
   const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
@@ -102,7 +102,7 @@ function NavbarContainer({
               variant="contained"
               size="large"
               sx={{ bgcolor: "#212121", color: "#fff" }}
-              onClick={handleOpenLoginModal}
+              onClick={handleOpenAuthModal}
             >
               התחברות
             </Button>
@@ -181,7 +181,7 @@ function NavbarContainer({
                     },
                   }}
                   onClick={() => {
-                    handleOpenLoginModal();
+                    handleOpenAuthModal();
                     toggleBurgerMenu();
                   }}
                 >
@@ -231,9 +231,9 @@ function Navbar(): JSX.Element {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <LoginModal open={isModalOpen} onClose={handleCloseModal} />
+      <AuthModal open={isModalOpen} onClose={handleCloseModal} />
       <NavbarContainer
-        handleOpenLoginModal={handleOpenModal}
+        handleOpenAuthModal={handleOpenModal}
         activeSection={activeSection}
       />
     </Box>
