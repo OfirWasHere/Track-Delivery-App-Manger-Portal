@@ -9,10 +9,16 @@ import {
   Modal,
   IconButton,
   CircularProgress,
+  FormControlLabel,
+  Checkbox,
+  Link,
+  Grow,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import GoogleIcon from "@mui/icons-material/Google";
 import { useThemeContext } from "../theme/ThemeContextProvider";
 import useAuth from "../Services/useAuth";
+import TabPanel from "./TabPanel";
 
 export default function LoginModal({
   open = false,
@@ -24,12 +30,26 @@ export default function LoginModal({
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { direction } = useThemeContext();
-  const { firebaseLogin, loader } = useAuth();
+  const { firebaseLogin, firebaseSignUp, loader } = useAuth();
+  const [tabValue, setTabValue] = useState(0);
+  const [agreeToTerms, setAgreeToTerms] = useState(false);
+
+  const changeTabValue = () => {
+    tabValue === 0 ? setTabValue(1) : setTabValue(0);
+  };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    firebaseLogin({ email, password });
-    // onClose();
+    if (tabValue === 0) {
+      firebaseLogin({ email, password });
+    } else {
+      if (agreeToTerms) {
+        firebaseSignUp({ email, password });
+      } else {
+        // Show error message or prevent submission
+        console.error("You must agree to the terms to register");
+      }
+    }
   };
 
   return (
@@ -72,20 +92,21 @@ export default function LoginModal({
               <CircularProgress color="primary" />
             </Box>
           )}
-
           <IconButton
             aria-label="close"
             onClick={onClose}
             sx={{
               position: "absolute",
               right: 8,
-              top: 10,
+              top: 8,
               color: (theme) => theme.palette.grey[500],
             }}
           >
             <CloseIcon />
           </IconButton>
-          <Typography>התחברות</Typography>
+          <Typography textAlign="center" variant="h5">
+            {tabValue === 0 ? "התחברות" : "הרשמה"}
+          </Typography>
           <TextField
             margin="normal"
             required
@@ -110,25 +131,56 @@ export default function LoginModal({
             onChange={(e) => setPassword(e.target.value)}
             disabled={loader}
           />
+
+          {tabValue === 1 ? (
+            <Grow in={tabValue === 1} timeout={300}>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    value="agreeToTerms"
+                    color="primary"
+                    checked={agreeToTerms}
+                    onChange={(e) => setAgreeToTerms(e.target.checked)}
+                    disabled={loader}
+                  />
+                }
+                label={
+                  <Typography
+                    variant="body2"
+                    textAlign={direction ? "right" : "right"}
+                  >
+                    אני מסכים/ה ל
+                    <Link href="#" onClick={(e) => e.preventDefault()}>
+                      תנאי השימוש
+                    </Link>
+                  </Typography>
+                }
+              />
+            </Grow>
+          ) : null}
           <Button
             variant="contained"
             type="submit"
             fullWidth
-            sx={{ mt: 2, mb: 2 }}
-            disabled={loader}
+            sx={{ mt: 3, mb: 2 }}
+            disabled={loader || (tabValue === 1 && !agreeToTerms)}
           >
-            המשך
+            {tabValue === 1 ? "הרשמה" : "התחברות"}
           </Button>
-          <Typography
-            textAlign={direction === "rtl" ? "right" : "left"}
-            sx={{ mt: 1 }}
+
+          <Typography textAlign="center" sx={{ mt: 1 }}>
+            <Button onClick={changeTabValue}>
+              {tabValue === 1 ? "התחבר" : "הירשם"}
+            </Button>
+            {tabValue === 1 ? "?יש לך משתמש" : "?אין לך משתמש"}
+          </Typography>
+          <Button
+            variant="outlined"
+            fullWidth
+            startIcon={<GoogleIcon />}
+            disabled={loader}
+            sx={{ mt: 2, mb: 2 }}
           >
-            אין לך משתמש? הירשם
-          </Typography>
-          <Typography sx={{ my: 1, textAlign: "center" }}>
-            --------- OR ---------
-          </Typography>
-          <Button variant="outlined" fullWidth disabled={loader}>
             המשך עם גוגל
           </Button>
         </Box>
