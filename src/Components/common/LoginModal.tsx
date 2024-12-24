@@ -18,7 +18,6 @@ import CloseIcon from "@mui/icons-material/Close";
 import GoogleIcon from "@mui/icons-material/Google";
 import { useThemeContext } from "../theme/ThemeContextProvider";
 import useAuth from "../Services/useAuth";
-import TabPanel from "./TabPanel";
 
 export default function LoginModal({
   open = false,
