@@ -199,6 +199,7 @@ function NavbarContainer({
 function Navbar(): JSX.Element {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const { direction } = useThemeContext();
 
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
@@ -230,7 +231,7 @@ function Navbar(): JSX.Element {
   }, []);
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box dir={direction === "ltr" ? "rtl" : "ltr"} sx={{ flexGrow: 1 }}>
       <AuthModal open={isModalOpen} onClose={handleCloseModal} />
       <NavbarContainer
         handleOpenAuthModal={handleOpenModal}

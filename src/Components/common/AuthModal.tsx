@@ -55,6 +55,7 @@ export default function AuthModal({
     <Modal
       open={open}
       onClose={onClose}
+      dir={direction}
       aria-labelledby="login-modal-title"
       aria-describedby="login-modal-description"
     >

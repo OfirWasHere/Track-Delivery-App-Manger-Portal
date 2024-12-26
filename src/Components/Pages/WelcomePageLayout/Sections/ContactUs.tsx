@@ -8,10 +8,12 @@ import {
   Grid,
 } from "@mui/material";
 import { motion, useInView } from "framer-motion";
+import { useThemeContext } from "../../../theme/ThemeContextProvider";
 
 function ContactUs() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
+  const { direction } = useThemeContext();
 
   return (
     <Box
@@ -44,6 +46,7 @@ function ContactUs() {
           </Typography>
         </motion.div>
         <motion.div
+          dir={direction}
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -63,7 +66,7 @@ function ContactUs() {
                 transition={{ duration: 0.5, delay: 0.4 }}
               >
                 <TextField
-                  dir="rtl"
+                  dir={direction}
                   fullWidth
                   label="שם מלא"
                   variant="filled"
@@ -86,7 +89,7 @@ function ContactUs() {
                 transition={{ duration: 0.5, delay: 0.6 }}
               >
                 <TextField
-                  dir="rtl"
+                  dir={direction}
                   fullWidth
                   label="אימייל"
                   variant="filled"
@@ -110,7 +113,7 @@ function ContactUs() {
                 transition={{ duration: 0.5, delay: 0.8 }}
               >
                 <TextField
-                  dir="rtl"
+                  dir={direction}
                   fullWidth
                   label="הודעה"
                   variant="filled"
