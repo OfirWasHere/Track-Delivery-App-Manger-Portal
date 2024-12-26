@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import {
   Box,
   Button,
-  TextField,
   Typography,
   Modal,
   IconButton,
@@ -18,6 +17,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import GoogleIcon from "@mui/icons-material/Google";
 import { useThemeContext } from "../theme/ThemeContextProvider";
 import useAuth from "../Services/useAuth";
+import FTextField from "./FTextField";
 
 export default function AuthModal({
   open = false,
@@ -107,7 +107,7 @@ export default function AuthModal({
           <Typography textAlign="center" variant="h5">
             {tabValue === 0 ? "התחברות" : "הרשמה"}
           </Typography>
-          <TextField
+          <FTextField
             margin="normal"
             required
             fullWidth
@@ -119,7 +119,7 @@ export default function AuthModal({
             onChange={(e) => setEmail(e.target.value)}
             disabled={loader}
           />
-          <TextField
+          <FTextField
             margin="normal"
             required
             fullWidth

@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import { motion, useInView } from "framer-motion";
 import { useThemeContext } from "../../../theme/ThemeContextProvider";
+import FTextField from "../../../common/FTextField";
 
 function ContactUs() {
   const ref = useRef(null);
@@ -88,7 +89,7 @@ function ContactUs() {
                 }
                 transition={{ duration: 0.5, delay: 0.6 }}
               >
-                <TextField
+                <FTextField
                   dir={direction}
                   fullWidth
                   label="אימייל"
