@@ -55,7 +55,7 @@ export default function AuthModal({
     <Modal
       open={open}
       onClose={onClose}
-      dir={direction}
+      // dir={direction}
       aria-labelledby="login-modal-title"
       aria-describedby="login-modal-description"
     >
@@ -133,30 +133,30 @@ export default function AuthModal({
           />
 
           {tabValue === 1 ? (
-            <Grow in={tabValue === 1} timeout={300}>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    value="agreeToTerms"
-                    color="primary"
-                    checked={agreeToTerms}
-                    onChange={(e) => setAgreeToTerms(e.target.checked)}
-                    disabled={loader}
-                  />
-                }
-                label={
-                  <Typography
-                    variant="body2"
-                    textAlign={direction ? "right" : "right"}
-                  >
-                    אני מסכים/ה ל
-                    <Link href="#" onClick={(e) => e.preventDefault()}>
-                      תנאי השימוש
-                    </Link>
-                  </Typography>
-                }
-              />
-            </Grow>
+            <Box dir={direction}>
+              <Grow in={tabValue === 1} timeout={300}>
+                <FormControlLabel
+                  sx={{ m: "0" }}
+                  control={
+                    <Checkbox
+                      value="agreeToTerms"
+                      color="primary"
+                      checked={agreeToTerms}
+                      onChange={(e) => setAgreeToTerms(e.target.checked)}
+                      disabled={loader}
+                    />
+                  }
+                  label={
+                    <Typography variant="body2">
+                      אני מסכים/ה ל
+                      <Link href="#" onClick={(e) => e.preventDefault()}>
+                        תנאי השימוש
+                      </Link>
+                    </Typography>
+                  }
+                />
+              </Grow>
+            </Box>
           ) : null}
           <Button
             variant="contained"
@@ -167,13 +167,14 @@ export default function AuthModal({
           >
             {tabValue === 1 ? "הרשמה" : "התחברות"}
           </Button>
-
-          <Typography textAlign="center" sx={{ mt: 1 }}>
-            <Button onClick={changeTabValue}>
-              {tabValue === 1 ? "התחבר" : "הירשם"}
-            </Button>
-            {tabValue === 1 ? "?יש לך משתמש" : "?אין לך משתמש"}
-          </Typography>
+          <Box dir={direction === "ltr" ? "rtl" : "ltr"}>
+            <Typography textAlign="center" sx={{ mt: 1 }}>
+              <Button onClick={changeTabValue}>
+                {tabValue === 1 ? "התחבר" : "הירשם"}
+              </Button>
+              {tabValue === 1 ? "?יש לך משתמש" : "?אין לך משתמש"}
+            </Typography>
+          </Box>
           <Button
             variant="outlined"
             fullWidth
