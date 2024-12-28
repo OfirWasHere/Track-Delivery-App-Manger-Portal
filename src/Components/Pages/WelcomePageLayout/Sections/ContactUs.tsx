@@ -1,12 +1,5 @@
 import React, { useRef } from "react";
-import {
-  Box,
-  Container,
-  Typography,
-  TextField,
-  Button,
-  Grid,
-} from "@mui/material";
+import { Box, Container, Typography, Button, Grid } from "@mui/material";
 import { motion, useInView } from "framer-motion";
 import { useThemeContext } from "../../../theme/ThemeContextProvider";
 import FTextField from "../../../common/FTextField";
@@ -66,7 +59,7 @@ function ContactUs() {
                 }
                 transition={{ duration: 0.5, delay: 0.4 }}
               >
-                <TextField
+                <FTextField
                   dir={direction}
                   fullWidth
                   label="שם מלא"
@@ -113,7 +106,7 @@ function ContactUs() {
                 }
                 transition={{ duration: 0.5, delay: 0.8 }}
               >
-                <TextField
+                <FTextField
                   dir={direction}
                   fullWidth
                   label="הודעה"

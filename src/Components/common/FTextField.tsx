@@ -1,35 +1,29 @@
 import React from "react";
 import { TextField, TextFieldProps } from "@mui/material";
 import { useThemeContext } from "../theme/ThemeContextProvider";
+import { CacheProvider } from "@emotion/react";
+import createCache from "@emotion/cache";
+import { prefixer } from "stylis";
+import rtlPlugin from "stylis-plugin-rtl";
 
-// interface FTextFieldProps extends TextFieldProps {
-//   testStyling: string;
-// }
+const rtlCache = createCache({
+  key: "muirtl",
+  stylisPlugins: [prefixer, rtlPlugin],
+});
+
+const ltrCache = createCache({
+  key: "mui",
+});
 
 function FTextField({ ...props }: TextFieldProps) {
   const { direction } = useThemeContext();
 
   return (
-    <div>
-      <TextField
-        sx={{
-          borderRadius: 2,
-          bgcolor: "grey.800",
-          input: { color: "grey.100" },
-          label: { color: "grey.100" },
-        }}
-        slotProps={{
-          inputLabel: {
-            sx: {
-              textAlign: direction === "ltr" ? "left" : "right",
-              right: direction === "ltr" ? "auto" : 30,
-              left: direction === "rtl" ? "auto" : 20,
-            },
-          },
-        }}
-        {...props}
-      />
-    </div>
+    <CacheProvider value={direction === "rtl" ? rtlCache : ltrCache}>
+      <div dir={direction}>
+        <TextField {...props} />
+      </div>
+    </CacheProvider>
   );
 }
 

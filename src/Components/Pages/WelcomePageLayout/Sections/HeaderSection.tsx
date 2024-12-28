@@ -96,6 +96,7 @@ function HeaderSection({ moveToSection }: HeaderSectionProps): JSX.Element {
                 },
               }}
             >
+              {/* TODO: THIS Should open the register modal */}
               הרשמה
             </Button>
           </motion.div>
