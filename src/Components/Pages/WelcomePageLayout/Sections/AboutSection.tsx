@@ -1,25 +1,25 @@
 import React, { useRef } from "react";
 import { Box, Container, Typography, Grid, Paper } from "@mui/material";
-import { Truck, Users, BarChart } from 'lucide-react';
 import { motion, useInView } from "framer-motion";
-
+import { LocalShipping, PeopleAlt, BarChart } from "@mui/icons-material";
 function AboutSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
 
   const features = [
     {
-      icon: <Truck size={40} />,
+      icon: <LocalShipping sx={{ fontSize: 40 }} />,
       title: "ניהול צי רכב",
-      description: "נהל את כל כלי הרכב שלך במקום אחד, עם מעקב אחר תחזוקה ויעילות.",
+      description:
+        "נהל את כל כלי הרכב שלך במקום אחד, עם מעקב אחר תחזוקה ויעילות.",
     },
     {
-      icon: <Users size={40} />,
+      icon: <PeopleAlt sx={{ fontSize: 40 }} />,
       title: "ניהול נהגים",
       description: "עקוב אחר זמני עבודה, ביצועים ומשימות של הנהגים שלך בקלות.",
     },
     {
-      icon: <BarChart size={40} />,
+      icon: <BarChart sx={{ fontSize: 40 }} />,
       title: "ניתוח נתונים",
       description: "קבל תובנות מעמיקות על ביצועי הצי שלך עם כלי ניתוח מתקדמים.",
     },
@@ -46,7 +46,13 @@ function AboutSection() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.8 }}
         >
-          <Typography variant="h3" align="center" gutterBottom fontWeight="bold" color="primary">
+          <Typography
+            variant="h3"
+            align="center"
+            gutterBottom
+            fontWeight="bold"
+            color="primary"
+          >
             קצת עלינו
           </Typography>
         </motion.div>
@@ -55,8 +61,14 @@ function AboutSection() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <Typography variant="h6" align="center" paragraph color="text.secondary">
-            אנחנו מספקים פתרונות מתקדמים לניהול צי רכב, המותאמים במיוחד לצרכים שלך
+          <Typography
+            variant="h6"
+            align="center"
+            paragraph
+            color="text.secondary"
+          >
+            אנחנו מספקים פתרונות מתקדמים לניהול צי רכב, המותאמים במיוחד לצרכים
+            שלך
           </Typography>
         </motion.div>
         <Grid container spacing={4} mt={4}>
@@ -64,21 +76,24 @@ function AboutSection() {
             <Grid item xs={12} md={4} key={index}>
               <motion.div
                 initial={{ opacity: 0, y: 50 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+                animate={
+                  isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }
+                }
                 transition={{ duration: 0.8, delay: 0.4 + index * 0.2 }}
               >
                 <Paper
                   elevation={3}
                   sx={{
                     p: 4,
-                    height: '100%',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    textAlign: 'center',
-                    transition: 'transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out',
-                    '&:hover': {
-                      transform: 'translateY(-10px)',
+                    height: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    textAlign: "center",
+                    transition:
+                      "transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out",
+                    "&:hover": {
+                      transform: "translateY(-10px)",
                       boxShadow: 6,
                     },
                   }}
@@ -103,4 +118,3 @@ function AboutSection() {
 }
 
 export default AboutSection;
-

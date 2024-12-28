@@ -3,22 +3,21 @@ import {
   Box,
   Typography,
   AppBar,
-  IconButton,
   Toolbar,
   Button,
   Link,
+  IconButton,
   Drawer,
   ListItem,
   List,
   ListItemText,
 } from "@mui/material";
-import { Truck, Menu } from "lucide-react";
 import { blue } from "@mui/material/colors";
 import useIsMobile from "../Hooks/useIsMobile";
 import RoutesNav from "../Routes/RoutesNav";
 import AuthModal from "./AuthModal";
 import { useThemeContext } from "../theme/ThemeContextProvider";
-
+import { LocalShippingOutlined, Menu } from "@mui/icons-material";
 interface NavbarProps {
   handleOpenAuthModal: () => void;
   activeSection: string;
@@ -28,7 +27,7 @@ export function NavbarLogo() {
   const { toggleDirection } = useThemeContext();
   return (
     <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-      <Truck size={32} color={blue[500]} />
+      <LocalShippingOutlined fontSize={"large"} sx={{ color: blue[500] }} />
 
       <Typography
         onClick={toggleDirection}
@@ -49,6 +48,7 @@ function NavbarContainer({
   const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
   const toggleBurgerMenu = () => setIsBurgerMenuOpen(!isBurgerMenuOpen);
   const isMobile = useIsMobile();
+  const { direction } = useThemeContext();
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -109,18 +109,8 @@ function NavbarContainer({
           </Box>
         </>
       ) : (
-        <IconButton
-          edge="start"
-          color="inherit"
-          aria-label="menu"
-          onClick={toggleBurgerMenu}
-          sx={{
-            ml: 2,
-            color: "grey.100",
-            bgcolor: "grey.900",
-          }}
-        >
-          <Menu />
+        <IconButton aria-label="menu" onClick={toggleBurgerMenu}>
+          <Menu fontSize={"large"} sx={{ color: "grey.900" }} />
         </IconButton>
       )}
     </>
@@ -147,17 +137,14 @@ function NavbarContainer({
           <NavbarLogo />
           {navbarContent}
         </Toolbar>
+      </AppBar>
+      <Box>
         <Drawer
-          anchor="right"
+          anchor={"right"}
           open={isBurgerMenuOpen}
           onClose={toggleBurgerMenu}
         >
-          <Box
-            sx={{ width: 250 }}
-            role="presentation"
-            onClick={toggleBurgerMenu}
-            onKeyDown={toggleBurgerMenu}
-          >
+          <Box width={250} color={"green"}>
             <List>
               {RoutesNav.map((route, index) => (
                 <ListItem
@@ -191,7 +178,7 @@ function NavbarContainer({
             </List>
           </Box>
         </Drawer>
-      </AppBar>
+      </Box>
     </Box>
   );
 }
