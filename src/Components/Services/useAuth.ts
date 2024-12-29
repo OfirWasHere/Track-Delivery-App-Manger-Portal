@@ -1,11 +1,13 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import useFirebase from "../../Firebase/useFirebase";
 import LoginServiceModal from "../Models/LoginServiceModal";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function useAuth() {
     const { firebaseAuth } = useFirebase();
     const [loader, setLoader] = useState<boolean>(false);
+    const navigate = useNavigate();
 
     async function firebaseLogin({ email, password }: LoginServiceModal) {
         try {
@@ -36,6 +38,20 @@ export default function useAuth() {
             }, 1000);
         }
     }
-    return { firebaseLogin, firebaseSignUp, loader };
 
+    async function firebaseAuthState() {
+        try {
+            onAuthStateChanged(firebaseAuth, user => {
+                if (user) {
+                    console.log(user);
+                } else {
+                    console.log('user is not logged in');
+                }
+            })
+        } catch (error) {
+
+        }
+
+    }
+    return { firebaseLogin, firebaseSignUp, firebaseAuthState, loader };
 }

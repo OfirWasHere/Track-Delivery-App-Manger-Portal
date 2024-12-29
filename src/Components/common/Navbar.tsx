@@ -137,14 +137,17 @@ function NavbarContainer({
           <NavbarLogo />
           {navbarContent}
         </Toolbar>
-      </AppBar>
-      <Box>
         <Drawer
-          anchor={"right"}
+          anchor={direction === "rtl" ? "right" : "left"}
           open={isBurgerMenuOpen}
           onClose={toggleBurgerMenu}
         >
-          <Box width={250} color={"green"}>
+          <Box
+            width={250}
+            role="presentation"
+            onClick={toggleBurgerMenu}
+            onKeyDown={toggleBurgerMenu}
+          >
             <List>
               {RoutesNav.map((route, index) => (
                 <ListItem
@@ -178,7 +181,7 @@ function NavbarContainer({
             </List>
           </Box>
         </Drawer>
-      </Box>
+      </AppBar>
     </Box>
   );
 }
