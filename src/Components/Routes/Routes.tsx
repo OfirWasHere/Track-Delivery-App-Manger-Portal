@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import RoutesModel from "../Models/RoutesModel";
 import PageNotFound from "../Pages/PageNotFound/PageNotFound";
 import Root from "../Pages/Root/Root";
@@ -8,6 +8,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import { type Navigation } from "@toolpad/core";
 import Dashboard from "../Pages/Dashboard/Dashboard";
 import Login from "../Pages/login/Login";
+import WelcomePage from "../Pages/WelcomePageLayout/WelcomePage";
 
 const Routes: RoutesModel[] = [
   {
@@ -16,16 +17,20 @@ const Routes: RoutesModel[] = [
     errorElement: <PageNotFound />,
     children: [
       {
-        path: "/Main",
-        element: <Main />,
+        path: "/",
+        element: <WelcomePage />,
+      },
+      {
+        path: "/Login",
+        element: <Login />,
       },
       {
         path: "/Dashboard",
         element: <Dashboard />,
       },
       {
-        path: "/Login",
-        element: <Login />,
+        path: "/Main",
+        element: <Main />,
       },
     ],
   },
@@ -53,4 +58,8 @@ const NAVIGATION: Navigation = [
   },
 ];
 
-export { Routes, NAVIGATION };
+const BRANDING = {
+  title: "My Toolpad Core App",
+};
+
+export { Routes, NAVIGATION, BRANDING };
