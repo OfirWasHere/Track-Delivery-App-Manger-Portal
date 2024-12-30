@@ -9,6 +9,7 @@ import { type Navigation } from "@toolpad/core";
 import Dashboard from "../Pages/Dashboard/Dashboard";
 import Login from "../Pages/login/Login";
 import WelcomePage from "../Pages/WelcomePageLayout/WelcomePage";
+import Toolpad from "../Pages/Root/Toolpad";
 
 const Routes: RoutesModel[] = [
   {
@@ -26,11 +27,19 @@ const Routes: RoutesModel[] = [
       },
       {
         path: "/Dashboard",
-        element: <Dashboard />,
+        element: (
+          <Toolpad>
+            <Dashboard />
+          </Toolpad>
+        ),
       },
       {
         path: "/Main",
-        element: <Main />,
+        element: (
+          <Toolpad>
+            <Main />
+          </Toolpad>
+        ),
       },
     ],
   },
