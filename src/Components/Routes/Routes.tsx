@@ -4,11 +4,10 @@ import PageNotFound from "../Pages/PageNotFound/PageNotFound";
 import Root from "../Pages/Root/Root";
 import Main from "../Pages/Main/Main";
 import DashboardIcon from "@mui/icons-material/Dashboard";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import HomeIcon from '@mui/icons-material/Home';
+import HomeIcon from "@mui/icons-material/Home";
 import { type Navigation } from "@toolpad/core";
 import Dashboard from "../Pages/Dashboard/Dashboard";
-import WelcomePage from "../Pages/WelcomePageLayout/WelcomePage";
+import Login from "../Pages/login/Login";
 
 const Routes: RoutesModel[] = [
   {
@@ -17,16 +16,16 @@ const Routes: RoutesModel[] = [
     errorElement: <PageNotFound />,
     children: [
       {
-        path: "/LandingPage",
-        element: <WelcomePage />,
-      },
-      {
         path: "/Main",
         element: <Main />,
       },
       {
         path: "/Dashboard",
         element: <Dashboard />,
+      },
+      {
+        path: "/Login",
+        element: <Login />,
       },
     ],
   },

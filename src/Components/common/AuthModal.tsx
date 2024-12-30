@@ -16,8 +16,8 @@ import {
 import CloseIcon from "@mui/icons-material/Close";
 import GoogleIcon from "@mui/icons-material/Google";
 import { useThemeContext } from "../theme/ThemeContextProvider";
-import useAuth from "../Services/useAuth";
 import FTextField from "./FTextField";
+import useAuth from "../Hooks/useAuth";
 
 export default function AuthModal({
   open = false,

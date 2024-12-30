@@ -15,12 +15,14 @@ export default function useFireBase() {
             appId: process.env.REACT_APP_FIREBASE_APP_ID,
             measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
         })
-    ), [])
+    ), []);
 
     const firebaseAnalytics: Analytics = useMemo(() => getAnalytics(firebaseApp), [firebaseApp]);
     const firebaseAuth: Auth = useMemo(() => {
         const auth = getAuth(firebaseApp);
-        connectAuthEmulator(auth, "http://localhost:9099");  // to use emulator run in terminal "firebase emulators:start --only auth"
+        if (process.env.NODE_ENV === "development" && !auth.emulatorConfig) {
+            connectAuthEmulator(auth, "http://localhost:9099");
+        }
         return auth;
     }, [firebaseApp]);
     return { firebaseApp, firebaseAnalytics, firebaseAuth }

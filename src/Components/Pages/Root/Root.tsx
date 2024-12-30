@@ -7,6 +7,7 @@ import WelcomePage from "../WelcomePageLayout/WelcomePage";
 import { NAVIGATION } from "../../Routes/Routes";
 import { ThemeProvider } from "@mui/material";
 import { useThemeContext } from "../../theme/ThemeContextProvider";
+import useAuth from "../../Hooks/useAuth";
 
 const BRANDING = {
   title: "My Toolpad Core App",
@@ -15,11 +16,12 @@ const BRANDING = {
 function Root() {
   const outlet = useOutlet();
   const { theme, direction } = useThemeContext();
+  const { user } = useAuth();
 
   return (
     <div>
       <ThemeProvider theme={theme}>
-        {outlet ? (
+        {outlet && user ? (
           <AppProvider navigation={NAVIGATION} branding={BRANDING}>
             <DashboardLayout>
               <PageContainer dir={direction}>
