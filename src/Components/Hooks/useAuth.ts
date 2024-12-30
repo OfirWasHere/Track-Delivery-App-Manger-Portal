@@ -48,15 +48,31 @@ export default function useAuth() {
     }
 
     useEffect(() => {
-        const BlockWithoutLogin = ['/dashboard', '/Main']
+        console.log(user);
         setUser(user);
         const unsubscribe = onAuthStateChanged(firebaseAuth, (user) => {
-            if (user === null && BlockWithoutLogin.some(path => location.pathname.includes(path))) {
-                navigate("/login");
+            if (user) {
+                // navigate("/dashboard");
             }
         });
         return () => unsubscribe();
-    }, [firebaseAuth]);
+    }, [firebaseAuth, location, user, navigate]);
 
     return { loader, user, firebaseLogin, firebaseLogout, firebaseSignUp };
 }
+
+
+
+// useEffect(() => {
+//     const BlockWithoutLogin = ['/dashboard', '/Main']
+//     setUser(user);
+//     const unsubscribe = onAuthStateChanged(firebaseAuth, (user) => {
+//         if (user === null && BlockWithoutLogin.some(path => location.pathname.includes(path))) {
+//             navigate("/login");
+//         }
+//     });
+//     return () => unsubscribe();
+// }, [firebaseAuth]);
+
+// return { loader, user, firebaseLogin, firebaseLogout, firebaseSignUp };
+// }
