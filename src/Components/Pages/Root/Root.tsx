@@ -1,6 +1,5 @@
 import * as React from "react";
 import { Outlet, useOutlet } from "react-router-dom";
-import "./Root.css";
 import WelcomePage from "../WelcomePageLayout/WelcomePage";
 import { ThemeProvider } from "@mui/material";
 import { useThemeContext } from "../../theme/ThemeContextProvider";
