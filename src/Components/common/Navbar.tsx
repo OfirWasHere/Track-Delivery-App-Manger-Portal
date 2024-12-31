@@ -18,6 +18,8 @@ import RoutesNav from "../Routes/RoutesNav";
 import AuthModal from "./AuthModal";
 import { useThemeContext } from "../theme/ThemeContextProvider";
 import { LocalShippingOutlined, Menu } from "@mui/icons-material";
+import useAuth from "../Hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 interface NavbarProps {
   handleOpenAuthModal: () => void;
   activeSection: string;
@@ -190,9 +192,17 @@ function Navbar(): JSX.Element {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const { direction } = useThemeContext();
+  const navigate = useNavigate();
+  const { user } = useAuth();
 
-  const handleOpenModal = () => setIsModalOpen(true);
-  const handleCloseModal = () => setIsModalOpen(false);
+  const handleAuthModal = (value: boolean) => {
+    console.log(user);
+    if (user !== null) {
+      navigate("/dashboard");
+    } else {
+      setIsModalOpen(value);
+    }
+  };
 
   useEffect(() => {
     const observerOptions = {
@@ -222,9 +232,9 @@ function Navbar(): JSX.Element {
 
   return (
     <Box dir={direction === "ltr" ? "rtl" : "ltr"} sx={{ flexGrow: 1 }}>
-      <AuthModal open={isModalOpen} onClose={handleCloseModal} />
+      <AuthModal open={isModalOpen} onClose={() => handleAuthModal(false)} />
       <NavbarContainer
-        handleOpenAuthModal={handleOpenModal}
+        handleOpenAuthModal={() => handleAuthModal(true)}
         activeSection={activeSection}
       />
     </Box>
