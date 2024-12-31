@@ -29,7 +29,8 @@ export default function AuthModal({
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { direction } = useThemeContext();
-  const { firebaseLogin, firebaseSignUp, loader } = useAuth();
+  const { firebaseLogin, firebaseSignUp, firebaseGoogleAuthLogin, loader } =
+    useAuth();
   const [tabValue, setTabValue] = useState(0);
   const [agreeToTerms, setAgreeToTerms] = useState(false);
 
@@ -179,6 +180,7 @@ export default function AuthModal({
             fullWidth
             startIcon={<GoogleIcon />}
             disabled={loader}
+            onClick={firebaseGoogleAuthLogin}
             sx={{ mt: 2, mb: 2 }}
           >
             המשך עם גוגל

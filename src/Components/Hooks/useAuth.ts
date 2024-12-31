@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import useFirebase from "../../Firebase/useFirebase";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -48,6 +48,30 @@ export default function useAuth() {
         }
     }
 
+    async function firebaseGoogleAuthLogin() {
+        const provider = await new GoogleAuthProvider();
+        signInWithPopup(firebaseAuth, provider)
+            .then((result) => {
+                // This gives you a Google Access Token. You can use it to access the Google API.
+                const credential = GoogleAuthProvider.credentialFromResult(result);
+                const token = credential.accessToken;
+                // The signed-in user info.
+                const user = result.user;
+                // IdP data available using getAdditionalUserInfo(result)
+                // ...
+                navigate("/dashboard");
+            }).catch((error) => {
+                console.log(error)
+                // Handle Errors here.
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // The email of the user's account used.
+                const email = error.customData.email;
+                // The AuthCredential type that was used.
+                const credential = GoogleAuthProvider.credentialFromError(error);
+                // ...
+            });
+    }
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(firebaseAuth, (user) => {
             setUser(user);
@@ -56,17 +80,5 @@ export default function useAuth() {
         return () => unsubscribe();
     }, [firebaseAuth, location, user, navigate]);
 
-    return { loader, user, authChecked, firebaseLogin, firebaseLogout, firebaseSignUp };
+    return { loader, user, authChecked, firebaseLogin, firebaseLogout, firebaseSignUp, firebaseGoogleAuthLogin };
 }
-
-// useEffect(() => {
-//     const urlsToBlockWithoutAuth = ['/dashboard', '/main']
-//     const unsubscribe = onAuthStateChanged(firebaseAuth, (user) => {
-//         setUser(user);
-//         if (user === null && urlsToBlockWithoutAuth.some(path => location.pathname.includes(path))) {
-//             // Navigate to log in when login page is fixed, also add a toast
-//             navigate("/");
-//         }
-//     });
-//     return () => unsubscribe();
-// }, [firebaseAuth, location, user, navigate]);
