@@ -9,6 +9,7 @@ export default function useAuth() {
     const [loader, setLoader] = useState<boolean>(false);
     const navigate = useNavigate();
     const [user, setUser] = useState(null);
+    const [authChecked, setAuthChecked] = useState(null);
     const location = useLocation();
 
     async function firebaseLogin({ email, password }: LoginServiceModal) {
@@ -48,17 +49,24 @@ export default function useAuth() {
     }
 
     useEffect(() => {
-        const urlsToBlockWithoutAuth = ['/dashboard', '/main']
-
-        setUser(user);
         const unsubscribe = onAuthStateChanged(firebaseAuth, (user) => {
-            if (user === null && urlsToBlockWithoutAuth.some(path => location.pathname.includes(path))) {
-                // Navigate to log in when login page is fixed, also add a toast
-                navigate("/");
-            }
+            setUser(user);
+            setAuthChecked(true)
         });
         return () => unsubscribe();
     }, [firebaseAuth, location, user, navigate]);
 
-    return { loader, user, firebaseLogin, firebaseLogout, firebaseSignUp };
+    return { loader, user, authChecked, firebaseLogin, firebaseLogout, firebaseSignUp };
 }
+
+// useEffect(() => {
+//     const urlsToBlockWithoutAuth = ['/dashboard', '/main']
+//     const unsubscribe = onAuthStateChanged(firebaseAuth, (user) => {
+//         setUser(user);
+//         if (user === null && urlsToBlockWithoutAuth.some(path => location.pathname.includes(path))) {
+//             // Navigate to log in when login page is fixed, also add a toast
+//             navigate("/");
+//         }
+//     });
+//     return () => unsubscribe();
+// }, [firebaseAuth, location, user, navigate]);

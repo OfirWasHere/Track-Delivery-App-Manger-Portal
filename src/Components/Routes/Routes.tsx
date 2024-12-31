@@ -10,6 +10,7 @@ import Dashboard from "../Pages/Dashboard/Dashboard";
 import Login from "../Pages/login/Login";
 import WelcomePage from "../Pages/WelcomePageLayout/WelcomePage";
 import Toolpad from "../Pages/Root/Toolpad";
+import GuardedRoute from "../common/GuardedRoute";
 
 const Routes: RoutesModel[] = [
   {
@@ -28,17 +29,21 @@ const Routes: RoutesModel[] = [
       {
         path: "/Dashboard",
         element: (
-          <Toolpad>
-            <Dashboard />
-          </Toolpad>
+          <GuardedRoute>
+            <Toolpad>
+              <Dashboard />
+            </Toolpad>
+          </GuardedRoute>
         ),
       },
       {
         path: "/Main",
         element: (
-          <Toolpad>
-            <Main />
-          </Toolpad>
+          <GuardedRoute>
+            <Toolpad>
+              <Main />
+            </Toolpad>
+          </GuardedRoute>
         ),
       },
     ],
