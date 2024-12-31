@@ -51,13 +51,13 @@ const NAVIGATION: Navigation = [
     title: "Main items",
   },
   {
-    segment: "Main",
-    title: "Main",
+    segment: "dashboard",
+    title: "Dashboard",
     icon: <DashboardIcon />,
   },
   {
-    segment: "dashboard",
-    title: "Dashboard",
+    segment: "Main",
+    title: "Main",
     icon: <DashboardIcon />,
   },
   {

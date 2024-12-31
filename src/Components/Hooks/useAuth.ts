@@ -48,11 +48,13 @@ export default function useAuth() {
     }
 
     useEffect(() => {
-        console.log(user);
+        const urlsToBlockWithoutAuth = ['/dashboard', '/main']
+
         setUser(user);
         const unsubscribe = onAuthStateChanged(firebaseAuth, (user) => {
-            if (user) {
-                // navigate("/dashboard");
+            if (user === null && urlsToBlockWithoutAuth.some(path => location.pathname.includes(path))) {
+                // Navigate to log in when login page is fixed, also add a toast
+                navigate("/");
             }
         });
         return () => unsubscribe();
@@ -60,19 +62,3 @@ export default function useAuth() {
 
     return { loader, user, firebaseLogin, firebaseLogout, firebaseSignUp };
 }
-
-
-
-// useEffect(() => {
-//     const BlockWithoutLogin = ['/dashboard', '/Main']
-//     setUser(user);
-//     const unsubscribe = onAuthStateChanged(firebaseAuth, (user) => {
-//         if (user === null && BlockWithoutLogin.some(path => location.pathname.includes(path))) {
-//             navigate("/login");
-//         }
-//     });
-//     return () => unsubscribe();
-// }, [firebaseAuth]);
-
-// return { loader, user, firebaseLogin, firebaseLogout, firebaseSignUp };
-// }
