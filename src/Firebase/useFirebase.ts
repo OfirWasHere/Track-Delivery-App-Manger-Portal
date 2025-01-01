@@ -21,7 +21,7 @@ export default function useFireBase() {
     const firebaseAuth: Auth = useMemo(() => {
         const auth = getAuth(firebaseApp);
         if (process.env.NODE_ENV === "development" && !auth.emulatorConfig) {
-            connectAuthEmulator(auth, "http://localhost:9099");
+            // connectAuthEmulator(auth, "http://localhost:9099");
         }
         return auth;
     }, [firebaseApp]);
