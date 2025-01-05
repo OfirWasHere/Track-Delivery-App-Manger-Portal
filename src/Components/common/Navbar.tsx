@@ -20,6 +20,20 @@ import { useThemeContext } from "../theme/ThemeContextProvider";
 import { LocalShippingOutlined, Menu } from "@mui/icons-material";
 import useAuth from "../Hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import { prefixer } from "stylis";
+import rtlPlugin from "stylis-plugin-rtl";
+import createCache from "@emotion/cache";
+import { CacheProvider } from "@emotion/react";
+
+const rtlCache = createCache({
+  key: "muirtl",
+  stylisPlugins: [prefixer, rtlPlugin],
+});
+
+const ltrCache = createCache({
+  key: "mui",
+});
+
 interface NavbarProps {
   handleOpenAuthModal: () => void;
   activeSection: string;
@@ -139,50 +153,52 @@ function NavbarContainer({
           <NavbarLogo />
           {navbarContent}
         </Toolbar>
-        <Drawer
-          anchor={direction === "rtl" ? "right" : "left"}
-          open={isBurgerMenuOpen}
-          onClose={toggleBurgerMenu}
-        >
-          <Box
-            width={250}
-            role="presentation"
-            onClick={toggleBurgerMenu}
-            onKeyDown={toggleBurgerMenu}
+        <CacheProvider value={direction === "rtl" ? rtlCache : ltrCache}>
+          <Drawer
+            anchor={"left"}
+            open={isBurgerMenuOpen}
+            onClose={toggleBurgerMenu}
           >
-            <List>
-              {RoutesNav.map((route, index) => (
-                <ListItem
-                  sx={{ textAlign: "right" }}
-                  key={index}
-                  onClick={() => scrollToSection(route.toPath)}
-                >
-                  <ListItemText primary={route.routeName} />
+            <Box
+              width={250}
+              role="presentation"
+              onClick={toggleBurgerMenu}
+              onKeyDown={toggleBurgerMenu}
+            >
+              <List>
+                {RoutesNav.map((route, index) => (
+                  <ListItem
+                    sx={{ textAlign: "right" }}
+                    key={index}
+                    onClick={() => scrollToSection(route.toPath)}
+                  >
+                    <ListItemText primary={route.routeName} />
+                  </ListItem>
+                ))}
+                <ListItem>
+                  <Button
+                    fullWidth
+                    variant="contained"
+                    size="large"
+                    sx={{
+                      bgcolor: "#212121",
+                      color: "#fff",
+                      "&:hover": {
+                        bgcolor: "#424242",
+                      },
+                    }}
+                    onClick={() => {
+                      handleOpenAuthModal();
+                      toggleBurgerMenu();
+                    }}
+                  >
+                    <Typography variant="h6">התחברות</Typography>
+                  </Button>
                 </ListItem>
-              ))}
-              <ListItem>
-                <Button
-                  fullWidth
-                  variant="contained"
-                  size="large"
-                  sx={{
-                    bgcolor: "#212121",
-                    color: "#fff",
-                    "&:hover": {
-                      bgcolor: "#424242",
-                    },
-                  }}
-                  onClick={() => {
-                    handleOpenAuthModal();
-                    toggleBurgerMenu();
-                  }}
-                >
-                  <Typography variant="h6">התחברות</Typography>
-                </Button>
-              </ListItem>
-            </List>
-          </Box>
-        </Drawer>
+              </List>
+            </Box>
+          </Drawer>
+        </CacheProvider>
       </AppBar>
     </Box>
   );

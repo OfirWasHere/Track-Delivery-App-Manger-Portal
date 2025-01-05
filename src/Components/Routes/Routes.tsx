@@ -65,11 +65,11 @@ const NAVIGATION: Navigation = [
     title: "Main",
     icon: <DashboardIcon />,
   },
-  {
-    segment: "",
-    title: "welcomePage",
-    icon: <HomeIcon />,
-  },
+  // {
+  //   segment: "",
+  //   title: "welcomePage",
+  //   icon: <HomeIcon />,
+  // },
 ];
 
 const BRANDING = {
