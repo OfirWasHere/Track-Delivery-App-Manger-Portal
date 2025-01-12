@@ -13,8 +13,8 @@ function ToastNotification() {
 
   return (
     <ToastContainer
-      position="top-right"
-      autoClose={5000}
+      position={direction === "rtl" ? "top-left" : "top-right"}
+      autoClose={6000}
       hideProgressBar={false}
       newestOnTop
       closeOnClick
@@ -24,6 +24,7 @@ function ToastNotification() {
       pauseOnHover
       theme={mode}
       transition={Bounce}
+      style={{ fontSize: 18, margin: 4 }}
     />
   );
 }
