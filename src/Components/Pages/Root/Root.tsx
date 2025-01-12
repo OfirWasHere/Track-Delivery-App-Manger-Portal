@@ -3,6 +3,7 @@ import { Outlet, useOutlet } from "react-router-dom";
 import WelcomePage from "../WelcomePageLayout/WelcomePage";
 import { ThemeProvider } from "@mui/material";
 import { useThemeContext } from "../../theme/ThemeContextProvider";
+import { ToastNotification } from "../../common/ToastNotification";
 
 function Root() {
   const outlet = useOutlet();
@@ -12,6 +13,7 @@ function Root() {
     <div>
       <ThemeProvider theme={theme}>
         {outlet ? <Outlet /> : <WelcomePage />}
+        <ToastNotification />
       </ThemeProvider>
     </div>
   );
