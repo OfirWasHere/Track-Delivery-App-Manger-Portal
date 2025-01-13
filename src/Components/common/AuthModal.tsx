@@ -18,6 +18,7 @@ import GoogleIcon from "@mui/icons-material/Google";
 import { useThemeContext } from "../theme/ThemeContextProvider";
 import FTextField from "./FTextField";
 import useAuth from "../Hooks/useAuth";
+import { useToasty } from "./ToastNotification";
 
 export default function AuthModal({
   open = false,
@@ -33,6 +34,7 @@ export default function AuthModal({
     useAuth();
   const [tabValue, setTabValue] = useState(0);
   const [agreeToTerms, setAgreeToTerms] = useState(false);
+  const showToast = useToasty();
 
   const changeTabValue = () => {
     tabValue === 0 ? setTabValue(1) : setTabValue(0);
@@ -46,8 +48,10 @@ export default function AuthModal({
       if (agreeToTerms) {
         firebaseSignUp({ email, password });
       } else {
-        // Show error message or prevent submission
-        console.error("You must agree to the terms to register");
+        showToast({
+          type: "info",
+          message: "You must agree to the terms to register.",
+        });
       }
     }
   };
