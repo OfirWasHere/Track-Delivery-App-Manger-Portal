@@ -5,8 +5,7 @@ import ContactUs from "./Sections/ContactUs";
 import HeaderSection from "./Sections/HeaderSection";
 // When Navbar updates the index the scroller doesn't know and still thinks we're on the same page
 
-
-function HeroSection() {
+function Layout() {
   const [currentSection, setCurrentSection] = useState(0);
   const [canScroll, setCanScroll] = useState(true);
 
@@ -56,4 +55,4 @@ function HeroSection() {
   );
 }
 
-export default HeroSection;
+export default Layout;

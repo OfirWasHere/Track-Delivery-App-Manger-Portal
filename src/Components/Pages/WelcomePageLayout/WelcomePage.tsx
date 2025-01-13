@@ -1,12 +1,12 @@
 import React from "react";
-import MainArea from "./MainArea";
+import Layout from "./Layout";
 import Navbar from "../../common/Navbar";
 
 export default function WelcomePage() {
   return (
     <div>
       <Navbar />
-      <MainArea />
+      <Layout />
     </div>
   );
 }
