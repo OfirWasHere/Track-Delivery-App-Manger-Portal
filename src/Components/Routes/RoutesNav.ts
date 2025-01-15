@@ -2,19 +2,22 @@ import RouteModel from "../Models/RouteModel"
 
 const RoutesNav: RouteModel[] = [
     {
-        path: '/',
+        path: "/",
         toPath: "home",
-        routeName: 'דף הבית'
+        routeName: "ראשי",
+        RouteID: "header-section"
     },
     {
-        path: '/',
+        path: "/",
         toPath: "about",
-        routeName: 'עלינו'
+        routeName: "עלינו",
+        RouteID: "about-section"
     },
     {
-        path: '/',
+        path: "/",
         toPath: "contact",
-        routeName: 'צרו קשר'
+        routeName: "צרו קשר",
+        RouteID: "contact-section"
     },
 ]
 

@@ -36,7 +36,6 @@ const ltrCache = createCache({
 type NavbarProps = {
   currentSection: number;
   moveToSection: (sectionIndex: number) => void;
-  sections: string[];
   handleOpenAuthModal?: () => void;
   toggleBurgerMenu?: () => void;
 };
@@ -46,7 +45,6 @@ type NavbarDrawerProps = {
   handleOpenAuthModal?: () => void;
   toggleBurgerMenu?: () => void;
   isBurgerMenuOpen: boolean;
-  sections: string[];
 };
 
 type NavbarBodyProps = {
@@ -63,18 +61,16 @@ export function NavbarLogo() {
         variant="h6"
         component="a"
         href="/"
-        letterSpacing="2"
         sx={{
           textDecoration: "none",
           fontFamily: "monospace",
           fontWeight: 700,
           letterSpacing: ".2rem",
+          color: "text.primary",
         }}
         onClick={toggleDirection}
-        color={"text.primary"}
-        fontWeight={"bold"}
       >
-        SoftFox
+        Ofir Software
       </Typography>
     </Box>
   );
@@ -83,7 +79,6 @@ export function NavbarLogo() {
 export function NavbarContent({
   currentSection,
   moveToSection,
-  sections,
   handleOpenAuthModal,
   toggleBurgerMenu,
 }: NavbarProps) {
@@ -99,27 +94,28 @@ export function NavbarContent({
               display: "flex",
               justifyContent: "center",
               flex: 1,
-              pr: 2,
             }}
           >
-            {sections
-              .slice()
+            {RoutesNav.slice()
               .reverse()
-              .map((section, index) => (
-                <Button
-                  key={section}
-                  onClick={() => moveToSection(index)}
-                  color={currentSection === index ? "primary" : "inherit"}
-                  sx={{
-                    fontWeight: currentSection === index ? 700 : 400,
-                    "&:hover": {
-                      backgroundColor: "rgba(0, 0, 0, 0.04)",
-                    },
-                  }}
-                >
-                  {section}
-                </Button>
-              ))}
+              .map((route, index) => {
+                const originalIndex = RoutesNav.length - 1 - index;
+                return (
+                  <Button
+                    key={originalIndex}
+                    onClick={() => moveToSection(originalIndex)}
+                    color={currentSection === originalIndex ? "primary" : "inherit"}
+                    sx={{
+                      fontWeight: currentSection === originalIndex ? 700 : 400,
+                      "&:hover": {
+                        backgroundColor: "rgba(0, 0, 0, 0.04)",
+                      },
+                    }}
+                  >
+                    {route.routeName}
+                  </Button>
+                );
+              })}
           </Box>
           <Box>
             <Button
@@ -146,8 +142,6 @@ export function NavbarContent({
           color="inherit"
           aria-label="open drawer"
           sx={{ display: "flex", justifyContent: "flex-end", flex: 1, pr: 2 }}
-          // edge="end"
-          // sx={{ ml: "auto" }}
           onClick={toggleBurgerMenu}
         >
           <Menu fontSize={"large"} sx={{ color: "grey.900" }} />
@@ -187,7 +181,6 @@ export function NavbarDrawer({
   isBurgerMenuOpen,
   handleOpenAuthModal,
   toggleBurgerMenu,
-  sections,
 }: NavbarDrawerProps) {
   const { direction } = useThemeContext();
 
@@ -243,7 +236,7 @@ export function NavbarDrawer({
   );
 }
 
-function NavbarV3({ currentSection, moveToSection, sections }: NavbarProps) {
+function NavbarV3({ currentSection, moveToSection }: NavbarProps) {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { direction } = useThemeContext();
@@ -267,14 +260,12 @@ function NavbarV3({ currentSection, moveToSection, sections }: NavbarProps) {
         <NavbarLogo />
         <NavbarContent
           handleOpenAuthModal={() => handleAuthModal(true)}
-          sections={sections}
           currentSection={currentSection}
           moveToSection={moveToSection}
           toggleBurgerMenu={toggleBurgerMenu}
         />
         <NavbarDrawer
           handleOpenAuthModal={() => handleAuthModal(true)}
-          sections={sections}
           isBurgerMenuOpen={isBurgerMenuOpen}
           moveToSection={moveToSection}
           toggleBurgerMenu={toggleBurgerMenu}

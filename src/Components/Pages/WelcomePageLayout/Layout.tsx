@@ -3,15 +3,12 @@ import { Box } from "@mui/material";
 import AboutSection from "./Sections/AboutSection";
 import ContactUs from "./Sections/ContactUs";
 import HeaderSection from "./Sections/HeaderSection";
-import NavbarV1 from "./Sections/NavbarV1";
 import Navbar from "./Sections/Navbar";
-
-// When Navbar updates the index the scroller doesn't know and still thinks we're on the same page
+import RoutesNav from "../../Routes/RoutesNav";
 
 function Layout() {
   const [currentSection, setCurrentSection] = useState(0);
   const [canScroll, setCanScroll] = useState(true);
-  const sections = ["ראשי", "אודות", "תכונות", "המלצות?", "צור קשר"];
 
   const getMouseWheel = (event: React.WheelEvent) => {
     if (canScroll) {
@@ -30,8 +27,7 @@ function Layout() {
   };
 
   useEffect(() => {
-    const sectionIds = ["header-section", "about-section", "contact-section"];
-    const targetSection = sectionIds[currentSection];
+    const targetSection = RoutesNav[currentSection].RouteID;
 
     const element = document.getElementById(targetSection);
     if (element) {
@@ -47,7 +43,6 @@ function Layout() {
       style={{ overflow: "hidden", height: "100vh" }}
     >
       <Navbar
-        sections={sections}
         currentSection={currentSection}
         moveToSection={moveToSectionEventHandler}
       />
