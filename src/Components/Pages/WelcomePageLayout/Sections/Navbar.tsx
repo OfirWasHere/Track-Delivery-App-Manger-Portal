@@ -68,7 +68,7 @@ export function NavbarLogo() {
           letterSpacing: ".2rem",
           color: "text.primary",
         }}
-        onClick={toggleDirection}
+        // onClick={toggleDirection}
       >
         Ofir Software
       </Typography>
