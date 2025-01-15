@@ -3,8 +3,8 @@ import { Box } from "@mui/material";
 import AboutSection from "./Sections/AboutSection";
 import ContactUs from "./Sections/ContactUs";
 import HeaderSection from "./Sections/HeaderSection";
-import Navbar from "./Sections/Navbar";
 import RoutesNav from "../../Routes/RoutesNav";
+import Navbar from "./Sections/Navbar";
 
 function Layout() {
   const [currentSection, setCurrentSection] = useState(0);

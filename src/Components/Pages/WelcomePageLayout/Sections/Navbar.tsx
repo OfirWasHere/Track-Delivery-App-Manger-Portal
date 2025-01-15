@@ -236,7 +236,7 @@ export function NavbarDrawer({
   );
 }
 
-function NavbarV3({ currentSection, moveToSection }: NavbarProps) {
+function Navbar({ currentSection, moveToSection }: NavbarProps) {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { direction } = useThemeContext();
@@ -275,4 +275,4 @@ function NavbarV3({ currentSection, moveToSection }: NavbarProps) {
   );
 }
 
-export default NavbarV3;
+export default Navbar;
