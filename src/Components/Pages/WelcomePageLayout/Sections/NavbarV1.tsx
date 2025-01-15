@@ -13,17 +13,17 @@ import {
   ListItemText,
 } from "@mui/material";
 import { blue } from "@mui/material/colors";
-import useIsMobile from "../Hooks/useIsMobile";
-import RoutesNav from "../Routes/RoutesNav";
-import AuthModal from "./AuthModal";
-import { useThemeContext } from "../theme/ThemeContextProvider";
 import { LocalShippingOutlined, Menu } from "@mui/icons-material";
-import useAuth from "../Hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { prefixer } from "stylis";
 import rtlPlugin from "stylis-plugin-rtl";
 import createCache from "@emotion/cache";
 import { CacheProvider } from "@emotion/react";
+import useAuth from "../../../Hooks/useAuth";
+import useIsMobile from "../../../Hooks/useIsMobile";
+import RoutesNav from "../../../Routes/RoutesNav";
+import { useThemeContext } from "../../../theme/ThemeContextProvider";
+import AuthModal from "../../../common/AuthModal";
 
 const rtlCache = createCache({
   key: "muirtl",
@@ -46,10 +46,13 @@ export function NavbarLogo() {
       <LocalShippingOutlined fontSize={"large"} sx={{ color: blue[500] }} />
 
       <Typography
+        // component="a"
+        // href="/"
         onClick={toggleDirection}
         variant={"h6"}
         color={"text.primary"}
         fontWeight={"bold"}
+        
       >
         אופיר תוכנה
       </Typography>
