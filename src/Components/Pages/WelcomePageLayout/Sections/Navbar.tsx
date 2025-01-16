@@ -104,7 +104,9 @@ export function NavbarContent({
                   <Button
                     key={originalIndex}
                     onClick={() => moveToSection(originalIndex)}
-                    color={currentSection === originalIndex ? "primary" : "inherit"}
+                    color={
+                      currentSection === originalIndex ? "primary" : "inherit"
+                    }
                     sx={{
                       fontWeight: currentSection === originalIndex ? 700 : 400,
                       "&:hover": {
@@ -254,7 +256,7 @@ function Navbar({ currentSection, moveToSection }: NavbarProps) {
   };
 
   return (
-    <Box dir={direction} sx={{ flexGrow: 1 }}>
+    <Box dir={direction === "ltr" ? "rtl" : "ltr"} sx={{ flexGrow: 1 }}>
       <AuthModal open={isModalOpen} onClose={() => handleAuthModal(false)} />
       <NavbarBody>
         <NavbarLogo />
