@@ -16,7 +16,8 @@ export const useColorTheme = () => {
     if (storedDirection && (storedDirection === "ltr" || storedDirection === "rtl")) {
       return storedDirection as Direction;
     }
-    return "ltr";
+    // Default theme is setup here:
+    return "rtl";
   });
 
   const toggleColorMode = () => {
@@ -26,7 +27,7 @@ export const useColorTheme = () => {
   };
 
   const toggleDirection = () => {
-    const newDirection = direction === "ltr" ? "rtl" : "ltr";
+    const newDirection = direction === "ltr" ? "ltr" : "rtl";
     setDirection(newDirection);
     localStorage.setItem('ThemeDirection', newDirection);
   };
