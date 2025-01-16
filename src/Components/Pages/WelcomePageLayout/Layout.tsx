@@ -75,38 +75,19 @@ function Layout() {
         position: "fixed",
         top: 0,
         left: 0,
-        touchAction: "none", // Prevents default touch handling
       }}
     >
       <Navbar
         currentSection={currentSection}
         moveToSection={moveToSectionEventHandler}
       />
-      <Box
-        id="header-section"
-        sx={{
-          minHeight: "100vh",
-          width: "100%",
-        }}
-      >
+      <Box id="header-section">
         <HeaderSection moveToSection={moveToSectionEventHandler} />
       </Box>
-      <Box
-        id="about-section"
-        sx={{
-          minHeight: "100vh",
-          width: "100%",
-        }}
-      >
+      <Box id="about-section">
         <AboutSection />
       </Box>
-      <Box
-        id="contact-section"
-        sx={{
-          minHeight: "100vh",
-          width: "100%",
-        }}
-      >
+      <Box id="contact-section">
         <ContactUs />
       </Box>
     </div>
