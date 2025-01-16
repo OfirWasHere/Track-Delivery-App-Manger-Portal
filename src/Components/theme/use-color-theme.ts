@@ -27,7 +27,7 @@ export const useColorTheme = () => {
   };
 
   const toggleDirection = () => {
-    const newDirection = direction === "ltr" ? "ltr" : "rtl";
+    const newDirection = direction === "ltr" ? "rtl" : "ltr";
     setDirection(newDirection);
     localStorage.setItem('ThemeDirection', newDirection);
   };
