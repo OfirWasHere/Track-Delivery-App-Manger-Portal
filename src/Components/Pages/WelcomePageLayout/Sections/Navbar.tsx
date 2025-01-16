@@ -92,8 +92,9 @@ export function NavbarContent({
           <Box
             sx={{
               display: "flex",
-              justifyContent: "center",
+              justifyContent: "flex-end",
               flex: 1,
+              pr: 2,
             }}
           >
             {RoutesNav.slice()
@@ -101,21 +102,26 @@ export function NavbarContent({
               .map((route, index) => {
                 const originalIndex = RoutesNav.length - 1 - index;
                 return (
-                  <Button
+                  <Link
                     key={originalIndex}
                     onClick={() => moveToSection(originalIndex)}
                     color={
                       currentSection === originalIndex ? "primary" : "inherit"
                     }
                     sx={{
-                      fontWeight: currentSection === originalIndex ? 700 : 400,
-                      "&:hover": {
-                        backgroundColor: "rgba(0, 0, 0, 0.04)",
-                      },
+                      textDecoration: "none",
+                      mx: "16px",
+                      cursor: "pointer",
+                      color:
+                        currentSection === originalIndex
+                          ? "primary.500"
+                          : "text.primary",
+                      fontWeight:
+                        currentSection === originalIndex ? "bold" : "normal",
                     }}
                   >
-                    {route.routeName}
-                  </Button>
+                    <Typography variant="h6">{route.routeName}</Typography>
+                  </Link>
                 );
               })}
           </Box>
@@ -160,7 +166,8 @@ export function NavbarBody({ children }: NavbarBodyProps) {
       color="default"
       elevation={1}
       sx={{
-        backgroundColor: "rgba(255, 255, 255, 0.8)",
+        bgcolor: "background.paper",
+        // backgroundColor: "rgba(255, 255, 255, 0.8)",
         backdropFilter: "blur(10px)",
       }}
     >
