@@ -146,14 +146,21 @@ export function NavbarContent({
 
       {/* Mobile Drawer Menu Button (Burger) */}
       {isMobile && (
-        <IconButton
-          color="inherit"
-          aria-label="open drawer"
-          sx={{ display: "flex", justifyContent: "flex-end", flex: 1, pr: 2 }}
-          onClick={toggleBurgerMenu}
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "flex-end",
+            flex: 1,
+          }}
         >
-          <Menu fontSize={"large"} sx={{ color: "grey.900" }} />
-        </IconButton>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            onClick={toggleBurgerMenu}
+          >
+            <Menu fontSize={"large"} sx={{ color: "grey.900" }} />
+          </IconButton>
+        </Box>
       )}
     </>
   );
