@@ -166,8 +166,8 @@ export function NavbarBody({ children }: NavbarBodyProps) {
       color="default"
       elevation={1}
       sx={{
-        bgcolor: "background.paper",
-        // backgroundColor: "rgba(255, 255, 255, 0.8)",
+        // bgcolor: "background.paper",
+        backgroundColor: "rgba(255, 255, 255, 0.8)",
         backdropFilter: "blur(10px)",
       }}
     >

@@ -1,16 +1,15 @@
 import React from "react";
-import RoutesModel from "../Models/RoutesModel";
 import PageNotFound from "../Pages/PageNotFound/PageNotFound";
 import Root from "../Pages/Root/Root";
 import Main from "../Pages/ToolpadPages/Main/Main";
 import DashboardIcon from "@mui/icons-material/Dashboard";
-import HomeIcon from "@mui/icons-material/Home";
 import { type Navigation } from "@toolpad/core";
 import Dashboard from "../Pages/ToolpadPages/Dashboard/Dashboard";
 import Login from "../Pages/login/Login";
 import WelcomePage from "../Pages/WelcomePageLayout/WelcomePage";
 import Toolpad from "../common/Toolpad";
 import GuardedRoute from "../common/GuardedRoute";
+import { RoutesModel } from "../types/types";
 
 const Routes: RoutesModel[] = [
   {
