@@ -7,9 +7,9 @@ import { type Navigation } from "@toolpad/core";
 import Dashboard from "../Pages/ToolpadPages/Dashboard/Dashboard";
 import Login from "../Pages/login/Login";
 import WelcomePage from "../Pages/WelcomePageLayout/WelcomePage";
-import Toolpad from "../common/Toolpad";
 import GuardedRoute from "../common/GuardedRoute";
 import { RoutesModel } from "../types/types";
+import Toolpad from "../Pages/ToolpadPages/Toolpad";
 
 const Routes: RoutesModel[] = [
   {

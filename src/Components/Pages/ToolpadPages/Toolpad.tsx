@@ -1,12 +1,12 @@
 import React from "react";
 import { AppProvider } from "@toolpad/core/react-router-dom";
 import { DashboardLayout, PageContainer } from "@toolpad/core";
-import { NAVIGATION, BRANDING } from "../Routes/Routes";
-import { useThemeContext } from "../theme/ThemeContextProvider";
 import { prefixer } from "stylis";
 import rtlPlugin from "stylis-plugin-rtl";
 import createCache from "@emotion/cache";
 import { CacheProvider } from "@emotion/react";
+import { BRANDING, NAVIGATION } from "../../Routes/Routes";
+import { useThemeContext } from "../../theme/ThemeContextProvider";
 
 const rtlCache = createCache({
   key: "muirtl",
