@@ -7,6 +7,7 @@ import createCache from "@emotion/cache";
 import { CacheProvider } from "@emotion/react";
 import { BRANDING, NAVIGATION } from "../../Routes/Routes";
 import { useThemeContext } from "../../theme/ThemeContextProvider";
+import AccountSidebarFooter from "../../common/AccountSidebarFooter";
 
 const rtlCache = createCache({
   key: "muirtl",
@@ -17,14 +18,23 @@ const ltrCache = createCache({
   key: "mui",
 });
 
-function Toolpad({ children }: any) {
+type toolpadTypes = {
+  children: React.ReactNode;
+};
+
+function Toolpad({ children }: toolpadTypes) {
   const { direction } = useThemeContext();
 
   return (
     <div dir={direction}>
       <CacheProvider value={direction === "rtl" ? rtlCache : ltrCache}>
         <AppProvider navigation={NAVIGATION} branding={BRANDING}>
-          <DashboardLayout>
+          <DashboardLayout
+            slots={{
+              toolbarAccount: () => null,
+              sidebarFooter: AccountSidebarFooter,
+            }}
+          >
             <PageContainer>{children}</PageContainer>
           </DashboardLayout>
         </AppProvider>

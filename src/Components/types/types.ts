@@ -1,8 +1,10 @@
+import { RouteObject } from "react-router-dom";
+
 export type RoutesModel = {
     path: string;
     element: JSX.Element;
     errorElement: JSX.Element;
-    children?: any;
+    children?: RouteObject[];
 }
 
 export type RouteModel = {

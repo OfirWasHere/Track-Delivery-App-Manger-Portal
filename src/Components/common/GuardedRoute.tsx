@@ -11,6 +11,7 @@ function GuardedRoute({ children }: GuardedRouteProps) {
   if (!user && authChecked) {
     return <Navigate to="/login" replace />;
   }
+  // play a cute animation for fake loading
   return <div>{children}</div>;
 }
 
