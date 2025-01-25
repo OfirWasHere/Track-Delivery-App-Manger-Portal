@@ -12,7 +12,7 @@ function Dashboard() {
       <p>This is the dashboard. Log out here:</p>
       <button onClick={firebaseLogout}>Logout</button>
       <br />
-      <button onClick={saveUserDetails}>Change Direction</button>
+      <button onClick={toggleDirection}>Change Direction</button>
     </div>
   );
 }
