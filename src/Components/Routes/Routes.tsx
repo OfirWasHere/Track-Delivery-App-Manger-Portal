@@ -8,12 +8,8 @@ import WelcomePage from "../Pages/WelcomePageLayout/WelcomePage";
 import GuardedRoute from "../common/GuardedRoute";
 import { RoutesModel } from "../types/types";
 import Toolpad from "../Pages/ToolpadPages/Toolpad";
-
-// Lazy-loaded components
-const Dashboard = React.lazy(
-  () => import("../Pages/ToolpadPages/Dashboard/Dashboard")
-);
-const Main = React.lazy(() => import("../Pages/ToolpadPages/Main/Main"));
+import Main from "../Pages/ToolpadPages/Main/Main";
+import Dashboard from "../Pages/ToolpadPages/Dashboard/Dashboard";
 
 const Routes: RoutesModel[] = [
   {
@@ -33,11 +29,9 @@ const Routes: RoutesModel[] = [
         path: "/Dashboard",
         element: (
           <GuardedRoute>
-            <Suspense fallback={<div>Loading...</div>}>
-              <Toolpad>
-                <Dashboard />
-              </Toolpad>
-            </Suspense>
+            <Toolpad>
+              <Dashboard />
+            </Toolpad>
           </GuardedRoute>
         ),
       },
@@ -45,11 +39,9 @@ const Routes: RoutesModel[] = [
         path: "/Main",
         element: (
           <GuardedRoute>
-            <Suspense fallback={<div>Loading...</div>}>
-              <Toolpad>
-                <Main />
-              </Toolpad>
-            </Suspense>
+            <Toolpad>
+              <Main />
+            </Toolpad>
           </GuardedRoute>
         ),
       },
