@@ -2,6 +2,7 @@ import React, { Suspense } from "react";
 import PageNotFound from "../Pages/PageNotFound/PageNotFound";
 import Root from "../Pages/Root/Root";
 import DashboardIcon from "@mui/icons-material/Dashboard";
+import HelpIcon from "@mui/icons-material/Help";
 import { type Navigation } from "@toolpad/core";
 import Login from "../Pages/login/Login";
 import WelcomePage from "../Pages/WelcomePageLayout/WelcomePage";
@@ -29,9 +30,7 @@ const Routes: RoutesModel[] = [
         path: "/Dashboard",
         element: (
           <GuardedRoute>
-            <Toolpad>
-              <Dashboard />
-            </Toolpad>
+            <Dashboard />
           </GuardedRoute>
         ),
       },
@@ -39,30 +38,49 @@ const Routes: RoutesModel[] = [
         path: "/Main",
         element: (
           <GuardedRoute>
-            <Toolpad>
-              <Main />
-            </Toolpad>
+            <Main />
           </GuardedRoute>
         ),
       },
     ],
   },
 ];
-
-const NAVIGATION: Navigation = [
-  {
-    kind: "header",
-    title: "Main items",
-  },
+const NAVIGATION = [
   {
     segment: "dashboard",
     title: "Dashboard",
     icon: <DashboardIcon />,
+    isFooter: false,
   },
   {
-    segment: "Main",
-    title: "Main",
-    icon: <DashboardIcon />,
+    segment: "deliveries",
+    title: "Deliveries",
+    icon: <HelpIcon />,
+    isFooter: false,
+  },
+  {
+    segment: "drivers",
+    title: "Drivers",
+    icon: <HelpIcon />,
+    isFooter: false,
+  },
+  {
+    segment: "members",
+    title: "Members",
+    icon: <HelpIcon />,
+    isFooter: false,
+  },
+  {
+    segment: "support",
+    title: "Support",
+    icon: <HelpIcon />,
+    isFooter: true,
+  },
+  {
+    segment: "settings",
+    title: "Settings",
+    icon: <HelpIcon />,
+    isFooter: true,
   },
 ];
 

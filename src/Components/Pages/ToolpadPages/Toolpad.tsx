@@ -28,7 +28,7 @@ function Toolpad({ children }: toolpadTypes) {
   return (
     <div dir={direction}>
       <CacheProvider value={direction === "rtl" ? rtlCache : ltrCache}>
-        <AppProvider navigation={NAVIGATION} branding={BRANDING}>
+        {/* <AppProvider navigation={NAVIGATION} branding={BRANDING}> */}
           <DashboardLayout
             slots={{
               toolbarAccount: () => null,
@@ -37,7 +37,7 @@ function Toolpad({ children }: toolpadTypes) {
           >
             <PageContainer>{children}</PageContainer>
           </DashboardLayout>
-        </AppProvider>
+        {/* </AppProvider> */}
       </CacheProvider>
     </div>
   );
