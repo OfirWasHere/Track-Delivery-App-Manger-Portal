@@ -12,7 +12,7 @@ function GuardedRoute({ children }: GuardedRouteProps) {
   if (!user && authChecked) {
     return <Navigate to="/login" replace />;
   }
-  // play a cute animation for fake loading
+  //TODO play a cute animation for when loading components
   return (
     <div style={{ display: "flex" }}>
       <Sidebar />

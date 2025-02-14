@@ -1,159 +1,104 @@
-import { useState } from "react";
 import {
-  List,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  Divider,
-  Box,
-  Typography,
-  Badge,
-  Avatar,
-} from "@mui/material";
-import {
-  CheckCircle,
-  FlashOn,
-  GridView,
-  CalendarToday,
-  Description,
-  Inventory,
-  BarChart,
-  Group,
-  Person,
-  Settings,
-  Headset,
-  MoreVert,
+  ChevronLeft,
+  ChevronRight,
+  Menu,
+  DoubleArrowRounded,
 } from "@mui/icons-material";
+import {
+  Avatar,
+  Box,
+  Drawer,
+  Typography,
+  IconButton,
+  AvatarGroup,
+  Divider,
+} from "@mui/material";
+import { useState } from "react";
+import theme from "../theme/theme";
+import FoxLogo from "../../assets/logo.png";
 
 export default function Sidebar() {
-  const [selected, setSelected] = useState("Tasks");
+  const [open, setOpen] = useState(true);
+
+  const sideBarOpenWidth = 300;
+  const sideBarClosedWidth = 150;
+
+  const handleSideBarToggle = () => {
+    setOpen(!open);
+  };
+
   return (
-    <Box
+    <Drawer
+      variant="permanent"
       sx={{
-        width: 300,
-        height: "100vh",
-        bgcolor: "#f4f4f4",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-        p: 2,
+        width: open ? sideBarOpenWidth : sideBarClosedWidth,
+        transition: theme.transitions.create("width", {
+          easing: theme.transitions.easing.sharp,
+          duration: theme.transitions.duration.enteringScreen,
+        }),
+        "& .MuiDrawer-paper": {
+          width: open ? sideBarOpenWidth : sideBarClosedWidth,
+          transition: theme.transitions.create("width", {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.enteringScreen,
+          }),
+          overflowX: "hidden",
+          bgcolor: theme.palette.grey[900],
+          color: theme.palette.common.white,
+          borderRight: "none",
+        },
       }}
     >
-      <Box>
-        <Typography variant="h6" gutterBottom>
-          Ofir Software
-        </Typography>
-        <List>
-          <ListItemButton
-            selected={selected === "Tasks"}
-            onClick={() => setSelected("Tasks")}
-          >
-            <ListItemIcon>
-              <CheckCircle color="primary" />
-            </ListItemIcon>
-            <ListItemText primary="Tasks" />
-            <Badge badgeContent={16} color="primary" sx={{ mr: 1 }} />
-          </ListItemButton>
-          <ListItemButton>
-            <ListItemIcon>
-              <FlashOn />
-            </ListItemIcon>
-            <ListItemText primary="Activites" />
-          </ListItemButton>
-        </List>
-
-        <Divider sx={{ my: 2 }} />
-
-        <Typography variant="caption" color="textSecondary">
-          MAIN
-        </Typography>
-        <List>
-          {[
-            { icon: GridView, text: "Dashboard" },
-            { icon: CalendarToday, text: "Schedule" },
-            { icon: Description, text: "Note" },
-            { icon: Inventory, text: "Products" },
-            { icon: BarChart, text: "Report" },
-          ].map(({ icon: Icon, text }) => (
-            <ListItemButton
-              key={text}
-              selected={selected === text}
-              onClick={() => setSelected(text)}
-            >
-              <ListItemIcon>
-                <Icon />
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          ))}
-        </List>
-
-        <Divider sx={{ my: 2 }} />
-
-        <Typography variant="caption" color="textSecondary">
-          RECORDS
-        </Typography>
-        <List>
-          {[
-            { icon: Group, text: "Team" },
-            { icon: Person, text: "Clients" },
-          ].map(({ icon: Icon, text }) => (
-            <ListItemButton
-              key={text}
-              selected={selected === text}
-              onClick={() => setSelected(text)}
-            >
-              <ListItemIcon>
-                <Icon />
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          ))}
-        </List>
-      </Box>
-
-      <Box>
-        <List>
-          {[
-            { icon: Settings, text: "Settings" },
-            { icon: Headset, text: "Support" },
-          ].map(({ icon: Icon, text }) => (
-            <ListItemButton
-              key={text}
-              selected={selected === text}
-              onClick={() => setSelected(text)}
-            >
-              <ListItemIcon>
-                <Icon />
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          ))}
-        </List>
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            mt: 2,
-            p: 1,
-            bgcolor: "white",
-            borderRadius: 2,
-          }}
-        >
-          <Avatar sx={{ bgcolor: "gray", width: 40, height: 40, mr: 2 }} />
-          <Box sx={{ flexGrow: 1 }}>
-            <Typography variant="body2" fontWeight="bold">
-              Brooklyn Simmons
-            </Typography>
-            <Typography variant="caption" color="textSecondary">
-              simmons@gamil.com
-            </Typography>
-          </Box>
-          <Box>
-              <MoreVert sx={{ color: "gray", cursor: "pointer" }} />
-            </Box>
+      <Box width={open ? sideBarOpenWidth : sideBarClosedWidth}>
+        <Box sx={{ mx: 2, py: 2 }}>
+          {open ? (
+            <>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-around",
+                  gap: 2,
+                }}
+              >
+                <Avatar src={FoxLogo} sx={{ width: 40, height: 40 }} />
+                <Typography
+                  variant="h6"
+                  fontWeight="bold"
+                  sx={{ letterSpacing: 2 }}
+                >
+                  SoftFOX
+                </Typography>
+                <IconButton
+                  onClick={handleSideBarToggle}
+                  sx={{ color: "white" }}
+                >
+                  <DoubleArrowRounded sx={{ fontSize: 32 , transform:"scaleX(-1)"}} />
+                </IconButton>
+              </Box>
+            </>
+          ) : (
+            <>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Avatar src={FoxLogo} sx={{ width: 40, height: 40 }} />
+                <IconButton
+                  onClick={handleSideBarToggle}
+                  sx={{ color: "white" }}
+                >
+                  <DoubleArrowRounded sx={{ fontSize: 32 }} />
+                </IconButton>
+              </Box>
+            </>
+          )}
         </Box>
       </Box>
-    </Box>
+      <Divider sx={{ bgcolor: "rgba(255,255,255,0.1)" }} />
+    </Drawer>
   );
 }

@@ -45,7 +45,7 @@ function ContactUs() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <Typography variant="h6" align="center" color="grey.400">
+          <Typography variant="h6" align="center" color="grey[400]">
             יש לך שאלות? אנחנו כאן לעזור. מלא את הטופס ונחזור אליך בהקדם.
           </Typography>
         </motion.div>
