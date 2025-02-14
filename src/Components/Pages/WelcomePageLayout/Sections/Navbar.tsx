@@ -70,7 +70,7 @@ export function NavbarLogo() {
         }}
         // onClick={toggleDirection}
       >
-        Ofir Software
+        SoftFOX
       </Typography>
     </Box>
   );
