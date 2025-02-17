@@ -89,10 +89,10 @@ export default function Sidebar() {
       variant="permanent"
       sx={{
         width: open ? sideBarWidth.open : sideBarWidth.closed,
-        transition: `0.3s ease-in-out`,
+        transition: `0.5s ease-in-out`,
         "& .MuiDrawer-paper": {
           width: open ? sideBarWidth.open : sideBarWidth.closed,
-          transition: `0.3s ease-in-out`,
+          transition: `0.5s ease-in-out`,
           overflowX: "hidden",
           bgcolor: theme.palette.grey[900],
           color: theme.palette.common.white,
@@ -100,41 +100,34 @@ export default function Sidebar() {
         },
       }}
     >
-      <Box sx={{ p: 2 }}>
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-          }}
-        >
-          <AnimatePresence>
+      <Box width={open ? sideBarWidth.open : sideBarWidth.closed}>
+        <Box sx={{ mx: 2, py: 2 }}>
+          <Box
+            sx={{
+              transition: `0.5s ease-in-out`,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: open ? "space-around" : "center",
+              gap: 2,
+            }}
+          >
+            {open && <Avatar src={FoxLogo} sx={{ width: 40, height: 40 }} />}
             {open && (
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.2 }}
-                style={{ display: "flex", alignItems: "center" }}
+              <Typography
+                variant="h6"
+                fontWeight="bold"
+                sx={{ letterSpacing: 2 }}
               >
-                <Avatar src={FoxLogo} sx={{ width: 40, height: 40, mr: 2 }} />
-                <Typography
-                  variant="h6"
-                  fontWeight="bold"
-                  sx={{ letterSpacing: 2 }}
-                >
-                  SoftFOX
-                </Typography>
-              </motion.div>
+                SoftFOX
+              </Typography>
             )}
-          </AnimatePresence>
-          <IconButton onClick={handleSideBarToggle} sx={{ color: "white" }}>
-            <motion.div
-              transition={{ duration: 0.5 }}
+            <IconButton
+              onClick={handleSideBarToggle}
+              sx={{ color: "white", padding: 0 }}
             >
-              <MenuIcon />
-            </motion.div>
-          </IconButton>
+              <MenuIcon sx={{ fontSize: 32, transform: "scaleX(-1)" }} />
+            </IconButton>
+          </Box>
         </Box>
       </Box>
 
