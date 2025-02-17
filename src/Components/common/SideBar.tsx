@@ -70,7 +70,8 @@ const sidebarItems = [
 
 export default function Sidebar() {
   const [open, setOpen] = useState(true);
-  const sideBarWidth = { open: 300, closed: 100 };
+  const sideBarWidth = { open: 280, closed: 70 };
+  const [selected, setSelected] = useState("Tasks");
 
   const handleSideBarToggle = () => setOpen(!open);
 
@@ -110,7 +111,10 @@ export default function Sidebar() {
                 SoftFOX
               </Typography>
             )}
-            <IconButton onClick={handleSideBarToggle} sx={{ color: "white" }}>
+            <IconButton
+              onClick={handleSideBarToggle}
+              sx={{ color: "white", padding: 0 }}
+            >
               {open ? (
                 <DoubleArrowRounded
                   sx={{ fontSize: 32, transform: "scaleX(-1)" }}
@@ -122,37 +126,67 @@ export default function Sidebar() {
           </Box>
         </Box>
       </Box>
+
       <Divider sx={{ bgcolor: "rgba(255,255,255,0.1)" }} />
+
       <List sx={{ px: open ? 2 : 1, py: 1 }}>
         {sidebarItems.map((section) => (
           <React.Fragment key={section.title}>
-            <ListItem sx={{ py: 2 }}>
-              <Typography
-                variant="overline"
-                color="rgba(255,255,255,0.7)"
-                fontWeight="bold"
-              >
-                {section.title}
-              </Typography>
-            </ListItem>
+            {open && section.title !== "TASKS" && (
+              <ListItem sx={{ py: 2 }}>
+                <Typography
+                  variant="overline"
+                  color="rgba(255,255,255,0.7)"
+                  fontWeight="bold"
+                >
+                  {section.title}
+                </Typography>
+              </ListItem>
+            )}
 
             {section.items.map((item) => (
               <ListItem key={item.text} disablePadding sx={{ mb: 1 }}>
-                <ListItemButton sx={{ display: "flex" }}>
-                  <ListItemIcon
+                <Tooltip title={open ? "" : item.text} placement="right" arrow>
+                  <ListItemButton
+                    selected={selected === item.text}
+                    onClick={() => setSelected(item.text)}
                     sx={{
-                      color: theme.palette.primary.main,
-                      minWidth: open ? 40 : "auto",
-                      mr: open ? 2 : "auto",
-                      justifyContent: "center",
+                      borderRadius: 2,
+                      justifyContent: open ? "initial" : "center",
+                      px: open ? 2 : 1,
+                      "&.Mui-selected": {
+                        bgcolor: "rgba(255,255,255,0.08)",
+                        "&:hover": {
+                          bgcolor: "rgba(255,255,255,0.12)",
+                        },
+                      },
+                      "&:hover": {
+                        bgcolor: "rgba(255,255,255,0.04)",
+                      },
+                      transition: "all 0.1s",
                     }}
                   >
-                    {item.icon}
-                  </ListItemIcon>
-                  <Typography>{item.text}</Typography>
-                </ListItemButton>
+                    <ListItemIcon
+                      sx={{
+                        color:
+                          selected === item.text
+                            ? theme.palette.primary.main
+                            : "inherit",
+                        minWidth: open ? 40 : "auto",
+                        mr: open ? 2 : 0,
+                        justifyContent: "center",
+                      }}
+                    >
+                      {item.icon}
+                    </ListItemIcon>
+                    {open ? <Typography>{item.text}</Typography> : ""}
+                  </ListItemButton>
+                </Tooltip>
               </ListItem>
             ))}
+            {open && section.title !== "SETTINGS" && (
+              <Divider sx={{ my: 2, bgcolor: "rgba(255,255,255,0.1)" }} />
+            )}
           </React.Fragment>
         ))}
       </List>
