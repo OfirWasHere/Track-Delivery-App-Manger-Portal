@@ -96,7 +96,6 @@ export default function Sidebar() {
           overflowX: "hidden",
           bgcolor: theme.palette.grey[900],
           color: theme.palette.common.white,
-          borderRight: "none",
         },
       }}
     >
