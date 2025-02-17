@@ -1,5 +1,5 @@
 import {
-  Menu,
+  Menu as MenuIcon,
   DoubleArrowRounded,
   BarChart,
   CalendarToday,
@@ -12,7 +12,7 @@ import {
   Inventory,
   Person,
   Settings,
-  ChevronRight,
+  MoreVert,
 } from "@mui/icons-material";
 import {
   Avatar,
@@ -22,12 +22,12 @@ import {
   IconButton,
   Divider,
   List,
-  Badge,
   ListItem,
   ListItemButton,
   ListItemIcon,
-  ListItemText,
   Tooltip,
+  Menu,
+  MenuItem,
 } from "@mui/material";
 import { useState } from "react";
 import theme from "../theme/theme";
@@ -69,9 +69,18 @@ const sidebarItems = [
 ];
 
 export default function Sidebar() {
-  const [open, setOpen] = useState(true);
   const sideBarWidth = { open: 280, closed: 70 };
+  const [open, setOpen] = useState(true);
   const [selected, setSelected] = useState("Tasks");
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+
+  const handleUserMenuClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleUserMenuClose = () => {
+    setAnchorEl(null);
+  };
 
   const handleSideBarToggle = () => setOpen(!open);
 
@@ -120,7 +129,7 @@ export default function Sidebar() {
                   sx={{ fontSize: 32, transform: "scaleX(-1)" }}
                 />
               ) : (
-                <Menu sx={{ fontSize: 32 }} />
+                <MenuIcon sx={{ fontSize: 32 }} />
               )}
             </IconButton>
           </Box>
@@ -190,6 +199,66 @@ export default function Sidebar() {
           </React.Fragment>
         ))}
       </List>
+
+      <Box sx={{ mt: "auto", p: 2 }}>
+        <Tooltip
+          title={open ? "" : "simmons@gmail.com"}
+          placement="right"
+          arrow
+        >
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              p: open ? 2 : 1,
+              bgcolor: "rgba(255,255,255,0.05)",
+              borderRadius: 2,
+              justifyContent: open ? "flex-start" : "center",
+            }}
+          >
+            <Avatar sx={{ width: 40, height: 40, mr: 2 }}>BS</Avatar>
+            {open ? (
+              <>
+                <Box sx={{ flexGrow: 1 }}>
+                  <Typography variant="subtitle2" sx={{ fontWeight: "bold" }}>
+                    Brooklyn Simmons
+                  </Typography>
+                  <Typography
+                    variant="caption"
+                    sx={{ color: "rgba(255,255,255,0.7)" }}
+                  >
+                    simmons@gmail.com
+                  </Typography>
+                </Box>
+                <IconButton
+                  onClick={handleUserMenuClick}
+                  size="small"
+                  sx={{ color: "rgba(255,255,255,0.7)" }}
+                >
+                  <MoreVert />
+                </IconButton>
+              </>
+            ) : null}
+          </Box>
+        </Tooltip>
+        <Menu
+          anchorEl={anchorEl}
+          open={Boolean(anchorEl)}
+          onClose={handleUserMenuClose}
+          MenuListProps={{
+            sx: {
+              bgcolor: theme.palette.grey[800],
+              color: theme.palette.common.white,
+              boxShadow: theme.shadows[3],
+            },
+            "aria-labelledby": "basic-button",
+          }}
+        >
+          <MenuItem onClick={handleUserMenuClose}>Profile</MenuItem>
+          <MenuItem onClick={handleUserMenuClose}>My account</MenuItem>
+          <MenuItem onClick={handleUserMenuClose}>Logout</MenuItem>
+        </Menu>
+      </Box>
     </Drawer>
   );
 }
