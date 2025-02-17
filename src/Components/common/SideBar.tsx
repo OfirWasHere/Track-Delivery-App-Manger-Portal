@@ -1,6 +1,5 @@
 import {
   Menu as MenuIcon,
-  DoubleArrowRounded,
   BarChart,
   CalendarToday,
   CheckCircle,
@@ -33,6 +32,7 @@ import { useState } from "react";
 import theme from "../theme/theme";
 import FoxLogo from "../../assets/logo.png";
 import React from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const sidebarItems = [
   {
@@ -70,7 +70,7 @@ const sidebarItems = [
 
 export default function Sidebar() {
   const sideBarWidth = { open: 280, closed: 70 };
-  const [open, setOpen] = useState<Boolean>(true);
+  const [open, setOpen] = useState<boolean>(true);
   const [selected, setSelected] = useState("Tasks");
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
@@ -89,10 +89,10 @@ export default function Sidebar() {
       variant="permanent"
       sx={{
         width: open ? sideBarWidth.open : sideBarWidth.closed,
-        transition: `0.5s ease-in-out`,
+        transition: `0.3s ease-in-out`,
         "& .MuiDrawer-paper": {
           width: open ? sideBarWidth.open : sideBarWidth.closed,
-          transition: `0.5s ease-in-out`,
+          transition: `0.3s ease-in-out`,
           overflowX: "hidden",
           bgcolor: theme.palette.grey[900],
           color: theme.palette.common.white,
@@ -100,58 +100,69 @@ export default function Sidebar() {
         },
       }}
     >
-      <Box width={open ? sideBarWidth.open : sideBarWidth.closed}>
-        <Box sx={{ mx: 2, py: 2 }}>
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: open ? "space-around" : "center",
-              gap: 2,
-            }}
-          >
-            {open && <Avatar src={FoxLogo} sx={{ width: 40, height: 40 }} />}
+      <Box sx={{ p: 2 }}>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <AnimatePresence>
             {open && (
-              <Typography
-                variant="h6"
-                fontWeight="bold"
-                sx={{ letterSpacing: 2 }}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.2 }}
+                style={{ display: "flex", alignItems: "center" }}
               >
-                SoftFOX
-              </Typography>
+                <Avatar src={FoxLogo} sx={{ width: 40, height: 40, mr: 2 }} />
+                <Typography
+                  variant="h6"
+                  fontWeight="bold"
+                  sx={{ letterSpacing: 2 }}
+                >
+                  SoftFOX
+                </Typography>
+              </motion.div>
             )}
-            <IconButton
-              onClick={handleSideBarToggle}
-              sx={{ color: "white", padding: 0 }}
+          </AnimatePresence>
+          <IconButton onClick={handleSideBarToggle} sx={{ color: "white" }}>
+            <motion.div
+              transition={{ duration: 0.5 }}
             >
-              {open ? (
-                <DoubleArrowRounded
-                  sx={{ fontSize: 32, transform: "scaleX(-1)" }}
-                />
-              ) : (
-                <MenuIcon sx={{ fontSize: 32 }} />
-              )}
-            </IconButton>
-          </Box>
+              <MenuIcon />
+            </motion.div>
+          </IconButton>
         </Box>
       </Box>
 
       <Divider sx={{ bgcolor: "rgba(255,255,255,0.1)" }} />
 
-      <List sx={{ px: open ? 2 : 1, py: 1 }}>
+      <List sx={{ px: 2, py: 1 }}>
         {sidebarItems.map((section) => (
           <React.Fragment key={section.title}>
-            {open && section.title !== "TASKS" && (
-              <ListItem sx={{ py: 2 }}>
-                <Typography
-                  variant="overline"
-                  color="rgba(255,255,255,0.7)"
-                  fontWeight="bold"
+            <AnimatePresence>
+              {open && section.title !== "TASKS" && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.2 }}
                 >
-                  {section.title}
-                </Typography>
-              </ListItem>
-            )}
+                  <ListItem sx={{ py: 2 }}>
+                    <Typography
+                      variant="overline"
+                      color="rgba(255,255,255,0.7)"
+                      fontWeight="bold"
+                    >
+                      {section.title}
+                    </Typography>
+                  </ListItem>
+                </motion.div>
+              )}
+            </AnimatePresence>
 
             {section.items.map((item) => (
               <ListItem key={item.text} disablePadding sx={{ mb: 1 }}>
@@ -162,7 +173,7 @@ export default function Sidebar() {
                     sx={{
                       borderRadius: 2,
                       justifyContent: open ? "initial" : "center",
-                      px: open ? 2 : 1,
+                      px: 2,
                       "&.Mui-selected": {
                         bgcolor: "rgba(255,255,255,0.08)",
                         "&:hover": {
@@ -172,7 +183,6 @@ export default function Sidebar() {
                       "&:hover": {
                         bgcolor: "rgba(255,255,255,0.04)",
                       },
-                      transition: "all 0.1s",
                     }}
                   >
                     <ListItemIcon
@@ -181,14 +191,26 @@ export default function Sidebar() {
                           selected === item.text
                             ? theme.palette.primary.main
                             : "inherit",
-                        minWidth: open ? 40 : "auto",
+                        minWidth: 40,
                         mr: open ? 2 : 0,
                         justifyContent: "center",
                       }}
                     >
                       {item.icon}
                     </ListItemIcon>
-                    {open ? <Typography>{item.text}</Typography> : ""}
+                    <AnimatePresence>
+                      {open && (
+                        <motion.div
+                          initial={{ opacity: 0, width: 0 }}
+                          animate={{ opacity: 1, width: "auto" }}
+                          exit={{ opacity: 0, width: 0 }}
+                          transition={{ duration: 0.2 }}
+                          style={{ overflow: "hidden", whiteSpace: "nowrap" }}
+                        >
+                          <Typography>{item.text}</Typography>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </ListItemButton>
                 </Tooltip>
               </ListItem>
