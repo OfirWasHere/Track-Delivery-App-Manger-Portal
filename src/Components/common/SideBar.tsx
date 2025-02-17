@@ -70,7 +70,7 @@ const sidebarItems = [
 
 export default function Sidebar() {
   const sideBarWidth = { open: 280, closed: 70 };
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState<Boolean>(true);
   const [selected, setSelected] = useState("Tasks");
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
@@ -211,14 +211,17 @@ export default function Sidebar() {
               display: "flex",
               alignItems: "center",
               p: open ? 2 : 1,
-              bgcolor: "rgba(255,255,255,0.05)",
+              bgcolor: open ? "rgba(255,255,255,0.05)" : "inherent",
               borderRadius: 2,
               justifyContent: open ? "flex-start" : "center",
             }}
           >
-            <Avatar sx={{ width: 40, height: 40, mr: 2 }}>BS</Avatar>
             {open ? (
               <>
+                <Avatar sx={{ width: 40, height: 40, mr: open ? 2 : 0 }}>
+                  BS
+                </Avatar>
+
                 <Box sx={{ flexGrow: 1 }}>
                   <Typography variant="subtitle2" sx={{ fontWeight: "bold" }}>
                     Brooklyn Simmons
@@ -238,18 +241,26 @@ export default function Sidebar() {
                   <MoreVert />
                 </IconButton>
               </>
-            ) : null}
+            ) : (
+              <IconButton onClick={handleUserMenuClick}>
+                <Avatar sx={{ width: 40, height: 40, mr: open ? 2 : 0 }}>
+                  BS
+                </Avatar>
+              </IconButton>
+            )}
           </Box>
         </Tooltip>
         <Menu
           anchorEl={anchorEl}
           open={Boolean(anchorEl)}
           onClose={handleUserMenuClose}
+          sx={{ transform: "translate(50px)" }}
           MenuListProps={{
             sx: {
               bgcolor: theme.palette.grey[800],
               color: theme.palette.common.white,
               boxShadow: theme.shadows[3],
+              p: 1,
             },
             "aria-labelledby": "basic-button",
           }}
