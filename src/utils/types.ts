@@ -17,4 +17,3 @@ export type LoginServiceModal = {
     email: string;
     password: string;
 }
-
