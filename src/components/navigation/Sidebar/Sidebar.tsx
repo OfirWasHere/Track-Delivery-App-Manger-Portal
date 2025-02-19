@@ -55,9 +55,6 @@ const sidebarNavigation = [
   },
 ];
 
-
-
-
 export default function Sidebar() {
   const { firebaseLogout } = useAuth();
 
