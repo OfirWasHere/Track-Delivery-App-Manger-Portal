@@ -1,18 +1,4 @@
-import {
-  Menu as MenuIcon,
-  BarChart,
-  CalendarToday,
-  CheckCircle,
-  Dashboard,
-  Description,
-  FlashOn,
-  Group,
-  Headset,
-  Inventory,
-  Person,
-  Settings,
-  MoreVert,
-} from "@mui/icons-material";
+import { Menu as MenuIcon, MoreVert } from "@mui/icons-material";
 import {
   Avatar,
   Box,
@@ -34,40 +20,7 @@ import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import useAuth from "../../../hooks/useAuth";
 import theme from "../../../theme/theme";
-
-const sidebarItems = [
-  {
-    title: "TASKS",
-    items: [
-      { icon: <CheckCircle />, text: "Tasks", badge: 16 },
-      { icon: <FlashOn />, text: "Activities" },
-    ],
-  },
-  {
-    title: "MAIN",
-    items: [
-      { icon: <Dashboard />, text: "Dashboard" },
-      { icon: <CalendarToday />, text: "Schedule" },
-      { icon: <Description />, text: "Note" },
-      { icon: <Inventory />, text: "Products" },
-      { icon: <BarChart />, text: "Report" },
-    ],
-  },
-  {
-    title: "RECORDS",
-    items: [
-      { icon: <Group />, text: "Team" },
-      { icon: <Person />, text: "Clients" },
-    ],
-  },
-  {
-    title: "SETTINGS",
-    items: [
-      { icon: <Settings />, text: "Settings" },
-      { icon: <Headset />, text: "Support" },
-    ],
-  },
-];
+import { sidebarNavigation } from "../../../routes/Routes";
 
 export default function Sidebar() {
   const { firebaseLogout } = useAuth();
@@ -141,7 +94,7 @@ export default function Sidebar() {
       <Divider sx={{ bgcolor: "rgba(255,255,255,0.1)" }} />
 
       <List sx={{ px: 2, py: 1 }}>
-        {sidebarItems.map((section) => (
+        {sidebarNavigation.map((section) => (
           <React.Fragment key={section.title}>
             <AnimatePresence>
               {open && section.title !== "TASKS" && (
