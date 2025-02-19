@@ -1,4 +1,4 @@
-import { RouteModel } from "../types/types";
+import { RouteModel } from "../utils/types";
 
 const RoutesNav: RouteModel[] = [
     {

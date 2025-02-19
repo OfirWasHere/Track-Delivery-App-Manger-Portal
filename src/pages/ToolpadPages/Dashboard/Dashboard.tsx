@@ -1,7 +1,7 @@
 import React from "react";
-import useAuth from "../../../Hooks/useAuth";
+import useAuth from "../../../hooks/useAuth";
 import { useThemeContext } from "../../../theme/ThemeContextProvider";
-import saveUserDetails from "../../../Services/userService";
+import saveUserDetails from "../../../services/userService";
 
 function Dashboard() {
   const { firebaseLogout } = useAuth();

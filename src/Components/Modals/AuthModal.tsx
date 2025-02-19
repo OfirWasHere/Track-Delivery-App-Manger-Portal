@@ -15,8 +15,8 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import GoogleIcon from "@mui/icons-material/Google";
-import { useThemeContext } from "../theme/ThemeContextProvider";
-import useAuth from "../Hooks/useAuth";
+import useAuth from "../../hooks/useAuth";
+import { useThemeContext } from "../../theme/ThemeContextProvider";
 import FTextField from "../common/FTextField";
 import { useToasty } from "../common/ToastNotification";
 

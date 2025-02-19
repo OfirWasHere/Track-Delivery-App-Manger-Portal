@@ -29,11 +29,11 @@ import {
   MenuItem,
 } from "@mui/material";
 import { useState } from "react";
-import theme from "../theme/theme";
+import theme from "../../theme/theme";
 import FoxLogo from "../../assets/logo.png";
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import useAuth from "../Hooks/useAuth";
+import useAuth from "../../hooks/useAuth";
 
 const sidebarItems = [
   {

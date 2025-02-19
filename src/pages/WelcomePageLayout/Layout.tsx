@@ -3,7 +3,7 @@ import { Box } from "@mui/material";
 import AboutSection from "./Sections/AboutSection";
 import ContactUs from "./Sections/ContactUs";
 import HeaderSection from "./Sections/HeaderSection";
-import RoutesNav from "../../Routes/RoutesNav";
+import RoutesNav from "../../routes/RoutesNav";
 import Navbar from "./Sections/Navbar";
 
 function Layout() {

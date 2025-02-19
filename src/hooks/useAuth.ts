@@ -1,9 +1,9 @@
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import useFirebase from "../../Firebase/useFirebase";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useToasty } from "../common/ToastNotification";
-import { LoginServiceModal } from "../types/types";
+import { LoginServiceModal } from "../utils/types";
+import { useToasty } from "../components/common/ToastNotification";
+import useFirebase from "./useFirebase";
 
 export default function useAuth() {
     const { firebaseAuth } = useFirebase();

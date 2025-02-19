@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import { Box, Container, Typography, Button, Grid } from "@mui/material";
 import { motion, useInView } from "framer-motion";
 import { useThemeContext } from "../../../theme/ThemeContextProvider";
-import FTextField from "../../../common/FTextField";
+import FTextField from "../../../components/common/FTextField";
 
 function ContactUs() {
   const ref = useRef(null);

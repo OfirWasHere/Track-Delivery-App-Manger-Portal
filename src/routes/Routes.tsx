@@ -1,12 +1,12 @@
 import React, { Suspense } from "react";
-import PageNotFound from "../Pages/PageNotFound/PageNotFound";
-import Root from "../Pages/Root/Root";
-import Login from "../Pages/login/Login";
-import WelcomePage from "../Pages/WelcomePageLayout/WelcomePage";
-import GuardedRoute from "../common/GuardedRoute";
-import { RoutesModel } from "../types/types";
-import Main from "../Pages/ToolpadPages/Main/Main";
-import Dashboard from "../Pages/ToolpadPages/Dashboard/Dashboard";
+import Dashboard from "../pages/ToolpadPages/Dashboard/Dashboard";
+import { RoutesModel } from "../utils/types";
+import { Login } from "@mui/icons-material";
+import GuardedRoute from "../components/common/GuardedRoute";
+import PageNotFound from "../pages/PageNotFound/PageNotFound";
+import Root from "../pages/Root/Root";
+import Main from "../pages/ToolpadPages/Main/Main";
+import WelcomePage from "../pages/WelcomePageLayout/WelcomePage";
 
 const Routes: RoutesModel[] = [
   {
