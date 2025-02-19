@@ -22,7 +22,7 @@ import RoutesNav from "../../../Routes/RoutesNav";
 import rtlPlugin from "stylis-plugin-rtl";
 import createCache from "@emotion/cache";
 import { prefixer } from "stylis";
-import AuthModal from "../../../Modals/AuthModal";
+import AuthModal from "../../../modals/AuthModal";
 
 const rtlCache = createCache({
   key: "muirtl",
