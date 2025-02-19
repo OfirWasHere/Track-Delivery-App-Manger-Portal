@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import { Box, Container, Typography, Button, Grid } from "@mui/material";
 import { motion, useInView } from "framer-motion";
 import { useThemeContext } from "../../../theme/ThemeContextProvider";
-import FTextField from "../../../components/common/FTextField";
+import AppTextField from "../../../components/common/AppTextField/AppTextField";
 
 function ContactUs() {
   const ref = useRef(null);
@@ -59,7 +59,7 @@ function ContactUs() {
                 }
                 transition={{ duration: 0.5, delay: 0.4 }}
               >
-                <FTextField
+                <AppTextField
                   dir={direction}
                   fullWidth
                   label="שם מלא"
@@ -82,7 +82,7 @@ function ContactUs() {
                 }
                 transition={{ duration: 0.5, delay: 0.6 }}
               >
-                <FTextField
+                <AppTextField
                   dir={direction}
                   fullWidth
                   label="אימייל"
@@ -106,7 +106,7 @@ function ContactUs() {
                 }
                 transition={{ duration: 0.5, delay: 0.8 }}
               >
-                <FTextField
+                <AppTextField
                   dir={direction}
                   fullWidth
                   label="הודעה"

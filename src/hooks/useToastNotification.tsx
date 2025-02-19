@@ -1,6 +1,6 @@
 import React from "react";
 import { Bounce, toast, ToastContainer, ToastOptions } from "react-toastify";
-import { useThemeContext } from "../../theme/ThemeContextProvider";
+import { useThemeContext } from "../theme/ThemeContextProvider";
 
 export type ToastyProps = {
   message: string;

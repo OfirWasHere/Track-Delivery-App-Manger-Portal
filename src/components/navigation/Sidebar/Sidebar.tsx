@@ -29,11 +29,11 @@ import {
   MenuItem,
 } from "@mui/material";
 import { useState } from "react";
-import theme from "../../theme/theme";
-import FoxLogo from "../../assets/logo.png";
+import FoxLogo from "../../../assets/logo.png";
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import useAuth from "../../hooks/useAuth";
+import useAuth from "../../../hooks/useAuth";
+import theme from "../../../theme/theme";
 
 const sidebarItems = [
   {
@@ -72,7 +72,7 @@ const sidebarItems = [
 export default function Sidebar() {
   const { firebaseLogout } = useAuth();
 
-  const sideBarWidth = { open: 280, closed: 70 };
+  const sidebarWidth = { open: 280, closed: 70 };
   const [open, setOpen] = useState<boolean>(true);
   const [selected, setSelected] = useState("Tasks");
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -90,16 +90,16 @@ export default function Sidebar() {
     setAnchorEl(null);
   };
 
-  const handleSideBarToggle = () => setOpen(!open);
+  const handleSidebarToggle = () => setOpen(!open);
 
   return (
     <Drawer
       variant="permanent"
       sx={{
-        width: open ? sideBarWidth.open : sideBarWidth.closed,
+        width: open ? sidebarWidth.open : sidebarWidth.closed,
         transition: `0.5s ease-in-out`,
         "& .MuiDrawer-paper": {
-          width: open ? sideBarWidth.open : sideBarWidth.closed,
+          width: open ? sidebarWidth.open : sidebarWidth.closed,
           transition: `0.5s ease-in-out`,
           overflowX: "hidden",
           bgcolor: theme.palette.grey[900],
@@ -107,7 +107,7 @@ export default function Sidebar() {
         },
       }}
     >
-      <Box width={open ? sideBarWidth.open : sideBarWidth.closed}>
+      <Box width={open ? sidebarWidth.open : sidebarWidth.closed}>
         <Box sx={{ mx: 2, py: 2 }}>
           <Box
             sx={{
@@ -129,7 +129,7 @@ export default function Sidebar() {
               </Typography>
             )}
             <IconButton
-              onClick={handleSideBarToggle}
+              onClick={handleSidebarToggle}
               sx={{ color: "white", padding: 0 }}
             >
               <MenuIcon sx={{ fontSize: 32, transform: "scaleX(-1)" }} />

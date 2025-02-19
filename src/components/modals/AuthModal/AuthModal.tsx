@@ -15,10 +15,10 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import GoogleIcon from "@mui/icons-material/Google";
-import useAuth from "../../hooks/useAuth";
-import { useThemeContext } from "../../theme/ThemeContextProvider";
-import FTextField from "../common/FTextField";
-import { useToasty } from "../common/ToastNotification";
+import useAuth from "../../../hooks/useAuth";
+import { useThemeContext } from "../../../theme/ThemeContextProvider";
+import { useToasty } from "../../../hooks/useToastNotification";
+import AppTextField from "../../common/AppTextField/AppTextField";
 
 export default function AuthModal({
   open = false,
@@ -111,7 +111,7 @@ export default function AuthModal({
           <Typography textAlign="center" variant="h5">
             {tabValue === 0 ? "התחברות" : "הרשמה"}
           </Typography>
-          <FTextField
+          <AppTextField
             margin="normal"
             required
             fullWidth
@@ -123,7 +123,7 @@ export default function AuthModal({
             onChange={(e) => setEmail(e.target.value)}
             disabled={loader}
           />
-          <FTextField
+          <AppTextField
             margin="normal"
             required
             fullWidth

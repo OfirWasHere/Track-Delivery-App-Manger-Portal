@@ -1,7 +1,7 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
-import Sidebar from "./SideBar";
-import useAuth from "../../hooks/useAuth";
+import useAuth from "../../../hooks/useAuth";
+import Sidebar from "../../navigation/Sidebar/Sidebar";
 
 type GuardedRouteProps = {
   children: React.ReactNode;

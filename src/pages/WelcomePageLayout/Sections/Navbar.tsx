@@ -22,7 +22,7 @@ import rtlPlugin from "stylis-plugin-rtl";
 import createCache from "@emotion/cache";
 import { prefixer } from "stylis";
 import useIsMobile from "../../../hooks/useIsMobile";
-import AuthModal from "../../../components/modals/AuthModal";
+import AuthModal from "../../../components/modals/AuthModal/AuthModal";
 
 const rtlCache = createCache({
   key: "muirtl",
