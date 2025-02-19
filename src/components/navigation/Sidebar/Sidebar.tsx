@@ -1,4 +1,4 @@
-import { Menu as MenuIcon, MoreVert } from "@mui/icons-material";
+import { BarChart, CalendarToday, CheckCircle, Dashboard, Description, FlashOn, Group, Headset, Inventory, Menu as MenuIcon, MoreVert, Person, Settings } from "@mui/icons-material";
 import {
   Avatar,
   Box,
@@ -20,7 +20,43 @@ import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import useAuth from "../../../hooks/useAuth";
 import theme from "../../../theme/theme";
-import { sidebarNavigation } from "../../../routes/Routes";
+
+const sidebarNavigation = [
+  {
+    title: "TASKS",
+    items: [
+      { icon: <CheckCircle />, text: "Tasks", badge: 16 },
+      { icon: <FlashOn />, text: "Activities" },
+    ],
+  },
+  {
+    title: "MAIN",
+    items: [
+      { icon: <Dashboard />, text: "Dashboard" },
+      { icon: <CalendarToday />, text: "Schedule" },
+      { icon: <Description />, text: "Note" },
+      { icon: <Inventory />, text: "Products" },
+      { icon: <BarChart />, text: "Report" },
+    ],
+  },
+  {
+    title: "RECORDS",
+    items: [
+      { icon: <Group />, text: "Team" },
+      { icon: <Person />, text: "Clients" },
+    ],
+  },
+  {
+    title: "SETTINGS",
+    items: [
+      { icon: <Settings />, text: "Settings" },
+      { icon: <Headset />, text: "Support" },
+    ],
+  },
+];
+
+
+
 
 export default function Sidebar() {
   const { firebaseLogout } = useAuth();
