@@ -15,7 +15,6 @@ import {
 import { useThemeContext } from "../../../theme/ThemeContextProvider";
 import useIsMobile from "../../../Hooks/useIsMobile";
 import { useState } from "react";
-import AuthModal from "../../../common/AuthModal";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth";
 import { CacheProvider } from "@emotion/react";
@@ -23,6 +22,7 @@ import RoutesNav from "../../../Routes/RoutesNav";
 import rtlPlugin from "stylis-plugin-rtl";
 import createCache from "@emotion/cache";
 import { prefixer } from "stylis";
+import AuthModal from "../../../Modals/AuthModal";
 
 const rtlCache = createCache({
   key: "muirtl",

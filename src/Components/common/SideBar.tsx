@@ -33,6 +33,7 @@ import theme from "../theme/theme";
 import FoxLogo from "../../assets/logo.png";
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import useAuth from "../Hooks/useAuth";
 
 const sidebarItems = [
   {
@@ -69,10 +70,17 @@ const sidebarItems = [
 ];
 
 export default function Sidebar() {
+  const { firebaseLogout } = useAuth();
+
   const sideBarWidth = { open: 280, closed: 70 };
   const [open, setOpen] = useState<boolean>(true);
   const [selected, setSelected] = useState("Tasks");
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+
+  const handleUserLogoutClick = () => {
+    // response = showModal({title:"hi", message:"hi"})
+    handleUserMenuClose();
+  };
 
   const handleUserMenuClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -281,7 +289,7 @@ export default function Sidebar() {
         >
           <MenuItem onClick={handleUserMenuClose}>Profile</MenuItem>
           <MenuItem onClick={handleUserMenuClose}>My account</MenuItem>
-          <MenuItem onClick={handleUserMenuClose}>Logout</MenuItem>
+          <MenuItem onClick={handleUserLogoutClick}>Logout</MenuItem>
         </Menu>
       </Box>
     </Drawer>
