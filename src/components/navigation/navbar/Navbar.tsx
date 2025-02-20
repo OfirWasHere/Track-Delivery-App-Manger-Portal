@@ -22,10 +22,11 @@ import rtlPlugin from "stylis-plugin-rtl";
 import createCache from "@emotion/cache";
 import { prefixer } from "stylis";
 import useIsMobile from "../../../hooks/useIsMobile";
-import AuthModal from "../../modals/AuthModal/AuthModal";
 import AuthModalV2 from "../../modals/AuthModalV2/AuthModalV2";
 import { useDispatch } from "react-redux";
 import { AuthModalActionType } from "../../../store/reducers/AuthModalReducer";
+import { openModal } from "../../../store/actions";
+import { AppDispatch } from "../../../store/store";
 
 const rtlCache = createCache({
   key: "muirtl",
@@ -257,29 +258,26 @@ export function NavbarDrawer({
 
 function Navbar({ currentSection, moveToSection }: NavbarProps) {
   const navigate = useNavigate();
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const { direction } = useThemeContext();
   const { user } = useAuth();
   const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
 
   const toggleBurgerMenu = () => setIsBurgerMenuOpen((prev) => !prev);
 
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
 
   const handleAuthModal = (value: boolean) => {
     if (user) {
       navigate("/dashboard");
     } else {
-      // dispatch({ type: "OPEN_DRAWER" });
-      // dispatch({ type: AuthModalActionType.OpenModal });
-      setIsModalOpen(value);
+      dispatch(openModal());
     }
   };
 
   return (
     <Box dir={direction === "ltr" ? "rtl" : "ltr"} sx={{ flexGrow: 1 }}>
-      <AuthModal open={isModalOpen} onClose={() => handleAuthModal(false)} />
-      {/* <AuthModalV2 /> */}
+      {/* <AuthModal open={isModalOpen} onClose={() => handleAuthModal(false)} /> */}
+      <AuthModalV2 />
       <NavbarBody>
         <NavbarLogo />
         <NavbarContent
