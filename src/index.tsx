@@ -3,11 +3,11 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import store from "./Components/Store/Store";
+import store from "./store/Store";
 import { Provider } from "react-redux";
-import { Routes } from "./Components/Routes/Routes";
 import { CssBaseline } from "@mui/material";
-import { ThemeContextProvider } from "./Components/theme/ThemeContextProvider";
+import { ThemeContextProvider } from "./theme/ThemeContextProvider";
+import { Routes } from "./routes/Routes";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
