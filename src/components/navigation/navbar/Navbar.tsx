@@ -271,15 +271,15 @@ function Navbar({ currentSection, moveToSection }: NavbarProps) {
       navigate("/dashboard");
     } else {
       // dispatch({ type: "OPEN_DRAWER" });
-      dispatch({ type: AuthModalActionType.OpenModal });
-      // setIsModalOpen(value);
+      // dispatch({ type: AuthModalActionType.OpenModal });
+      setIsModalOpen(value);
     }
   };
 
   return (
     <Box dir={direction === "ltr" ? "rtl" : "ltr"} sx={{ flexGrow: 1 }}>
-      {/* <AuthModal open={isModalOpen} onClose={() => handleAuthModal(false)} /> */}
-      <AuthModalV2 />
+      <AuthModal open={isModalOpen} onClose={() => handleAuthModal(false)} />
+      {/* <AuthModalV2 /> */}
       <NavbarBody>
         <NavbarLogo />
         <NavbarContent
