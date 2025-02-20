@@ -111,7 +111,7 @@ export default function Sidebar() {
                 fontWeight="bold"
                 sx={{ letterSpacing: 2 }}
               >
-                SoftFOX
+                OnTrack
               </Typography>
             )}
             <IconButton

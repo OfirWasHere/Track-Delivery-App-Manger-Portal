@@ -70,7 +70,7 @@ export function NavbarLogo() {
         }}
         // onClick={toggleDirection}
       >
-        SoftFOX
+        OnTrack 
       </Typography>
     </Box>
   );
