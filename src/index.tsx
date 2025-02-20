@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import store from "./store/Store";
+import store from "./store/store";
 import { Provider } from "react-redux";
 import { CssBaseline } from "@mui/material";
 import { ThemeContextProvider } from "./theme/ThemeContextProvider";

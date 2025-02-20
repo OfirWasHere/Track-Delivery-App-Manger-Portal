@@ -23,6 +23,9 @@ import createCache from "@emotion/cache";
 import { prefixer } from "stylis";
 import useIsMobile from "../../../hooks/useIsMobile";
 import AuthModal from "../../modals/AuthModal/AuthModal";
+import AuthModalV2 from "../../modals/AuthModalV2/AuthModalV2";
+import { useDispatch } from "react-redux";
+import { AuthModalActionType } from "../../../store/reducers/AuthModalReducer";
 
 const rtlCache = createCache({
   key: "muirtl",
@@ -70,7 +73,7 @@ export function NavbarLogo() {
         }}
         // onClick={toggleDirection}
       >
-        OnTrack 
+        OnTrack
       </Typography>
     </Box>
   );
@@ -261,10 +264,14 @@ function Navbar({ currentSection, moveToSection }: NavbarProps) {
 
   const toggleBurgerMenu = () => setIsBurgerMenuOpen((prev) => !prev);
 
+  const dispatch = useDispatch();
+
   const handleAuthModal = (value: boolean) => {
     if (user) {
       navigate("/dashboard");
     } else {
+      // dispatch({ type: "OPEN_DRAWER" });
+      // dispatch({ type: AuthModalActionType.OpenModal });
       setIsModalOpen(value);
     }
   };
@@ -272,6 +279,7 @@ function Navbar({ currentSection, moveToSection }: NavbarProps) {
   return (
     <Box dir={direction === "ltr" ? "rtl" : "ltr"} sx={{ flexGrow: 1 }}>
       <AuthModal open={isModalOpen} onClose={() => handleAuthModal(false)} />
+      {/* <AuthModalV2 /> */}
       <NavbarBody>
         <NavbarLogo />
         <NavbarContent
