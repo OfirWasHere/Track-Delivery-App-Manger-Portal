@@ -4,9 +4,10 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
 import { useDispatch, useSelector } from "react-redux"; // Import useSelector
-import { RootState } from "../../../store/store"; // Import RootState type
+import { AppDispatch, RootState } from "../../../store/store"; // Import RootState type
 import { useEffect } from "react";
 import { AuthModalActionType } from "../../../store/reducers/AuthModalReducer";
+import { closeAuthModal } from "../../../store/actions";
 
 const style = {
   position: "absolute",
@@ -21,15 +22,12 @@ const style = {
 };
 
 export default function AuthModalV2() {
-  const dispatch = useDispatch();
-
+  const dispatch: AppDispatch = useDispatch();
   const isOpen = useSelector((state: RootState) => state.authModal.isOpen);
 
-
   const handleCloseModal = () => {
-    dispatch({ type: AuthModalActionType.CloseModal });
+    dispatch(closeAuthModal());
   };
-
 
   return (
     <div>
@@ -46,7 +44,11 @@ export default function AuthModalV2() {
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
           </Typography>
-          <Button variant="outlined" sx={{ mt: 2 }}>
+          <Button
+            variant="outlined"
+            onClick={() => handleCloseModal()}
+            sx={{ mt: 2 }}
+          >
             Close
           </Button>
         </Box>

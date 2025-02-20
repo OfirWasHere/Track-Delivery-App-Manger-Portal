@@ -25,7 +25,7 @@ import useIsMobile from "../../../hooks/useIsMobile";
 import AuthModalV2 from "../../modals/AuthModalV2/AuthModalV2";
 import { useDispatch } from "react-redux";
 import { AuthModalActionType } from "../../../store/reducers/AuthModalReducer";
-import { openModal } from "../../../store/actions";
+import { openAuthModal } from "../../../store/actions";
 import { AppDispatch } from "../../../store/store";
 
 const rtlCache = createCache({
@@ -270,7 +270,7 @@ function Navbar({ currentSection, moveToSection }: NavbarProps) {
     if (user) {
       navigate("/dashboard");
     } else {
-      dispatch(openModal());
+      dispatch(openAuthModal());
     }
   };
 
