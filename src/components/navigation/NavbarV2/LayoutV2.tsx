@@ -11,13 +11,22 @@ import { useAppDispatch } from "../../../hooks/useReduxStore";
 import { openAuthModal } from "../../../store/reducers/AuthModalReducer";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import NavbarRoutes from "../../../routes/NavbarRoutes";
+import useObserver from "../../../hooks/useObserver";
 
 function LayoutV2() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { user } = useAuth();
+
+  const visible = useObserver([
+    "header-section",
+    "about-section",
+    "contact-section",
+  ]);
+
+  console.log(visible);
 
   const handleAuthModal = useCallback(() => {
     if (user) {
