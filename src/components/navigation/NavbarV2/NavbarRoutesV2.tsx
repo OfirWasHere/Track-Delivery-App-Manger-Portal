@@ -3,8 +3,9 @@ import { NavbarLinksModel } from "../../../utils/types";
 
 type NavbarRoutesPropsV2 = {
   NavbarRoutes: NavbarLinksModel[];
-  handleRouteClick: (routeName: string) => void;
+  handleRouteClick: (RouteID: string) => void;
 };
+
 export function NavbarRoutesV2({
   NavbarRoutes,
   handleRouteClick,

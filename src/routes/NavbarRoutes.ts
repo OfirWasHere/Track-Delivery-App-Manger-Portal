@@ -3,7 +3,7 @@ import { NavbarLinksModel } from "../utils/types";
 const NavbarRoutes: NavbarLinksModel[] = [
     {
         routeName: "ראשי",
-        RouteID: "header-section"
+        RouteID: "hero-section"
     },
     {
         routeName: "עלינו",

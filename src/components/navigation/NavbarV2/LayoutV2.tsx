@@ -11,7 +11,7 @@ import { useAppDispatch } from "../../../hooks/useReduxStore";
 import { openAuthModal } from "../../../store/reducers/AuthModalReducer";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import NavbarRoutes from "../../../routes/NavbarRoutes";
 import useObserver from "../../../hooks/useObserver";
 
@@ -19,14 +19,9 @@ function LayoutV2() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { user } = useAuth();
-
-  const visible = useObserver([
-    "header-section",
-    "about-section",
-    "contact-section",
-  ]);
-
-  console.log(visible);
+  const heroRef = useRef(null);
+  const aboutRef = useRef(null);
+  const contactRef = useRef(null);
 
   const handleAuthModal = useCallback(() => {
     if (user) {
@@ -36,10 +31,16 @@ function LayoutV2() {
     }
   }, [user, navigate, dispatch]);
 
+  const sectionRefs: Record<string, React.RefObject<HTMLElement>> = {
+    "hero-section": heroRef,
+    "about-section": aboutRef,
+    "contact-section": contactRef,
+  };
+
   const handleRouteClick = (routeID: string) => {
-    const element = document.getElementById(routeID);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+    const sectionRef = sectionRefs[routeID];
+    if (sectionRef?.current) {
+      sectionRef.current.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -59,13 +60,13 @@ function LayoutV2() {
           buttonClickAction={handleAuthModal}
         />
       </NavbarV2>
-      <div id="header-section">
+      <div ref={heroRef}>
         <HeaderSection />
       </div>
-      <div id="about-section">
+      <div ref={aboutRef}>
         <AboutSection />
       </div>
-      <div id="contact-section">
+      <div ref={contactRef}>
         <ContactUs />
       </div>
     </Box>

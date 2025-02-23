@@ -31,3 +31,12 @@ export default function useObserver(ids: string[]) {
 
     return visible
 }
+
+
+//   const visible = useObserver([
+//     "header-section",
+//     "about-section",
+//     "contact-section",
+//   ]);
+
+//   console.log(visible);
