@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function useObserver(ids: string[]) {
+export default function useIdObserver(ids: string[]) {
     const [visible, setVisible] = useState<string | null>(null);
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -22,7 +22,6 @@ export default function useObserver(ids: string[]) {
             }
         })
 
-        console.log("i fire once");
         // Cleanup function to disconnect observer when component unmounts
         return () => {
             observer.disconnect()
@@ -31,12 +30,3 @@ export default function useObserver(ids: string[]) {
 
     return visible
 }
-
-
-//   const visible = useObserver([
-//     "header-section",
-//     "about-section",
-//     "contact-section",
-//   ]);
-
-//   console.log(visible);

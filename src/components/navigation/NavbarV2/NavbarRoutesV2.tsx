@@ -2,13 +2,15 @@ import { Box, Button, Typography } from "@mui/material";
 import { NavbarLinksModel } from "../../../utils/types";
 
 type NavbarRoutesPropsV2 = {
-  NavbarRoutes: NavbarLinksModel[];
+  navbarRoutes: NavbarLinksModel[];
   handleRouteClick: (RouteID: string) => void;
+  activeRoute?: string;
 };
 
 export function NavbarRoutesV2({
-  NavbarRoutes,
+  navbarRoutes,
   handleRouteClick,
+  activeRoute,
 }: NavbarRoutesPropsV2) {
   return (
     <Box
@@ -19,8 +21,9 @@ export function NavbarRoutesV2({
         pr: 2,
       }}
     >
-      {NavbarRoutes
-        ? NavbarRoutes.slice()
+      {navbarRoutes
+        ? navbarRoutes
+            .slice()
             .reverse()
             .map((route, index) => {
               return (
@@ -33,7 +36,12 @@ export function NavbarRoutesV2({
                     fontWeight: "normal",
                   }}
                 >
-                  <Typography variant="h6">{route.routeName}</Typography>
+                  <Typography
+                    variant="h6"
+                    color={activeRoute === route.RouteID ? "primary" : ""}
+                  >
+                    {route.routeName}
+                  </Typography>
                 </Button>
               );
             })

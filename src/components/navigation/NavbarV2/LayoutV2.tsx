@@ -13,15 +13,12 @@ import { useNavigate } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import { useCallback, useEffect, useRef } from "react";
 import NavbarRoutes from "../../../routes/NavbarRoutes";
-import useObserver from "../../../hooks/useObserver";
+import useIdObserver from "../../../hooks/useIdObserver";
 
 function LayoutV2() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { user } = useAuth();
-  const heroRef = useRef(null);
-  const aboutRef = useRef(null);
-  const contactRef = useRef(null);
 
   const handleAuthModal = useCallback(() => {
     if (user) {
@@ -31,18 +28,15 @@ function LayoutV2() {
     }
   }, [user, navigate, dispatch]);
 
-  const sectionRefs: Record<string, React.RefObject<HTMLElement>> = {
-    "hero-section": heroRef,
-    "about-section": aboutRef,
-    "contact-section": contactRef,
+  const handleRouteClick = (routeID: string) => {
+    document.getElementById(routeID).scrollIntoView({ behavior: "smooth" });
   };
 
-  const handleRouteClick = (routeID: string) => {
-    const sectionRef = sectionRefs[routeID];
-    if (sectionRef?.current) {
-      sectionRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+  const visible = useIdObserver([
+    "hero-section",
+    "about-section",
+    "contact-section",
+  ]);
 
   return (
     <Box>
@@ -52,21 +46,22 @@ function LayoutV2() {
           icon={<LocalShipping fontSize="large" sx={{ color: "black" }} />}
         />
         <NavbarRoutesV2
-          NavbarRoutes={NavbarRoutes}
+          navbarRoutes={NavbarRoutes}
           handleRouteClick={handleRouteClick}
+          activeRoute={visible}
         />
         <NavbarExtraButtonsV2
           buttonText="התחברות"
           buttonClickAction={handleAuthModal}
         />
       </NavbarV2>
-      <div ref={heroRef}>
+      <div id="hero-section">
         <HeaderSection />
       </div>
-      <div ref={aboutRef}>
+      <div id="about-section">
         <AboutSection />
       </div>
-      <div ref={contactRef}>
+      <div id="contact-section">
         <ContactUs />
       </div>
     </Box>
