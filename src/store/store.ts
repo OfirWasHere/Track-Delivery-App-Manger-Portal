@@ -1,18 +1,13 @@
-// Store setup (store.ts)
-import { combineReducers, createStore } from "redux";
-import { authModalReducer } from "./reducers/AuthModalReducer";
-import drawerReducer from "./reducers/DrawerReducer";
+import { configureStore } from '@reduxjs/toolkit'
+import authModalSlice from './reducers/AuthModalReducer'
 
-// Combine reducers
-const rootReducer = combineReducers({ authModal: authModalReducer, Drawer: drawerReducer });
+export const store = configureStore({
+    reducer: {
+        authModal: authModalSlice,
+    },
+})
 
-// Create the store
-const store = createStore(
-    rootReducer,
-    (window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__()
-);
-
-export default store;
-
-// Define RootState type
-export type RootState = ReturnType<typeof store.getState>;
+// Infer the `RootState` and `AppDispatch` types from the store itself
+export type RootState = ReturnType<typeof store.getState>
+// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
+export type AppDispatch = typeof store.dispatch
