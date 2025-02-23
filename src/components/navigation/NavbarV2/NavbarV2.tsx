@@ -1,12 +1,17 @@
 import { AppBar, Toolbar } from "@mui/material";
 import React from "react";
 
-function NavbarV2({ isResponsive, children }: any) {
+type NavbarPropsV2 = {
+  isResponsive?: boolean;
+  children: React.ReactNode;
+};
+
+function NavbarV2({ isResponsive, children }: NavbarPropsV2) {
   return (
     <AppBar
-    position="fixed"
-    color="default"
-    elevation={1}
+      position="fixed"
+      color="default"
+      elevation={1}
       sx={{
         backgroundColor: "rgba(255, 255, 255, 0.8)",
         backdropFilter: "blur(10px)",

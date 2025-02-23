@@ -17,15 +17,13 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import { CacheProvider } from "@emotion/react";
-import RoutesNav from "../../../routes/RoutesNav";
+import NavbarRoutes from "../../../routes/NavbarRoutes";
 import rtlPlugin from "stylis-plugin-rtl";
 import createCache from "@emotion/cache";
 import { prefixer } from "stylis";
 import useIsMobile from "../../../hooks/useIsMobile";
 import AuthModal from "../../modals/AuthModal/AuthModal";
-import { useAppDispatch, useAppSelector } from "../../../hooks/useReduxStore";
 import AuthModalV2 from "../../modals/AuthModalV2/AuthModalV2";
-import { openAuthModal } from "../../../store/reducers/AuthModalReducer";
 
 const rtlCache = createCache({
   key: "muirtl",
@@ -100,10 +98,10 @@ export function NavbarContent({
               pr: 2,
             }}
           >
-            {RoutesNav.slice()
+            {NavbarRoutes.slice()
               .reverse()
               .map((route, index) => {
-                const originalIndex = RoutesNav.length - 1 - index;
+                const originalIndex = NavbarRoutes.length - 1 - index;
                 return (
                   <Link
                     key={originalIndex}
@@ -218,7 +216,7 @@ export function NavbarDrawer({
             onKeyDown={toggleBurgerMenu}
           >
             <List>
-              {RoutesNav.map((route, index) => (
+              {NavbarRoutes.map((route, index) => (
                 <ListItem
                   sx={{ textAlign: "right" }}
                   key={index}
@@ -263,13 +261,11 @@ function Navbar({ currentSection, moveToSection }: NavbarProps) {
   const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
 
   const toggleBurgerMenu = () => setIsBurgerMenuOpen((prev) => !prev);
-  const dispatch = useAppDispatch();
 
   const handleAuthModal = (value: boolean) => {
     if (user) {
       navigate("/dashboard");
     } else {
-      // dispatch(openAuthModal());
       setIsModalOpen(value);
     }
   };

@@ -7,9 +7,9 @@ export type RoutesModel = {
     children?: RouteObject[];
 }
 
-export type RouteModel = {
-    path: string;
+export type NavbarLinksModel = {
     routeName: string;
+    path?: string;
     RouteID?: string;
 }
 
