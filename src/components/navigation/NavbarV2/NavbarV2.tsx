@@ -6,7 +6,7 @@ type NavbarPropsV2 = {
   children: React.ReactNode;
 };
 
-function NavbarV2({ isResponsive, children }: NavbarPropsV2) {
+function NavbarV2({ isResponsive = true, children }: NavbarPropsV2) {
   return (
     <AppBar
       position="fixed"

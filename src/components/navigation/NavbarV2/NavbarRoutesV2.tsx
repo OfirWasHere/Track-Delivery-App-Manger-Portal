@@ -38,7 +38,7 @@ export function NavbarRoutesV2({
                 >
                   <Typography
                     variant="h6"
-                    color={activeRoute === route.RouteID ? "primary" : ""}
+                    color={activeRoute === route.RouteID ? "primary.500" : ""}
                   >
                     {route.routeName}
                   </Typography>

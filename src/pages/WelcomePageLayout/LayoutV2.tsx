@@ -1,19 +1,19 @@
 import { LocalShipping } from "@mui/icons-material";
 import { Box } from "@mui/material";
-import AboutSection from "../../../pages/WelcomePageLayout/Sections/AboutSection";
-import ContactUs from "../../../pages/WelcomePageLayout/Sections/ContactUs";
-import HeaderSection from "../../../pages/WelcomePageLayout/Sections/HeaderSection";
-import { NavbarLogoV2 } from "./NavbarLogoV2";
-import { NavbarRoutesV2 } from "./NavbarRoutesV2";
-import NavbarV2 from "./NavbarV2";
-import NavbarExtraButtonsV2 from "./NavbarExtraButtonsV2";
-import { useAppDispatch } from "../../../hooks/useReduxStore";
-import { openAuthModal } from "../../../store/reducers/AuthModalReducer";
+import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import useAuth from "../../../hooks/useAuth";
-import { useCallback, useEffect, useRef } from "react";
-import NavbarRoutes from "../../../routes/NavbarRoutes";
-import useIdObserver from "../../../hooks/useIdObserver";
+import NavbarExtraButtonsV2 from "../../components/navigation/NavbarV2/NavbarExtraButtonsV2";
+import { NavbarLogoV2 } from "../../components/navigation/NavbarV2/NavbarLogoV2";
+import { NavbarRoutesV2 } from "../../components/navigation/NavbarV2/NavbarRoutesV2";
+import NavbarV2 from "../../components/navigation/NavbarV2/NavbarV2";
+import useAuth from "../../hooks/useAuth";
+import useIdObserver from "../../hooks/useIdObserver";
+import { useAppDispatch } from "../../hooks/useReduxStore";
+import NavbarRoutes from "../../routes/NavbarRoutes";
+import { openAuthModal } from "../../store/reducers/AuthModalReducer";
+import AboutSection from "./Sections/AboutSection";
+import ContactUs from "./Sections/ContactUs";
+import HeaderSection from "./Sections/HeaderSection";
 
 function LayoutV2() {
   const dispatch = useAppDispatch();
