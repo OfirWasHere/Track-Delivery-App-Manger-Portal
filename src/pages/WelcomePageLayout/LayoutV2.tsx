@@ -14,6 +14,7 @@ import { openAuthModal } from "../../store/reducers/AuthModalReducer";
 import AboutSection from "./Sections/AboutSection";
 import ContactUs from "./Sections/ContactUs";
 import HeaderSection from "./Sections/HeaderSection";
+import FoxLogo from "../../assets/logo.png";
 
 function LayoutV2() {
   const dispatch = useAppDispatch();
@@ -42,8 +43,11 @@ function LayoutV2() {
     <Box>
       <NavbarV2>
         <NavbarLogoV2
-          title="Ofir Software"
-          icon={<LocalShipping fontSize="large" sx={{ color: "black" }} />}
+          title="OnTrack"
+          icon={
+            <img src={FoxLogo} width="40px" height="40px" alt="Company logo" />
+          }
+          // icon={<LocalShipping fontSize="large" sx={{ color: "black" }} />}
         />
         <NavbarRoutesV2
           navbarRoutes={NavbarRoutes}
