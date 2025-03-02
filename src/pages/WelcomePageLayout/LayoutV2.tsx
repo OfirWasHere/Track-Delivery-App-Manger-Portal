@@ -67,8 +67,9 @@ function LayoutV2() {
                 buttonClickAction={handleAuthModal}
               />
             </>
-          ) : null}
-          <NavbarDrawerV2 navbarRoutes={NavbarRoutes} />
+          ) : (
+            <NavbarDrawerV2 navbarRoutes={NavbarRoutes} />
+          )}
         </NavbarBodyV2>
       </NavbarV2>
       <div id="hero-section">
