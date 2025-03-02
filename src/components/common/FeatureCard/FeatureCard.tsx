@@ -33,7 +33,7 @@ export default function FeatureCard({ icon, title, description }: FeatureCardPro
         title={<Typography variant="h6" component="h3">{title}</Typography>}
       />
       <CardContent sx={{ flexGrow: 1 }}>
-        <Typography variant="body2" color={theme.palette.text.secondary}>
+        <Typography variant="body2" color={"grey.900"}>
           {description}
         </Typography>
       </CardContent>

@@ -93,6 +93,7 @@ const colors = {
     900: "#1b5e20",
   },
   grey: {
+    0: "#fff",
     50: "#fafafa",
     100: "#f5f5f5",
     200: "#eeeeee",

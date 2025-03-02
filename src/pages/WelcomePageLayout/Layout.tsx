@@ -3,8 +3,8 @@ import { Box } from "@mui/material";
 import AboutSection from "./Sections/AboutSection";
 import ContactUs from "./Sections/ContactUs";
 import HeaderSection from "./Sections/HeaderSection";
-import RoutesNav from "../../routes/RoutesNav";
 import Navbar from "../../components/navigation/Navbar/Navbar";
+import NavbarRoutes from "../../routes/NavbarRoutes";
 
 function Layout() {
   const [currentSection, setCurrentSection] = useState(0);
@@ -53,7 +53,7 @@ function Layout() {
   };
 
   useEffect(() => {
-    const targetSection = RoutesNav[currentSection].RouteID;
+    const targetSection = NavbarRoutes[currentSection].RouteID;
 
     const element = document.getElementById(targetSection);
     if (element) {

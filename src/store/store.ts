@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import authModalSlice from './reducers/AuthModalReducer'
+import navbarDrawerSlice from './reducers/NavbarDrawerReducer'
 
 export const store = configureStore({
     reducer: {
         authModal: authModalSlice,
+        drawerState: navbarDrawerSlice
     },
 })
 

@@ -1,21 +1,18 @@
-import { RouteModel } from "../utils/types";
+import { NavbarLinksModel } from "../utils/types";
 
-const RoutesNav: RouteModel[] = [
+const NavbarRoutes: NavbarLinksModel[] = [
     {
-        path: "/",
         routeName: "ראשי",
-        RouteID: "header-section"
+        RouteID: "hero-section"
     },
     {
-        path: "/",
         routeName: "עלינו",
         RouteID: "about-section"
     },
     {
-        path: "/",
         routeName: "צרו קשר",
         RouteID: "contact-section"
     },
 ]
 
-export default RoutesNav;
+export default NavbarRoutes;
