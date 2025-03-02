@@ -10,7 +10,6 @@ import {
 import { useAppDispatch, useAppSelector } from "../../../hooks/useReduxStore";
 import { closeDrawer } from "../../../store/reducers/NavbarDrawerReducer";
 import { NavbarLinksModel } from "../../../utils/types";
-import NavbarRoutes from "../../../routes/NavbarRoutes";
 
 type NavbarDrawerV2Props = {
   navbarRoutes: NavbarLinksModel[];
@@ -20,18 +19,6 @@ function NavbarDrawerV2({ navbarRoutes }: NavbarDrawerV2Props) {
   const drawerState = useAppSelector((state) => state.drawerState.isOpen);
   const dispatch = useAppDispatch();
   return (
-    // <div>
-    //   <Drawer
-    //     anchor="left"
-    //     open={drawerState}
-    //     onClose={() => dispatch(closeDrawer())}
-    //   >
-    //     <Box width={250} role="presentation">
-    //       {/* {navbarRoutes} */}
-    //     </Box>
-    //   </Drawer>
-    // </div>
-
     <Drawer
       anchor="left"
       open={drawerState}
@@ -39,7 +26,7 @@ function NavbarDrawerV2({ navbarRoutes }: NavbarDrawerV2Props) {
     >
       <Box width={250} role="presentation">
         <List>
-          {NavbarRoutes.map((route, index) => (
+          {navbarRoutes.map((route, index) => (
             <ListItem sx={{ textAlign: "right" }} key={index}>
               <ListItemText primary={route.routeName} />
             </ListItem>
