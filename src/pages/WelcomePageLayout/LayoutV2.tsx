@@ -1,4 +1,3 @@
-import { LocalShipping } from "@mui/icons-material";
 import { Box } from "@mui/material";
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
@@ -15,6 +14,9 @@ import AboutSection from "./Sections/AboutSection";
 import ContactUs from "./Sections/ContactUs";
 import HeaderSection from "./Sections/HeaderSection";
 import FoxLogo from "../../assets/logo.png";
+import NavbarBodyV2 from "../../components/navigation/NavbarV2/NavbarBodyV2";
+import { closeDrawer } from "../../store/reducers/NavbarDrawerReducer";
+import NavbarDrawerV2 from "../../components/navigation/NavbarV2/NavbarDrawerV2";
 
 function LayoutV2() {
   const dispatch = useAppDispatch();
@@ -22,6 +24,7 @@ function LayoutV2() {
   const { user } = useAuth();
 
   const handleAuthModal = useCallback(() => {
+    dispatch(closeDrawer());
     if (user) {
       navigate("/dashboard");
     } else {
@@ -31,6 +34,7 @@ function LayoutV2() {
 
   const handleRouteClick = (routeID: string) => {
     document.getElementById(routeID).scrollIntoView({ behavior: "smooth" });
+    dispatch(closeDrawer());
   };
 
   const visible = useIdObserver([
@@ -47,17 +51,21 @@ function LayoutV2() {
           icon={
             <img src={FoxLogo} width="40px" height="40px" alt="Company logo" />
           }
-          // icon={<LocalShipping fontSize="large" sx={{ color: "black" }} />}
         />
-        <NavbarRoutesV2
-          navbarRoutes={NavbarRoutes}
-          handleRouteClick={handleRouteClick}
-          activeRoute={visible}
-        />
-        <NavbarExtraButtonsV2
-          buttonText="התחברות"
-          buttonClickAction={handleAuthModal}
-        />
+        <NavbarBodyV2>
+          {/* Is not mobile */}
+          <NavbarRoutesV2
+            navbarRoutes={NavbarRoutes}
+            handleRouteClick={handleRouteClick}
+            activeRoute={visible}
+          />
+          <NavbarExtraButtonsV2
+            buttonText="התחברות"
+            buttonClickAction={handleAuthModal}
+          />
+          {/* When mobile */}
+          {/* <NavbarDrawerV2 navbarRoutes={NavbarRoutes} /> */}
+        </NavbarBodyV2>
       </NavbarV2>
       <div id="hero-section">
         <HeaderSection />

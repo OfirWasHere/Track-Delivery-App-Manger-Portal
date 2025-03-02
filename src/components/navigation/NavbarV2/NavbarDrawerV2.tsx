@@ -1,57 +1,23 @@
-import {
-  Drawer,
-  Box,
-  List,
-  ListItem,
-  ListItemText,
-  Button,
-  Typography,
-} from "@mui/material";
-import React from "react";
-import NavbarRoutes from "../../../routes/NavbarRoutes";
+import { Box, Drawer } from "@mui/material";
+import { useAppDispatch, useAppSelector } from "../../../hooks/useReduxStore";
+import { closeDrawer } from "../../../store/reducers/NavbarDrawerReducer";
 
-function NavbarDrawerV2() {
+type NavbarDrawerV2Props = {
+  children: React.ReactNode;
+};
+
+function NavbarDrawerV2({ children }: NavbarDrawerV2Props) {
+  const drawerState = useAppSelector((state) => state.drawerState.isOpen);
+  const dispatch = useAppDispatch();
   return (
     <div>
       <Drawer
-        anchor={"left"}
-        // open={isBurgerMenuOpen}
-        // onClose={toggleBurgerMenu}
+        anchor="left"
+        open={drawerState}
+        onClose={() => dispatch(closeDrawer())}
       >
-        <Box
-          width={250}
-          role="presentation"
-          //   onClick={toggleBurgerMenu}
-          //   onKeyDown={toggleBurgerMenu}
-        >
-          <List>
-            {NavbarRoutes.map((route, index) => (
-              <ListItem
-                sx={{ textAlign: "right" }}
-                key={index}
-                // onClick={() => moveToSection(index)}
-              >
-                <ListItemText primary={route.routeName} />
-              </ListItem>
-            ))}
-            <ListItem>
-              <Button
-                fullWidth
-                variant="contained"
-                size="large"
-                sx={{
-                  bgcolor: "#212121",
-                  color: "#fff",
-                  "&:hover": {
-                    bgcolor: "#424242",
-                  },
-                }}
-                onClick={() => {}}
-              >
-                <Typography variant="h6">התחברות</Typography>
-              </Button>
-            </ListItem>
-          </List>
+        <Box width={250} role="presentation">
+          {children}
         </Box>
       </Drawer>
     </div>
