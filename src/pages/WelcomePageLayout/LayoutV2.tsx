@@ -17,11 +17,13 @@ import FoxLogo from "../../assets/logo.png";
 import NavbarBodyV2 from "../../components/navigation/NavbarV2/NavbarBodyV2";
 import { closeDrawer } from "../../store/reducers/NavbarDrawerReducer";
 import NavbarDrawerV2 from "../../components/navigation/NavbarV2/NavbarDrawerV2";
+import useIsMobile from "../../hooks/useIsMobile";
 
 function LayoutV2() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { user } = useAuth();
+  const isMobile = useIsMobile();
 
   const handleAuthModal = useCallback(() => {
     dispatch(closeDrawer());
@@ -53,18 +55,20 @@ function LayoutV2() {
           }
         />
         <NavbarBodyV2>
-          {/* Is not mobile */}
-          <NavbarRoutesV2
-            navbarRoutes={NavbarRoutes}
-            handleRouteClick={handleRouteClick}
-            activeRoute={visible}
-          />
-          <NavbarExtraButtonsV2
-            buttonText="התחברות"
-            buttonClickAction={handleAuthModal}
-          />
-          {/* When mobile */}
-          {/* <NavbarDrawerV2 navbarRoutes={NavbarRoutes} /> */}
+          {!isMobile ? (
+            <>
+              <NavbarRoutesV2
+                navbarRoutes={NavbarRoutes}
+                handleRouteClick={handleRouteClick}
+                activeRoute={visible}
+              />
+              <NavbarExtraButtonsV2
+                buttonText="התחברות"
+                buttonClickAction={handleAuthModal}
+              />
+            </>
+          ) : null}
+          <NavbarDrawerV2 navbarRoutes={NavbarRoutes} />
         </NavbarBodyV2>
       </NavbarV2>
       <div id="hero-section">

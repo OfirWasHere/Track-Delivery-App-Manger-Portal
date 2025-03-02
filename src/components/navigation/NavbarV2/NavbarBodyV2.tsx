@@ -33,8 +33,8 @@ function NavbarBodyV2({ isResponsive = true, children }: NavbarBodyPropsV2) {
             >
               <Menu fontSize={"large"} sx={{ color: "grey.900" }} />
             </IconButton>
+            {children}
           </Box>
-          <NavbarDrawerV2>{children}</NavbarDrawerV2>
         </>
       ) : (
         children
