@@ -68,7 +68,7 @@ function LayoutV2() {
               />
             </>
           ) : (
-            <NavbarDrawerV2 navbarRoutes={NavbarRoutes} />
+            <NavbarDrawerV2 navbarRoutes={NavbarRoutes} handleAuthModal={handleAuthModal} />
           )}
         </NavbarBodyV2>
       </NavbarV2>

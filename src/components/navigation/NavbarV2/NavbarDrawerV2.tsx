@@ -13,9 +13,13 @@ import { NavbarLinksModel } from "../../../utils/types";
 
 type NavbarDrawerV2Props = {
   navbarRoutes: NavbarLinksModel[];
+  handleAuthModal: () => void;
 };
 
-function NavbarDrawerV2({ navbarRoutes }: NavbarDrawerV2Props) {
+function NavbarDrawerV2({
+  navbarRoutes,
+  handleAuthModal,
+}: NavbarDrawerV2Props) {
   const drawerState = useAppSelector((state) => state.drawerState.isOpen);
   const dispatch = useAppDispatch();
   return (
@@ -33,6 +37,7 @@ function NavbarDrawerV2({ navbarRoutes }: NavbarDrawerV2Props) {
           ))}
           <ListItem>
             <Button
+              onClick={handleAuthModal}
               fullWidth
               variant="contained"
               size="large"
@@ -44,7 +49,9 @@ function NavbarDrawerV2({ navbarRoutes }: NavbarDrawerV2Props) {
                 },
               }}
             >
-              <Typography variant="h6">התחברות</Typography>
+              <Typography variant="h6">
+                התחברות
+              </Typography>
             </Button>
           </ListItem>
         </List>
