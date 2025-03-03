@@ -1,10 +1,10 @@
 import * as React from "react";
 import { Outlet, useOutlet } from "react-router-dom";
-import WelcomePage from "../WelcomePageLayout/WelcomePage";
 import { ThemeProvider } from "@mui/material";
 import { useThemeContext } from "../../theme/ThemeContextProvider";
 import { ToastNotification } from "../../hooks/useToastNotification";
 import ModalProvider from "../../components/modals/ModalProvider";
+import WelcomePageV2 from "../WelcomePageV2/WelcomePageV2";
 
 function Root() {
   const outlet = useOutlet();
@@ -13,7 +13,7 @@ function Root() {
   return (
     <div>
       <ThemeProvider theme={theme}>
-        {outlet ? <Outlet /> : <WelcomePage />}
+        {outlet ? <Outlet /> : <WelcomePageV2 />}
         <ToastNotification />
         <ModalProvider />
       </ThemeProvider>
