@@ -2,11 +2,10 @@ import { AppBar, Toolbar } from "@mui/material";
 import React from "react";
 
 type NavbarPropsV2 = {
-  isResponsive?: boolean;
   children: React.ReactNode;
 };
 
-function NavbarV2({ isResponsive = true, children }: NavbarPropsV2) {
+function NavbarV2({ children }: NavbarPropsV2) {
   return (
     <AppBar
       position="fixed"

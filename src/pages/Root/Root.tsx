@@ -9,9 +9,10 @@ import WelcomePageV2 from "../WelcomePageV2/WelcomePageV2";
 function Root() {
   const outlet = useOutlet();
   const { theme, direction } = useThemeContext();
+  console.log(direction);
 
   return (
-    <div>
+    <div dir={direction}>
       <ThemeProvider theme={theme}>
         {outlet ? <Outlet /> : <WelcomePageV2 />}
         <ToastNotification />

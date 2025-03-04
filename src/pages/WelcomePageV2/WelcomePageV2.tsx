@@ -18,12 +18,14 @@ import useIsMobile from "../../hooks/useIsMobile";
 import AboutSectionV2 from "./AboutSectionV2";
 import ContactUsV2 from "./ContactUsV2";
 import HeaderSectionV2 from "./HeaderSectionV2";
+import { useThemeContext } from "../../theme/ThemeContextProvider";
 
 function WelcomePageV2() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { user } = useAuth();
   const isMobile = useIsMobile();
+  const { direction } = useThemeContext();
 
   const handleAuthModal = useCallback(() => {
     dispatch(closeDrawer());
@@ -47,34 +49,41 @@ function WelcomePageV2() {
 
   return (
     <Box>
-      <NavbarV2>
-        <NavbarLogoV2
-          title="OnTrack"
-          icon={
-            <img src={FoxLogo} width="40px" height="40px" alt="Company logo" />
-          }
-        />
-        <NavbarBodyV2>
-          {!isMobile ? (
-            <>
-              <NavbarRoutesV2
+      <div dir={direction === "ltr" ? "rtl" : "ltr"}>
+        <NavbarV2>
+          <NavbarLogoV2
+            title="OnTrack"
+            icon={
+              <img
+                src={FoxLogo}
+                width="40px"
+                height="40px"
+                alt="Company logo"
+              />
+            }
+          />
+          <NavbarBodyV2>
+            {!isMobile ? (
+              <>
+                <NavbarRoutesV2
+                  navbarRoutes={NavbarRoutes}
+                  handleRouteClick={handleRouteClick}
+                  activeRoute={visible}
+                />
+                <NavbarExtraButtonsV2
+                  buttonText="התחברות"
+                  buttonClickAction={handleAuthModal}
+                />
+              </>
+            ) : (
+              <NavbarDrawerV2
                 navbarRoutes={NavbarRoutes}
-                handleRouteClick={handleRouteClick}
-                activeRoute={visible}
+                handleAuthModal={handleAuthModal}
               />
-              <NavbarExtraButtonsV2
-                buttonText="התחברות"
-                buttonClickAction={handleAuthModal}
-              />
-            </>
-          ) : (
-            <NavbarDrawerV2
-              navbarRoutes={NavbarRoutes}
-              handleAuthModal={handleAuthModal}
-            />
-          )}
-        </NavbarBodyV2>
-      </NavbarV2>
+            )}
+          </NavbarBodyV2>
+        </NavbarV2>
+      </div>
       <div id="hero-section">
         <HeaderSectionV2 />
       </div>
