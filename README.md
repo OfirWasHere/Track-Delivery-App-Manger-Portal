@@ -33,7 +33,7 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 This lets you run firebase auth on your own system, make sure .env files are updated to latest version and in useFirebase hook uncomment connectAuthEmulator
 
-todo:
+### todo:
 
 1. upgrade navbar to v2 - done
 
@@ -47,12 +47,13 @@ todo:
 
 6. global ltr rtl
 
-7. optimize loading times, remove toolkit, remove unused imports
+7. optimize loading times, remove toolkit, remove unused imports, remove v1 navbar, v1 welcome page
 
-8. finish log in page, if user tries to go into dashboard and is not logged in
+8. finish log in page, if user tries to go into dashboard and is not logged in.
 
 9. notifications, fix all page errros with toasty, currently it shows "a lot of text from firebase auth"
 
+10. Fix fonts
 
 
 todo think of a name for the app. 
