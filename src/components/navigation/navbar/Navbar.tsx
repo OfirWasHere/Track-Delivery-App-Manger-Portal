@@ -273,7 +273,7 @@ function Navbar({ currentSection, moveToSection }: NavbarProps) {
   return (
     <Box dir={direction === "ltr" ? "rtl" : "ltr"} sx={{ flexGrow: 1 }}>
       <AuthModal open={isModalOpen} onClose={() => handleAuthModal(false)} />
-      <AuthModalV2 />
+      {/* <AuthModalV2 /> */}
       <NavbarBody>
         <NavbarLogo />
         <NavbarContent
