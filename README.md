@@ -33,30 +33,27 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 This lets you run firebase auth on your own system, make sure .env files are updated to latest version and in useFirebase hook uncomment connectAuthEmulator
 
-### todo:
+todo:
 
-1. upgrade navbar to v2 - [[done](https://github.com/OfirWasHere/Track-Delivery-App-Manger-Portal/pull/4)]
+1. upgrade navbar to v2 - done
 
-2. finish welcome page design v2 - [in work](https://github.com/OfirWasHere/Track-Delivery-App-Manger-Portal/pull/6),
+2. finish welcome page design v2 - in work,
 
-3. fix welcome page scroll effect - [in work](https://github.com/OfirWasHere/Track-Delivery-App-Manger-Portal/pull/5)
+3. fix welcome page scroll effect - in work
 
-4. update log in modal and log in page to v2, look in figma.
+4. update log in modal - in progress
 
 5. fix auth with google provider, if user logs in with email and password, google log in removes that option not letting user log in again, block users who try to log in using google auth when they used email and password unless they merge their account 
 
-6. global ltr rtl.
+6. global ltr rtl
 
-7. optimize loading times, remove toolkit, remove unused imports, remove v1 navbar, v1 welcome page
+7. optimize loading times, remove toolkit, remove unused imports
 
-8. if needed, update mobile resposiveness.
+8. finish log in page, if user tries to go into dashboard and is not logged in
 
-9. notifications, fix all page errors with toasty, currently it shows a lot of text from firebase auth...
-
-10. add proper fonts, current fonts are not good.
+9. notifications, fix all page errros with toasty, currently it shows "a lot of text from firebase auth"
 
 
-Backend Repo - https://github.com/OfirWasHere/Delivery-App-Backend
 
 todo think of a name for the app. 
 OnTrack

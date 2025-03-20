@@ -1,39 +1,33 @@
-import { AppBar, Box, SxProps, Theme, Toolbar } from "@mui/material";
+import { AppBar, Toolbar } from "@mui/material";
 import React from "react";
 
 type NavbarPropsV2 = {
+  isResponsive?: boolean;
   children: React.ReactNode;
-  navbarHeight?: string;
-  sx?: SxProps<Theme>;
 };
 
-function NavbarV2({ children, navbarHeight = "80px", sx }: NavbarPropsV2) {
+function NavbarV2({ isResponsive = true, children }: NavbarPropsV2) {
   return (
-    <Box sx={{ height: navbarHeight }}>
-      <AppBar
-        position="fixed"
-        color="default"
-        elevation={1}
+    <AppBar
+      position="fixed"
+      color="default"
+      elevation={1}
+      sx={{
+        backgroundColor: "rgba(255, 255, 255, 0.8)",
+        backdropFilter: "blur(10px)",
+      }}
+    >
+      <Toolbar
         sx={{
-          justifyContent: "center",
-          backgroundColor: "rgba(255, 255, 255, 0.8)",
-          backdropFilter: "blur(10px)",
-          height: navbarHeight,
-          ...sx,
+          width: "100%",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
         }}
       >
-        <Toolbar
-          sx={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
-          {children}
-        </Toolbar>
-      </AppBar>
-    </Box>
+        {children}
+      </Toolbar>
+    </AppBar>
   );
 }
 

@@ -28,7 +28,7 @@ export default function AuthModalV2() {
   return (
     <div>
       <Modal
-        open={false}
+        open={appState}
         onClose={() => handleCloseModal()}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"

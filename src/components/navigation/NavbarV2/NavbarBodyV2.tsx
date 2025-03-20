@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import useIsMobile from "../../../hooks/useIsMobile";
+import NavbarDrawerV2 from "./NavbarDrawerV2";
 import { Box, IconButton } from "@mui/material";
 import { Menu } from "@mui/icons-material";
 import { useAppDispatch } from "../../../hooks/useReduxStore";
