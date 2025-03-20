@@ -17,8 +17,8 @@ import NavbarDrawerV2 from "../../components/navigation/NavbarV2/NavbarDrawerV2"
 import useIsMobile from "../../hooks/useIsMobile";
 import AboutSectionV2 from "./AboutSectionV2";
 import ContactUsV2 from "./ContactUsV2";
-import HeaderSectionV2 from "./HeaderSectionV2";
 import { useThemeContext } from "../../theme/ThemeContextProvider";
+import HeaderSectionV2 from "./HeaderSectionV2";
 
 function WelcomePageV2() {
   const dispatch = useAppDispatch();
@@ -54,11 +54,13 @@ function WelcomePageV2() {
           <NavbarLogoV2
             title="OnTrack"
             icon={
-              <img
+              <Box
+                component={"img"}
                 src={FoxLogo}
                 width="40px"
                 height="40px"
                 alt="Company logo"
+                sx={{ borderRadius: "12px" }}
               />
             }
           />

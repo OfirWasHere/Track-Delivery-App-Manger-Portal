@@ -1,5 +1,5 @@
 import { Box, Button, Container, Typography } from "@mui/material";
-import placeholderImage1 from "../../assets/placeholderimage.jpg";
+import placeholderImage1 from "../../assets/placeholderimage2.jpg";
 
 function HeaderSection() {
   return (
@@ -14,15 +14,16 @@ function HeaderSection() {
       <Box width="100%">
         <Box
           sx={{
-            background: `url(${placeholderImage1})`,
+            backgroundImage: `url(${placeholderImage1})`,
             backgroundRepeat: "no-repeat",
-            backgroundSize: "cover",
             backgroundPosition: "top",
-            height: "auto",
-            py: 20,
+            backgroundSize: "cover",
+            height: "100%",
+            backgroundColor: "rgba(0, 0, 0, 0.5)", // Adjust the opacity to control darkness
+            backgroundBlendMode: "darken", // This blends the background color with the image
           }}
         >
-          <Container>
+          <Container sx={{ py: 20 }}>
             <Typography
               variant="h2"
               color="#fff"
@@ -49,7 +50,10 @@ function HeaderSection() {
                   הרשמה
                 </Typography>
               </Button>
-              <Button variant="outlined" sx={{ borderRadius: "8px" }}>
+              <Button
+                variant="outlined"
+                sx={{ borderRadius: "8px", color: "#fff", borderColor: "#fff" }}
+              >
                 <Typography sx={{ fontSize: 24 }}>פרטים נוספים</Typography>
               </Button>
             </Box>
