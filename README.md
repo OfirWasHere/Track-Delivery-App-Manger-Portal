@@ -51,7 +51,7 @@ This lets you run firebase auth on your own system, make sure .env files are upd
 
 8. if needed, update mobile resposiveness.
 
-9. notifications, fix all page errors with toasty, currently it shows "a lot of text from firebase auth"
+9. notifications, fix all page errors with toasty, currently it shows a lot of text from firebase auth...
 
 10. add proper fonts, current fonts are not good.
 
