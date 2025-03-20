@@ -31,7 +31,7 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 ### `firebase emulators:start --only auth` 
 
-This lets you run firebase auth on your own system, make sure .env files are updated to latest version and in useFirebase hook uncomment connectAuthEmulator
+This let's you run firebase auth on your own system, make sure .env files are updated to latest version and in useFirebase hook uncomment connectAuthEmulator
 
 ### todo:
 
